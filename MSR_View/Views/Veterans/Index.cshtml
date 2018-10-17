@@ -1,0 +1,50 @@
+﻿
+@model IEnumerable<MSR_mvc.Models.Veteran>
+
+
+
+@{
+    ViewBag.Title = "Veteran";
+}
+
+    <section class="jumbotron bg-dark">
+        <div class="container">
+            <div class="row ">
+                <table class="table table-light rounded">
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Regiment Number
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    var fullName = item.Surname + ", " + item.FirstName;
+                                    <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(m => fullName)</a>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+
