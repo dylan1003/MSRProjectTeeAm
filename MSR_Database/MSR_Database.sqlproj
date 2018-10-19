@@ -86,5 +86,6 @@
     <Build Include="Tables\MultiMedias.sql" />
     <Build Include="Tables\Contents.sql" />
     <PostDeploy Include="Scripts\InsertData.PostDeployment1.sql" />
+    <Build Include="Tables\MapPushPin.sql" />
   </ItemGroup>
 </Project>
