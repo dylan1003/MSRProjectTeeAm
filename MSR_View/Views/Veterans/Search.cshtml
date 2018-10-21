@@ -52,23 +52,23 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @{
-                                var fullName = item.Surname + ", " + item.FirstName;
-                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(m => fullName)</a>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ServiceNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Unit)
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @{
+                            var fullName = item.Surname + ", " + item.FirstName;
+                            <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(m => fullName)</a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                </tr>
                 }
             </table>
             <!--./Results Field-->

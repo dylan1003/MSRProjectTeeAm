@@ -163,6 +163,7 @@
     <Content Include="Views\Veterans\Portfolio.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
+    <Content Include="Views\Veterans\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
