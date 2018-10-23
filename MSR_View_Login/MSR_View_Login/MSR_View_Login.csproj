@@ -277,7 +277,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Veteran\Manage.cshtml" />
+    <Content Include="Views\Veteran\Index.cshtml" />
     <Content Include="Views\Veteran\ChangePassword.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace SimplifiedLogin.Controllers
 {
+    [Authorize]
     public class VeteranController : Controller
     {
         // GET: Veteran
@@ -13,12 +14,12 @@ namespace SimplifiedLogin.Controllers
         {
             return View();
         }
-        [Authorize]
+        
         public ActionResult Manage()
         {
             return View();
         }
-        [Authorize]
+        
         public ActionResult ChangePassword()
         {
             return View();
