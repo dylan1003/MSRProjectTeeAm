@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Sections]
 (
 	[Id] int,
-	[Title] nvarchar(20) NOT NULL,
+	[Title] nvarchar(40) NOT NULL,
 	[Approved] bit not null,
 	[displayPosition] int NOT NULL,
 	PRIMARY KEY (Id, Fk_Portfolio_Id),

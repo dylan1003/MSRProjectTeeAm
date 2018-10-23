@@ -7,7 +7,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MSR_Database", "MSR_Databas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSR_View", "MSR_View\MSR_View.csproj", "{69941999-D497-4852-AB1A-6FC1E52B5E68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplifiedLogin", "..\..\..\Desktop\SimplifiedLogin\SimplifiedLogin\SimplifiedLogin.csproj", "{9C82582C-8054-49AD-9B52-20D54AF9A189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSR_View_Login", "MSR_View_Login\MSR_View_Login\MSR_View_Login.csproj", "{9C82582C-8054-49AD-9B52-20D54AF9A189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
