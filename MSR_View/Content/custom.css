@@ -21,7 +21,8 @@
     padding: 4rem 1rem;
     margin-bottom: 2rem;
     background-color: #e9ecef;
-    border-radius: .3rem
+    border-radius: .3rem;
+    margin-bottom: 0px;
 }
 .overwrite-bg-jumbo {
     background-color: #F3F4EC
@@ -66,4 +67,14 @@
 .card-img-top:hover {
     cursor: pointer;
     background-color: #2C3539;
+}
+.custom-footer {
+    background-color: #424756;
+    height: 4em
+}
+.footer-row{
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 20px;
+    color: #fff
 }
