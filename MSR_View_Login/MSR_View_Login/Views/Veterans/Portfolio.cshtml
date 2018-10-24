@@ -5,8 +5,20 @@
     ViewBag.Title = "Index";
 }
 
-
-
+<!--Modal Image View-->
+<div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="enlargeImageModalSource" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+<!--./Modal Image View-->
 
 <!--Jumbotron-->
 <section class="jumbotron bg-dark">
@@ -132,46 +144,46 @@
                                 @for (int i = 0; i < Model.Item1.Count; i++)
                                 {
                                     <!--Next slide-->
-                                <div class="carousel-item">
-                                    <!--Header Content-->
-                                    <div class="card-block px-2">
+                                    <div class="carousel-item">
+                                        <!--Header Content-->
+                                        <div class="card-block px-2">
 
-                                        <img class="float-left img-fluid" style="width:30%; height:auto; padding: 0;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                            <img class="float-left img-fluid" style="width:30%; height:auto; padding: 0;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
-                                        <br>
-                                        <h4 class="card-title">
-                                            @{
+                                            <br>
+                                            <h4 class="card-title">
+                                                @{
 
-                                                @Html.DisplayFor(m => fullName)
+                                                    @Html.DisplayFor(m => fullName)
+                                                }
+                                            </h4>
+                                        </div>
+                                        <!--./Header Content-->
+                                        <!--Block Content-->
+                                        <div class="card-block px-2" id="block">
+                                            <hr>
+
+                                            @foreach (var c in Model.Item1[i].Contents)
+                                            {
+                                                if (c.type == "image")
+                                                {
+                                                    <p style="font-weight:bold;">@c.Title</p>
+
+
+                                                    <img src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:150px;height:300px" />
+
+                                                }
+                                                else
+                                                {
+                                                    <p style="font-weight:bold;">@c.Title</p>
+
+                                                    @System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)
+
+                                                }
                                             }
-                                        </h4>
-                                    </div>
-                                    <!--./Header Content-->
-                                    <!--Block Content-->
-                                    <div class="card-block px-2" id="block">
-                                        <hr>
-                                    
-                                    @foreach (var c in Model.Item1[i].Contents)
-                                    {
-                                        if (c.type == "image")
-                                        {
-                                            <p style="font-weight:bold;">@c.Title</p>
-                                                
-                                                
-                                            <img src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:150px;height:300px" />
-                                           
-                                        }
-                                        else
-                                        {
-                                            <p style="font-weight:bold;">@c.Title</p>
-                                                
-                                            @System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)
-                                               
-                                        }
-                                    }
-                                    </div>
+                                        </div>
                                         <!--./Block Content-->
-                                </div>
+                                    </div>
                                     <!--/.Next slide-->
                                 }
 

@@ -243,7 +243,7 @@ namespace SimplifiedLogin.Controllers
             AddErrors(result);
             return View(model);
         }
-
+        /*
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
@@ -298,7 +298,7 @@ namespace SimplifiedLogin.Controllers
                 OtherLogins = otherLogins
             });
         }
-        /*
+        
         //
         // POST: /Manage/LinkLogin
         [HttpPost]
