@@ -195,9 +195,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\VeteranController.cs" />
+    <Compile Include="Controllers\UserVeteranController.cs" />
     <Compile Include="Controllers\VeteransController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,10 +278,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Veteran\Index.cshtml" />
+    <Content Include="Views\UserVeteran\Index.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />
     <Content Include="Views\Veterans\Search.cshtml" />
+    <Content Include="Views\Admin\index.cshtml" />
+    <Content Include="Views\Admin\CreateVeteran.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,7 +17,7 @@
 	[ShortBio] nvarchar(1000),
 	[Status] int null,
 	Fk_User_Id INT UNIQUE FOREIGN KEY REFERENCES Users(Id),
-	Fk_Profile_Picture_Id INT FOREIGN KEY REFERENCES ProfilePictures(Id) NOT NULL,
-	Fk_Portfolio_Id INT UNIQUE FOREIGN KEY REFERENCES Portfolios(Id) NOT NULL,
+	Fk_Profile_Picture_Id INT FOREIGN KEY REFERENCES ProfilePictures(Id) NULL,
+	Fk_Portfolio_Id INT UNIQUE FOREIGN KEY REFERENCES Portfolios(Id) NULL,
 	Fk_Veteran_Queue_Id INT FOREIGN KEY REFERENCES VeteranQueues(Id) 
 )

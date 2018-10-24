@@ -12,7 +12,7 @@
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/Account/Register">Register User</a>
-                            <a class="dropdown-item" href="#">Create Veteran</a>
+                            <a class="dropdown-item" href="/Admin/CreateVeteran">Create Veteran</a>
                             <a class="dropdown-item" href="/Manage/ChangePassword">Change Password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
@@ -28,7 +28,7 @@
                     <div class="btn-group nav-link" style="padding:0;">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/Veteran/">Manage Portfolio</a>
+                            <a class="dropdown-item" href="/UserVeteran/">Manage Portfolio</a>
                             <a class="dropdown-item" href="/Manage/ChangePassword">Change Password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>

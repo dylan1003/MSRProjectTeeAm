@@ -1,0 +1,94 @@
+﻿@using Microsoft.AspNet.Identity
+@model MSR_mvc.Models.Veteran
+@{
+    ViewBag.Title = "CreateVeteran";
+}
+
+@{ if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
+    {
+        <section class="jumbotron bg-dark">
+            <div class="container">
+                @using (Html.BeginForm("CreateVeteran", "Admin", FormMethod.Post, new { @class = "form-horizontal text-white", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Create a Veteran.</h4>
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="Id">Unique AIF Identifier</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">First Name</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Middle Name</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Surname</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Date Of Birth (DD/MM/YYYY)</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Fate</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Fate, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Death (DD/MM/YYYY)</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Death, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Enlisted Date (DD/MM/YYYY)</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.EnlistedDate, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Service/Regiement Number</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.ServiceNo, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Unit</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Unit, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Parish</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Parish, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Address</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Town</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Town, new { @class = "form-control" })
+                        </div>
+                        <label class="col-md-2 control-label" for="Id">Country</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-default" value="CreateVeteran" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="jumbotron bg-dark">
+            <div class="container">
+                <h2 class="text-white">401 - Unauthorized: Access is denied due to invalid credentials</h2>
+            </div>
+        </section>
+        }
+    }
+
