@@ -6,6 +6,13 @@ $(function () {
     });
 });
 
-
+function setCarouselActive(currentId) {
+    var navList = document.getElementById(currentId).parentElement.childNodes;
+    var navArray = Array.from(navList);
+    for (i = 0; i <= navArray.length; i++) {
+        navArray[i].classList.remove('highlightElement');
+    }
+    document.getElementById(currentId).classList.add('highlightElement');
+}
 
 

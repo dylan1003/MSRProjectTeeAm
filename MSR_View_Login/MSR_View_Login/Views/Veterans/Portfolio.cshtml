@@ -1,9 +1,9 @@
-﻿
-@model Tuple<List<MSR_mvc.Models.Section>, MSR_mvc.Models.Veteran, MSR_mvc.Models.ProfilePicture>
+﻿@model Tuple<List<MSR_mvc.Models.Section>, MSR_mvc.Models.Veteran, MSR_mvc.Models.ProfilePicture>
 
 @{
     ViewBag.Title = "Index";
 }
+
 
 <!--Modal Image View-->
 <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
@@ -19,7 +19,6 @@
     </div>
 </div>
 <!--./Modal Image View-->
-
 <!--Jumbotron-->
 <section class="jumbotron bg-dark">
     <div class="container-fluid">
@@ -57,7 +56,7 @@
                                     <!--Header Content-->
                                     <div class="card-block px-2">
 
-                                        <img class="float-left img-fluid" style="width:30%; height:auto; padding: 0; margin-top:10; margin-right:10;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                        <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
                                         <br>
                                         <h4 class="card-title">
@@ -196,13 +195,40 @@
                     </div>
                     <!--./Col Two-->
                 </div>
-                <!--Card Footer-->
+                <!--Card Footer & Navigation-->
                 <div class="card-footer w-100 text-muted text-center">
-                    &copy; Veteran Portfolios MSR
+                    <div>
+                        <style>
+                            div.scrollmenu {
+                                background-color: inherit;
+                                overflow: auto;
+                                white-space: nowrap;
+                            }
+
+                                div.scrollmenu a {
+                                    display: inline-block;
+                                    color: rgba(0,0,0,.03);
+                                    text-align: center;
+                                    padding: 14px;
+                                    text-decoration: none;
+                                }
+
+                                    div.scrollmenu a:hover {
+                                        background-color: #777;
+                                    }
+                        </style>
+                        <div class="scrollmenu" id="scrollmenu-nav">
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive(this.id)">About</a>
+                            @foreach (var t in Model.Item1)
+                            {
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide@($"-{t.Id}")" onclick="setCarouselActive(this.Id)">@Html.DisplayFor(m => t.Title)</a>
+                            }
+                        </div>
+                    </div>
+                    <!--./Card Footer & Navigation-->
                 </div>
-                <!--./Card Footer-->
+                <!--./Cards-->
             </div>
-            <!--./Cards-->
             <!--Right Controls-->
             <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
                 <i class="fa fa-chevron-right"></i>
@@ -210,8 +236,6 @@
             <!--./Right Controls-->
 
             <div class="col-1"></div>
-
         </div>
     </div>
 </section>
-
