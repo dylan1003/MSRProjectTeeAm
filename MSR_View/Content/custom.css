@@ -18,8 +18,7 @@
 
 /*Jumbotron*/
 .custom-jumbotron {
-    padding: 4rem 1rem;
-    margin-bottom: 2rem;
+    padding: 4rem;
     background-color: #e9ecef;
     border-radius: .3rem;
     margin-bottom: 0px;
@@ -32,7 +31,7 @@
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: 0px;
+    margin-left: auto;
 }
 .overwrite-botcontainer {
     width: 100%;
@@ -59,7 +58,7 @@
     border-radius: .25rem;
     margin: 50px;
     margin-top: 25px;
-    max-width: 300px
+    max-width: 325px
 }
 .card-body {
     background-color: #E6E6E6
