@@ -1,0 +1,79 @@
+﻿/*Navbar*/
+.overwrite-bg-navbar {
+    background-color: #424756
+}
+.overwrite-navbar-text .navbar-brand, .navbar-dark .navbar-text a, .navbar-item a {
+    color: #fff
+}
+.custom-navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    color: #fff
+}
+
+/*Jumbotron*/
+.custom-jumbotron {
+    padding: 4rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    margin-bottom: 0px;
+}
+.overwrite-bg-jumbo {
+    background-color: #F3F4EC
+}
+.overwrite-topcontainer {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.overwrite-botcontainer {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.custom-card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin: 50px;
+    margin-top: 25px;
+    max-width: 325px
+}
+.card-body {
+    background-color: #E6E6E6
+}
+.card-img-top:hover {
+    cursor: pointer;
+    background-color: #2C3539;
+}
+.custom-footer {
+    background-color: #424756;
+    height: 4em
+}
+.footer-row{
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 20px;
+    color: #fff
+}
