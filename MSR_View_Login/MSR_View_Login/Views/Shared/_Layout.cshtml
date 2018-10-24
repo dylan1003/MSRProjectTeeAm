@@ -1,15 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
 
-    @Scripts.Render("~/bundles/modernizr")
     <!--Styles-->
     <link rel="stylesheet" type="text/css" href="~/Content/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/Content/custom.css">
     <!--./Styles-->
     <!--Scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,10 +26,11 @@
 </head>
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
-        <a href="/" class="navbar-brand">My School Remembers</a>
+    <nav class="navbar overwrite-navbar-text overwrite-bg-navbar navbar-expand-lg fixed-top">
+        <img src="https://image.ibb.co/cU4Ki0/MSR-Star-Logo.png" class="navbar-brand" alt="MSR Logo" height="45" width="45">
+        <a href="/" class="navbar-brand"><strong>My School Remembers</strong></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
+            <span class="custom-navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
@@ -46,7 +48,6 @@
         </div>
     </nav>
     <!--./NavBar-->
-    
 
 
     <div>
@@ -64,9 +65,9 @@
         </script>
         <!--Map Script-->
         <!--Footer/Copyright-->
-        <footer class="container">
-            <div class="row">
-                <p class="col-sm-12 text-center">&copy; 2019 My School Remembers</p>
+        <footer class="custom-footer">
+            <div class="footer-row">
+                <p class="col-sm-12 text-left">&copy; 2019 My School Remembers</p>
             </div>
         </footer>
         <!--./Footer/Copyright-->
