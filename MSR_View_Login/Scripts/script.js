@@ -7,12 +7,11 @@ $(function () {
 });
 
 function setCarouselActive(currentId) {
-    var navList = document.getElementById(currentId).parentElement.childNodes;
-    var navArray = Array.from(navList);
-    for (i = 0; i <= navArray.length; i++) {
-        navArray[i].classList.remove('highlightElement');
+    var navList = document.getElementById(currentId).parentElement.children;
+    for (var i = 0; i < navList.length; i++) {
+        navList.item(i).classList.remove("highlightElement");
     }
-    document.getElementById(currentId).classList.add('highlightElement');
+    document.getElementById(currentId).classList.add("highlightElement");
 }
 
 

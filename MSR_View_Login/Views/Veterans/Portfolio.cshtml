@@ -218,10 +218,10 @@
                                     }
                         </style>
                         <div class="scrollmenu" id="scrollmenu-nav">
-                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive(this.id)">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var t in Model.Item1)
                             {
-                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide@($"-{t.Id}")" onclick="setCarouselActive(this.Id)">@Html.DisplayFor(m => t.Title)</a>
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
                             }
                         </div>
                     </div>
