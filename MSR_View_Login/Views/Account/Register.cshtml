@@ -8,6 +8,7 @@
 }
 
 <h2>@ViewBag.Title.</h2>
+
 @{ if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
     {
         <section class="jumbotron bg-dark">
@@ -50,16 +51,18 @@
                 }
             </div>
         </section>
+
     }
     else
     {
-        <section class="jumbotron bg-dark">
-            <div class="container">
-                <h2 class="text-white">401 - Unauthorized: Access is denied due to invalid credentials</h2>
-            </div>
-        </section>
+<section class="jumbotron bg-dark">
+    <div class="container">
+        <h2 class="text-white">401 - Unauthorized: Access is denied due to invalid credentials</h2>
+    </div>
+</section>
     }
 }
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

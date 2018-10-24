@@ -139,10 +139,12 @@ namespace SimplifiedLogin.Controllers
         [Authorize]
         public ActionResult Register()
         {
+            
             if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
             {
                 return View();
             }
+            
             return View();
         }
 
