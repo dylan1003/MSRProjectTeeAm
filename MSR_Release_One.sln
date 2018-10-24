@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MSR_Database", "MSR_Database\MSR_Database.sqlproj", "{38993196-3542-41FC-8187-273A0F4E793B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSR_Web_App", "MSR_View_Login\MSR_View_Login\MSR_Web_App.csproj", "{9C82582C-8054-49AD-9B52-20D54AF9A189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSR_Web_App", "MSR_View_Login\MSR_Web_App.csproj", "{9C82582C-8054-49AD-9B52-20D54AF9A189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
