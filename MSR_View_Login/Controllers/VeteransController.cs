@@ -12,7 +12,6 @@ namespace MSR_mvc.Controllers
     {
         private MSRContext db = new MSRContext();
 
-        
         //Just to test spike test of search layout/UI, Later to be used under index e.g Veterans/searchString?=James
         //Add Try catch to search items
         public ActionResult Index(string searchString, string inlineRadioOptions)
