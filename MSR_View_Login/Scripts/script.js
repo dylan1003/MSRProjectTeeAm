@@ -12,6 +12,18 @@ function setCarouselActive(currentId) {
         navList.item(i).classList.remove("highlightElement");
     }
     document.getElementById(currentId).classList.add("highlightElement");
-}
+};
 
+/*
+function horizontalScrollWindow() {
+    var scrollWindow = document.getElementById("scrollmenu-nav");
+    var isMouseOver = true;
 
+    $(scrollWindow).on('', function (e) {
+
+    })
+
+    while (isMouseOver) {
+    }
+} 
+*/

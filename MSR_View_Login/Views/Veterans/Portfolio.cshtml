@@ -68,7 +68,7 @@
                                     </div>
                                     <!--./Header Content-->
                                     <!--Block Content-->
-                                    <div class="card-block px-2" id="block">
+                                    <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
                                         <hr>
                                         <h4 class="card-title">About</h4>
 
@@ -123,7 +123,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">
+                                                    <th scope="row" style="margin-right:1px;">
                                                         @Html.DisplayNameFor(model => model.Item2.ShortBio)
                                                     </th>
                                                     <td>
@@ -159,7 +159,7 @@
                                         </div>
                                         <!--./Header Content-->
                                         <!--Block Content-->
-                                        <div class="card-block px-2" id="block">
+                                        <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
                                             <hr>
 
                                             @foreach (var c in Model.Item1[i].Contents)
@@ -217,12 +217,26 @@
                                         background-color: #777;
                                     }
                         </style>
-                        <div class="scrollmenu" id="scrollmenu-nav">
+                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var t in Model.Item1)
-                            {
-                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
-                            }
+        {
+                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
+}
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                         </div>
                     </div>
                     <!--./Card Footer & Navigation-->
