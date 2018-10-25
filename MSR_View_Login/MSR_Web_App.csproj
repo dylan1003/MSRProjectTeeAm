@@ -284,6 +284,7 @@
     <Content Include="Views\Veterans\Search.cshtml" />
     <Content Include="Views\Admin\index.cshtml" />
     <Content Include="Views\Admin\CreateVeteran.cshtml" />
+    <Content Include="Views\Shared\_ImageModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

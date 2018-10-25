@@ -48,7 +48,20 @@
         </div>
     </nav>
     <!--./NavBar-->
-
+    <!--Modal Image View-->
+    <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <img src="" class="enlargeImageModalSource" style="width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--./Modal Image View-->
 
     <div>
         @RenderBody()
@@ -77,5 +90,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
