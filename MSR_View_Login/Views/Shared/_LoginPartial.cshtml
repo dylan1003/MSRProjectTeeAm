@@ -10,7 +10,7 @@
                 <li class="navbar-item">
                     <div class="btn-group nav-link" style="padding:0;">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <a class="dropdown-item" href="/Account/Register">Register User</a>
                             <a class="dropdown-item" href="/Admin/CreateVeteran">Create Veteran</a>
                             <a class="dropdown-item" href="/Manage/ChangePassword">Change Password</a>
