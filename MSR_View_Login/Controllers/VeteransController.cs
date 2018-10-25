@@ -29,6 +29,7 @@ namespace MSR_mvc.Controllers
                     veterans = veterans.Where(n => n.FirstName.ToLower().ToLower().Contains(searchString) ||
                                                n.MiddleName.ToLower().Contains(searchString) ||
                                                n.Surname.ToLower().Contains(searchString)).ToList();
+
                 }
                 else if (inlineRadioOptions == "Regiment")
                 {
