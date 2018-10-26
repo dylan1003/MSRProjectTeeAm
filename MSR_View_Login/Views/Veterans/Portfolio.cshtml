@@ -11,7 +11,7 @@
 
 @Html.Partial("_ImageModal")
 <!--Jumbotron-->
-<section class="jumbotron bg-dark">
+<section class="overwrite-bg-jumbo" style="margin-bottom:0">
     <div class="container-fluid">
         <div class="row">
             <div class="col-1"></div>
@@ -47,7 +47,7 @@
                                     <!--Header Content-->
                                     <div class="card-block px-2">
 
-                                        <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
                                         <br>
                                         <h4 class="card-title">
@@ -59,71 +59,71 @@
                                     </div>
                                     <!--./Header Content-->
                                     <!--Block Content-->
-                                    <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                        <hr>
-                                        <h4 class="card-title">About</h4>
+                                        <div class="card-block px-2" id="block" data-simplebar>
+                                            <hr>
+                                            <h4 class="card-title">About</h4>
 
-                                        <table class="table card-text">
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.FirstName)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.FirstName)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.MiddleName)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.MiddleName)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.Surname)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.Surname)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.DOB)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.DOB)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.ServiceNo)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.ServiceNo)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.Address)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.Address)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row" style="margin-right:1px;">
-                                                        @Html.DisplayNameFor(model => model.Item2.ShortBio)
-                                                    </th>
-                                                    <td>
-                                                        @Html.DisplayFor(model => model.Item2.ShortBio)
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            <table class="table card-text">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.FirstName)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.FirstName)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.MiddleName)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.MiddleName)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.Surname)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.Surname)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.DOB)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.DOB)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.ServiceNo)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.ServiceNo)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.DisplayNameFor(model => model.Item2.Address)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.Address)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" style="margin-right:1px;">
+                                                            @Html.DisplayNameFor(model => model.Item2.ShortBio)
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Item2.ShortBio)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     <!--./Block Content-->
                                 </div>
                                 <!--/.First slide-->
@@ -138,7 +138,7 @@
                                         <!--Header Content-->
                                         <div class="card-block px-2">
 
-                                            <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
                                             <br>
                                             <h4 class="card-title">
@@ -150,27 +150,29 @@
                                         </div>
                                         <!--./Header Content-->
                                         <!--Block Content-->
-                                        <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                            <hr>
 
-                                            @foreach (var c in Model.Item1[i].Contents)
-                                            {
-                                                if (c.type == "image")
+                                        <div data-simplebar id="block">
+                                            <div class="card-block px-2" id="block">
+                                                <hr>
+                                                @foreach (var c in Model.Item1[i].Contents)
                                                 {
-                                                    <p style="font-weight:bold;">@c.Title</p>
+                                                    if (c.type == "image")
+                                                    {
+                                                        <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                    <img src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:50%;" />
+                                                        <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:50%;" />
 
+                                                    }
+                                                    else
+                                                    {
+                                                        <p style="font-weight:bold;margin-right:2px;">@c.Title</p>
+
+                                                        <p style="margin-right:2px">@System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)</p>
+
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <p style="font-weight:bold;">@c.Title</p>
-
-                                                    @System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)
-
-                                                }
-                                            }
+                                            </div>
                                         </div>
                                         <!--./Block Content-->
                                     </div>
@@ -208,12 +210,12 @@
                                         background-color: #777;
                                     }
                         </style>
-                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
+                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav">
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var t in Model.Item1)
-        {
-                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
-}
+                            {
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
+                            }
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>

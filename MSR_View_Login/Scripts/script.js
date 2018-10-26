@@ -1,6 +1,6 @@
 ﻿
 $(function () {
-    $('img').on('click', function () {
+    $(".img-click").on('click', function () {
         $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
         $('#enlargeImageModal').modal('show');
     });
@@ -13,6 +13,37 @@ function setCarouselActive(currentId) {
     }
     document.getElementById(currentId).classList.add("highlightElement");
 };
+
+/*
+$(function () {
+    $("#scrollmenu-nav").mousewheel(function (event, delta) {
+        this.scrollLeft -= (delta * 50);
+        this.scrollRight -= (delta * 50);
+        this.style.transition = '1s';
+        event.preventDefault();
+    });
+});
+*/
+/*
+var isHovered;
+
+$(function () {
+    $("#scrollmenu-nav").mousedown(function (e) {
+        
+        ) 
+    
+    }); 
+
+$(function () {
+    $("#scrollmenu-nav").scroll(function (e) {
+        if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+            $("#scrollmenu-nav").scrollLeft(300)
+        }
+        else {
+            $("#scrollmenu-nav").scrollLeft(-300)
+        }
+    });
+});*/
 
 /*
 function horizontalScrollWindow() {
