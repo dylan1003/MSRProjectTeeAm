@@ -30,6 +30,6 @@ function horizontalScrollWindow() {
 
 $(function () {
     $('#inlineRadio4').on('click', function () {
-        alert("Unfortunaly AIF search results currently do not support unit/battalion search");
+        alert("Unfortunaly AIF search results currently does not support unit/battalion search");
     });
 });
