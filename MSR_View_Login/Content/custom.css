@@ -95,3 +95,8 @@ html body {
 .highlightElement {
     background-color: lightslategrey ;
 }
+
+.jumbotron {
+    margin: 0;
+    border-radius: 0;
+}
