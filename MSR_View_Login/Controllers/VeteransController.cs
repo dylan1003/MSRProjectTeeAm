@@ -12,12 +12,49 @@ namespace MSR_mvc.Controllers
     {
         private MSRContext db = new MSRContext();
 
-        
+        public List<AifResult> AifSearch(string search, string searchType)
+        {
+            List<AifResult> resultsList = new List<AifResult>();
+            string baseAddress = "https://www.aif.adfa.edu.au/";
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = web.Load($"{baseAddress}");
+
+            if (searchType == "Name")
+            {
+                doc = web.Load($"{baseAddress}search?type=search&name={search}");
+            }
+            else if (searchType == "Regiment")
+            {
+                doc = web.Load($"{baseAddress}search?type=search&regNum={search}");
+            }
+            else if (searchType == "Address")
+            {
+                doc = web.Load($"{baseAddress}search?type=search&place={search}");
+            }
+
+            var listings = doc.DocumentNode.SelectNodes("//tr");
+
+            foreach (var item in listings.Where(l => l != listings.Last()))
+            {
+                AifResult results = new AifResult();
+
+                results.RegimentNumber = item.ChildNodes[1].InnerHtml;
+                results.Name = item.ChildNodes[2].InnerText;
+                results.ProfileLink = baseAddress + item.ChildNodes[2].ChildNodes[0].Attributes[0].Value;
+                results.Address = item.ChildNodes[3].InnerHtml;
+                results.Battalion = item.ChildNodes[4].InnerText;
+
+                resultsList.Add(results);
+            }
+            return resultsList;
+        }
+
+
         //Just to test spike test of search layout/UI, Later to be used under index e.g Veterans/searchString?=James
         //Add Try catch to search items
         public ActionResult Index(string searchString, string inlineRadioOptions)
         {
-            
+            List<AifResult> searchResults = new List<AifResult>();
             List<Veteran> veterans = db.Veterans.ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -29,10 +66,13 @@ namespace MSR_mvc.Controllers
                     veterans = veterans.Where(n => n.FirstName.ToLower().ToLower().Contains(searchString) ||
                                                n.MiddleName.ToLower().Contains(searchString) ||
                                                n.Surname.ToLower().Contains(searchString)).ToList();
+
+                     searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Regiment")
                 {
                     veterans = veterans.Where(n => n.ServiceNo.ToLower().Contains(searchString)).ToList();
+                    searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Address")
                 {
@@ -42,13 +82,14 @@ namespace MSR_mvc.Controllers
                                                    n.Town.Contains(searchString)).ToList();
                     */
                     veterans = veterans.Where(n => n.Address.ToLower().Contains(searchString)).ToList();
+                    searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Unit")
                 {
                     veterans = veterans.Where(n => n.Unit.ToLower().Contains(searchString)).ToList();
                 }
             }
-            return View(veterans);
+            return View(Tuple.Create(veterans, searchResults));
         }
 
         // Get By Id

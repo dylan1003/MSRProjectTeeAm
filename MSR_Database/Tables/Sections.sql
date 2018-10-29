@@ -1,10 +1,14 @@
 ﻿CREATE TABLE [dbo].[Sections]
 (
 	[Id] int,
-	[Title] nvarchar(40) NOT NULL,
+	[EventTitle] nvarchar(40) NOT NULL,
 	[Approved] bit not null,
-	[displayPosition] int NOT NULL,
-	PRIMARY KEY (Id, Fk_Portfolio_Id),
-	Fk_Portfolio_Id INT FOREIGN KEY REFERENCES Portfolios(Id) NOT NULL
+	[DisplayPosition] int NOT NULL,
+	[CoordY] NVARCHAR(50),
+	[CoordX] NVARCHAR(50),
+	[Message] NVARCHAR(60),
+	[CameraZoom] NVARCHAR(10),
+	PRIMARY KEY (Id, Fk_Veterans_Id),
+	Fk_Veterans_Id INT FOREIGN KEY REFERENCES Veterans(Id) NOT NULL
 	
 )
