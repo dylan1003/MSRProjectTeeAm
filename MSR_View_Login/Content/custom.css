@@ -1,14 +1,18 @@
 ﻿/*Navbar*/
 html body {
     margin: 0;
+    background-color: #F3F4EC;
 }
 
 .overwrite-bg-navbar {
     background-color: #424756
 }
 
-.overwrite-navbar-text .navbar-brand, .navbar-dark .navbar-text a, .navbar-item a {
+.overwrite-navbar-text .navbar-brand, .navbar-dark .navbar-text a, .navbar-item a, .nav-link a{
     color: #fff
+}
+.navbar-item a:hover, nav-link a:hover {
+    color: dimgrey
 }
 
 .custom-navbar-toggler-icon {
@@ -22,6 +26,12 @@ html body {
     color: #fff
 }
 
+
+.home-container{
+    padding-top: 7vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
 /*Jumbotron*/
 .custom-jumbotron {
     padding: 4rem;
@@ -94,4 +104,11 @@ html body {
 
 .highlightElement {
     background-color: lightslategrey ;
+}
+
+#loginLink {
+    color: #fff
+}
+#loginLink:hover{
+    color: dimgray
 }
