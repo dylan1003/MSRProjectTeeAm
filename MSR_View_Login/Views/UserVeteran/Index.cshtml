@@ -25,68 +25,71 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="map-container">...</div>
-                        <div class="form-container">...</div>
-                        <script>
-                            mapboxgl.accessToken = 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og';
-                            var map = new mapboxgl.Map({
-                                container: 'modal-map-container',
-                                style: 'mapbox://styles/mapbox/light-v9',
-                                center: [-96, 37.8],
-                                zoom: 3
-                            });
+                        <div class="modal-map-container" id="map">
+                            <script>
+                                mapboxgl.accessToken = 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og';
+                                var map = new mapboxgl.Map({
+                                    container: 'map',
+                                    style: 'mapbox://styles/mapbox/light-v9',
+                                    center: [-96, 37.8],
+                                    zoom: 3
+                                });
 
-                            var geojson = {
-                                type: 'FeatureCollection',
-                                features: [{
-                                    type: 'Feature',
-                                    geometry: {
-                                        type: 'Point',
-                                        coordinates: [-77.032, 38.913]
+                                var geojson = {
+                                    type: 'FeatureCollection',
+                                    features: [{
+                                        type: 'Feature',
+                                        geometry: {
+                                            type: 'Point',
+                                            coordinates: [-77.032, 38.913]
+                                        },
+                                        properties: {
+                                            title: 'Mapbox',
+                                            description: 'Washington, D.C.'
+                                        }
                                     },
-                                    properties: {
-                                        title: 'Mapbox',
-                                        description: 'Washington, D.C.'
-                                    }
-                                },
-                                {
-                                    type: 'Feature',
-                                    geometry: {
-                                        type: 'Point',
-                                        coordinates: [-122.414, 37.776]
-                                    },
-                                    properties: {
-                                        title: 'Mapbox',
-                                        description: 'San Francisco, California'
-                                    }
+                                    {
+                                        type: 'Feature',
+                                        geometry: {
+                                            type: 'Point',
+                                            coordinates: [-122.414, 37.776]
+                                        },
+                                        properties: {
+                                            title: 'Mapbox',
+                                            description: 'San Francisco, California'
+                                        }
                                     }]
-                            };
+                                };
 
-                            // add markers to map
-                            geojson.features.forEach(function (marker) {
-                                // create a HTML element for each feature
-                                var el = document.createElement('div');
-                                el.className = 'marker';
+                                // add markers to map
+                                geojson.features.forEach(function (marker) {
+                                    // create a HTML element for each feature
+                                    var el = document.createElement('div');
+                                    el.className = 'marker';
 
-                                // make a marker for each feature and add to the map
-                                new mapboxgl.Marker(el)
-                                    .setLngLat(marker.geometry.coordinates)
-                                    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-                                    .addTo(map);
-                            });
+                                    // make a marker for each feature and add to the map
+                                    new mapboxgl.Marker(el)
+                                        .setLngLat(marker.geometry.coordinates)
+                                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                                            .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                                        .addTo(map);
+                                });
 
-                            map.on('click', function (e) {
-                                var el = document.createElement('div');
-                                el.className = 'marker';
+                                map.on('click', function (e) {
+                                    var el = document.createElement('div');
+                                    el.className = 'marker';
 
-                                new mapboxgl.Marker(el)
-                                    .setLngLat(e.lngLat)
-                                    .setPopup(new mapboxgl.Popup({ offset: 25 }))
-                                    .addTo(map)
-                            })
+                                    new mapboxgl.Marker(el)
+                                        .setLngLat(e.lngLat)
+                                        .setPopup(new mapboxgl.Popup({ offset: 25 }))
+                                        .addTo(map)
+                                })
 
-                        </script>
+                            </script>
+
+                        </div>
+                        <div class="modal-form-container">...</div>
+                        
                     </div>
                 </div>
             </div>
