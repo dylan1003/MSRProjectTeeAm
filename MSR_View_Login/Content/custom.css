@@ -100,3 +100,18 @@ html body {
     margin: 0;
     border-radius: 0;
 }
+
+.modal-map-container {
+    display: flex;
+    flex: 1;
+}
+
+.modal-form-container {
+    display: flex;
+    flex: 1;
+}
+
+.modal-body {
+    display: inline-flex;
+}
+

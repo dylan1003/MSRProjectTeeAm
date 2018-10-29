@@ -6,13 +6,30 @@
 <section class="jumbotron bg-dark">
     <div class="container">
         <div class="row">
-            <h2>Hello @User.Identity.GetUserName()!</h2> 
+            <h2>Hello @User.Identity.GetUserName()!</h2>
         </div>
         <div class="row">
             <h3>This is where you can edit veteran portfolio</h3>
         </div>
         <div class="row">
             <h2>@Html.ActionLink("Change Password", "Index", "Veteran/Changepassword", routeValues: null, htmlAttributes: new { title = "Change Password", @class = "nav-link" })</h2>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".map-modal" data-whatever="something">Test Modal </button>
+        <div class="modal fade map-modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="map-modal-label">Select a map point</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="map-container">...</div>
+                        <div class="form-container">...</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
