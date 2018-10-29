@@ -109,9 +109,11 @@ html body {
 .modal-form-container {
     display: flex;
     flex: 1;
+    text-align: center;
 }
 
 .modal-body {
     display: inline-flex;
+    text-align: center;
 }
 
