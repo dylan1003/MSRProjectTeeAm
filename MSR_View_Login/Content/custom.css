@@ -95,3 +95,31 @@ html body {
 .highlightElement {
     background-color: lightslategrey ;
 }
+
+#left-arrow {
+    display: inline-block;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.arrow-size {
+    font-size: 50px;
+}
+
+.nav-arrow {
+    text-decoration: none !important;
+}
+
+.nav-arrow-container {
+    transform: rotate(180deg);
+    display: inline-block;
+}
+
+@media only screen and (max-width: 800) {
+    .table-mobile {
+        border: none;
+    }
+}
