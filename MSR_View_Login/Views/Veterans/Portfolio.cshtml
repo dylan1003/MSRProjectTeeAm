@@ -11,32 +11,21 @@
 
 @Html.Partial("_ImageModal")
 <!--Jumbotron-->
-<section class="jumbotron bg-dark">
+<section class="overwrite-bg-jumbo">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-1"></div>
-
             <!--Left Control-->
-            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
-                <i class="fa fa-chevron-left"></i>
-            </a>
+            <div class="col-1 d-none d-sm-block" id="navDiv">
+                <a class="btn-floating align-middle text-center d-none d-sm-block align-content-center" href="#multi-item-example" data-slide="prev">
+                    <i class="arrow-size arrow nav-arrow" id="left-arrow">➤</i>
+                </a>
+            </div>
             <!--./Left Control-->
             <!--Card-->
-            <div class="card col-8 px-0">
+            <div class="card col-md-10 col-sm-10 col-xs-10 align-self-center px-0" style="margin-top:10vh;margin-bottom:5vh">
                 <div class="row no-gutters">
-                    <!--Col One-->
-                    <div class="col-6 px-0">
-                        <div class="col-auto card-block px-0" style="width:100%; height:100%;">
-                            <!--Map-->
-                            <div id='map'></div>
-
-                            <!--./Map-->
-
-                        </div>
-                    </div>
-                    <!--./Col One-->
                     <!--Col Two-->
-                    <div class="col-6">
+                    <div class="col-md-6 col-md-push-6">
                         <!--Carousel-->
                         <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
                             <!--All Slides-->
@@ -47,7 +36,7 @@
                                     <!--Header Content-->
                                     <div class="card-block px-2">
 
-                                        <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
                                         <br>
                                         <h4 class="card-title">
@@ -59,11 +48,11 @@
                                     </div>
                                     <!--./Header Content-->
                                     <!--Block Content-->
-                                    <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
+                                    <div class="card-block px-2" id="block" data-simplebar>
                                         <hr>
                                         <h4 class="card-title">About</h4>
 
-                                        <table class="table card-text">
+                                        <table class="table card-text table-mobile">
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">
@@ -138,7 +127,7 @@
                                         <!--Header Content-->
                                         <div class="card-block px-2">
 
-                                            <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
 
                                             <br>
                                             <h4 class="card-title">
@@ -150,27 +139,29 @@
                                         </div>
                                         <!--./Header Content-->
                                         <!--Block Content-->
-                                        <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                            <hr>
 
-                                            @foreach (var c in Model.Item1[i].Contents)
-                                            {
-                                                if (c.type == "image")
+                                        <div data-simplebar id="block">
+                                            <div class="card-block px-2" id="block">
+                                                <hr>
+                                                @foreach (var c in Model.Item1[i].Contents)
                                                 {
-                                                    <p style="font-weight:bold;">@c.Title</p>
+                                                    if (c.type == "image")
+                                                    {
+                                                        <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                    <img src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:50%;" />
+                                                        <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:50%;" />
 
+                                                    }
+                                                    else
+                                                    {
+                                                        <p style="font-weight:bold;margin-right:2px;">@c.Title</p>
+
+                                                        <p style="margin-right:2px">@System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)</p>
+
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <p style="font-weight:bold;">@c.Title</p>
-
-                                                    @System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)
-
-                                                }
-                                            }
+                                            </div>
                                         </div>
                                         <!--./Block Content-->
                                     </div>
@@ -185,6 +176,17 @@
                         <!--./Carousel-->
                     </div>
                     <!--./Col Two-->
+                    <!--Col One-->
+                    <div class="col-md-6 col-md-pull-6 px-0">
+                        <div class="col-auto card-block px-0" style="width:100%; height:100%;">
+                            <!--Map-->
+                            <div id='map'></div>
+
+                            <!--./Map-->
+
+                        </div>
+                    </div>
+                    <!--./Col One-->
                 </div>
                 <!--Card Footer & Navigation-->
                 <div class="card-footer w-100 text-muted text-center">
@@ -208,12 +210,12 @@
                                         background-color: #777;
                                     }
                         </style>
-                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
+                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav">
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var t in Model.Item1)
-        {
-                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
-}
+                            {
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
+                            }
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
@@ -235,12 +237,12 @@
                 <!--./Cards-->
             </div>
             <!--Right Controls-->
-            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
-                <i class="fa fa-chevron-right"></i>
-            </a>
+                <a class="col-1 btn-floating align-self-center text-center nav-arrow" href="#multi-item-example" data-slide="next">
+                    <i class="arrow arrow-size">➤</i>
+                </a>
+            
             <!--./Right Controls-->
 
-            <div class="col-1"></div>
         </div>
     </div>
 </section>
