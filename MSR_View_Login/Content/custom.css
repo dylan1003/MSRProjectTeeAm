@@ -36,6 +36,12 @@ html body {
 .jumbotron{
     margin-bottom: 0px;
 }
+.jumbotron-form {
+    padding: 4rem;
+    background-color: #343a40;
+    border-radius: .3rem;
+    margin-bottom: 5vh;
+}
 .custom-jumbotron {
     padding: 4rem;
     background-color: #e9ecef;
