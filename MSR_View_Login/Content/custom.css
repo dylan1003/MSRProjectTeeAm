@@ -33,6 +33,9 @@ html body {
     padding-right: 5vw;
 }
 /*Jumbotron*/
+.jumbotron{
+    margin-bottom: 0px;
+}
 .custom-jumbotron {
     padding: 4rem;
     background-color: #e9ecef;
