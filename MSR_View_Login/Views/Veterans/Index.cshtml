@@ -35,7 +35,7 @@
         <br>
         <div class="row">
             <!--Results Field-->
-            <h3 class="text-white">This is a list of search results from the MSR Database</h3>
+            <h3 class="text-black-50">This is a list of search results from the MSR Database</h3>
             <table class="table table-light rounded-bottom">
                 <tr>
                     <th>
@@ -76,7 +76,7 @@
             <!--AIF Results-->
             @if (Model.Item2.Count > 0)
             {
-                <h3 class="text-white">This is a partial list of search results from the AIF Database</h3>
+                <h3 class="text-black-50">This is a partial list of search results from the AIF Database</h3>
                 <table class="table table-light rounded-bottom">
                     @{
                         <tr>
@@ -90,7 +90,7 @@
                             {
                                 <tr>
                                     <td>@Model.Item2[i].RegimentNumber</td>
-                                    <td><a href="@Model.Item2[i].ProfileLink">@Model.Item2[i].Name</a></td>
+                                    <td><a href="@Model.Item2[i].ProfileLink" target="_blank">@Model.Item2[i].Name</a></td>
                                     <td>@Model.Item2[i].Address</td>
                                     <td>@Model.Item2[i].Battalion</td>
                                 </tr>
