@@ -6,11 +6,11 @@
         @Html.AntiForgeryToken()
         if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
         {
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto ">
                 <li class="navbar-item">
                     <div class="btn-group nav-link" style="padding:0;">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <button type="button" class="btn dropdown-toggle bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
+                        <div class="dropdown-menu dropdown-menu-right bg-dark">
                             <a class="dropdown-item" href="/Account/Register">Register User</a>
                             <a class="dropdown-item" href="/Admin/CreateVeteran">Create Veteran</a>
                             <a class="dropdown-item" href="/Manage/ChangePassword">Change Password</a>
@@ -23,11 +23,11 @@
         }
         else
         {
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto ">
                 <li class="navbar-item">
                     <div class="btn-group nav-link" style="padding:0;">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <button type="button" class="btn dropdown-toggle bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
+                        <div class="dropdown-menu dropdown-menu-right bg-dark">
                             <a class="dropdown-item" href="/UserVeteran/">Manage Portfolio</a>
                             <a class="dropdown-item" href="/Manage/ChangePassword">Change Password</a>
                             <div class="dropdown-divider"></div>

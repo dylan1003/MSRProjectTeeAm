@@ -1,14 +1,18 @@
 ﻿/*Navbar*/
 html body {
     margin: 0;
+    background-color: #F3F4EC;
 }
 
 .overwrite-bg-navbar {
     background-color: #424756
 }
 
-.overwrite-navbar-text .navbar-brand, .navbar-dark .navbar-text a, .navbar-item a {
+.overwrite-navbar-text .navbar-brand, .navbar-dark .navbar-text a, .navbar-item a, .nav-link a{
     color: #fff
+}
+.navbar-item a:hover, nav-link a:hover {
+    color: dimgrey
 }
 
 .custom-navbar-toggler-icon {
@@ -22,7 +26,22 @@ html body {
     color: #fff
 }
 
+
+.home-container{
+    padding-top: 7vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
 /*Jumbotron*/
+.jumbotron{
+    margin-bottom: 0px;
+}
+.jumbotron-form {
+    padding: 4rem;
+    background-color: #343a40;
+    border-radius: .3rem;
+    margin-bottom: 5vh;
+}
 .custom-jumbotron {
     padding: 4rem;
     background-color: #e9ecef;
@@ -123,3 +142,11 @@ html body {
         border: none;
     }
 }
+
+#loginLink {
+    color: #fff
+}
+#loginLink:hover{
+    color: dimgray
+}
+
