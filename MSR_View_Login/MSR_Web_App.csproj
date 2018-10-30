@@ -87,6 +87,8 @@
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
@@ -217,18 +219,39 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AifResult.cs" />
-    <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\Content.cs">
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MSRContext.cs" />
-    <Compile Include="Models\MultiMedia.cs" />
-    <Compile Include="Models\Portfolio.cs" />
+    <Compile Include="Models\MSRContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSRContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSRContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSRContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSRContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\PortfolioCreateViewModel.cs" />
-    <Compile Include="Models\ProfilePicture.cs" />
-    <Compile Include="Models\Section.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Veteran.cs" />
-    <Compile Include="Models\VeteranQueue.cs" />
+    <Compile Include="Models\Section.cs">
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Veteran.cs">
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VeteranQueue.cs">
+      <DependentUpon>MSRContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -246,6 +269,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Models\MSRContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MSRContext.edmx</DependentUpon>
+      <LastGenOutput>MSRContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MSRContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MSRContext.edmx</DependentUpon>
+      <LastGenOutput>MSRContext.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -269,6 +302,13 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Models\MSRContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MSRContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MSRContext.edmx.diagram">
+      <DependentUpon>MSRContext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -349,6 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
