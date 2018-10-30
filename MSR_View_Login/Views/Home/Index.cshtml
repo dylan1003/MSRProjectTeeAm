@@ -2,7 +2,7 @@
     ViewBag.Title = "Welcome To MSR!";
 }
 
-<section class="custom-jumbotron overwrite-bg-jumbo">
+<section id="page-layout"@*class="home-container"*@ @*class="custom-jumbotron overwrite-bg-jumbo"*@>
     <div class="overwrite-topcontainer center">
         <div class="row">
             <img alt="MSR Logo" data-type="image" src="https://image.ibb.co/cU4Ki0/MSR-Star-Logo.png" style="width: 196px; height: 173px;">
@@ -38,43 +38,51 @@
                 Check out the below websites, which help make this application possible:
             </h5>
         </div>
-        <div class="row">
-            <div class="custom-card">
-                <a href="https://www.aif.adfa.edu.au/index.html" target="_blank">
-                    <img class="card-img-top" src="https://image.ibb.co/dNLwWV/AIF-Logo.png" alt="AIF Logo">
-                </a>
-                <div class="card-body">
-                    <h6>The AIF Project</h6>
-                    <p>A directory of veterans enlisted with the Australia Imperial Force.</p>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://www.aif.adfa.edu.au/index.html" target="_blank">
+                            <img class="card-img-top" src="https://image.ibb.co/dNLwWV/AIF-Logo.png" alt="AIF Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>The AIF Project</h6>
+                            <p>A directory of veterans enlisted with the Australia Imperial Force.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://www.awm.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://dartconnections.org.au/images/provider-logos/AUSTRALIAN-WAR-MEMORIAL.jpg?Action=thumbnail&Width=300&Height=300&algorithm=proportional" alt="AWM Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>The Australian War Memorial</h6>
+                            <p>An extensive archive of war material ranging from veterans, events, places, units.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="http://www.naa.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://i.vimeocdn.com/portrait/30475_300x300" alt="NAA Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>National Archives of Australia</h6>
+                            <p>A collection of Government records that have affected Australia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://trove.nla.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://trove.nla.gov.au/static/54ecdc2/img/trove-logo-social-share.jpg" alt="Trove Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>Trove</h6>
+                            <p>A vast collection of resources relating to Australia - ranging from books, diaries, people, music, newspapers and much more.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="custom-card">
-                <a href="https://www.awm.gov.au/" target="_blank">
-                    <img class="card-img-top" src="https://dartconnections.org.au/images/provider-logos/AUSTRALIAN-WAR-MEMORIAL.jpg?Action=thumbnail&Width=300&Height=300&algorithm=proportional" alt="AWM Logo">
-                </a>
-                <div class="card-body">
-                    <h6>The Australian War Memorial</h6>
-                    <p>An extensive archive of war material ranging from veterans, events, places, units.</p>
-                </div>
-            </div>
-            <div class="custom-card">
-                <a href="http://www.naa.gov.au/" target="_blank">
-                    <img class="card-img-top" src="https://i.vimeocdn.com/portrait/30475_300x300" alt="NAA Logo">
-                </a>
-                <div class="card-body">
-                    <h6>National Archives of Australia</h6>
-                    <p>A collection of Government records that have affected Australia.</p>
-                </div>
-            </div>
-            <div class="custom-card">
-                <a href="https://trove.nla.gov.au/" target="_blank">
-                    <img class="card-img-top" src="https://trove.nla.gov.au/static/54ecdc2/img/trove-logo-social-share.jpg" alt="Trove Logo">
-                </a>
-                <div class="card-body">
-                    <h6>Trove</h6>
-                    <p>A vast collection of resources relating to Australia - ranging from books, diaries, people, music, newspapers and much more.</p>
-                </div>
-            </div>
-        </div>
     </div>
 </section>

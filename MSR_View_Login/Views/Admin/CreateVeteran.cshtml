@@ -6,8 +6,8 @@
 
 @{ if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
     {
-        <section class="jumbotron bg-dark">
-            <div class="container">
+        <section id="page-layout2">
+            <div class="jumbotron-form bg-dark">
                 @using (Html.BeginForm("CreateVeteran", "Admin", FormMethod.Post, new { @class = "form-horizontal text-white", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
