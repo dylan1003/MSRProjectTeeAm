@@ -25,71 +25,35 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="modal-map-container" id="map">
+                        <div class="d-flex flex-md-column flex-sm-row modal-flex-wrapper">
+                        <div class="modal-map-container" id="leaflet-map">
                             <script>
-                                mapboxgl.accessToken = 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og';
-                                var map = new mapboxgl.Map({
-                                    container: 'map',
-                                    style: 'mapbox://styles/mapbox/light-v9',
-                                    center: [-96, 37.8],
-                                    zoom: 3
-                                });
+                                var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
 
-                                var geojson = {
-                                    type: 'FeatureCollection',
-                                    features: [{
-                                        type: 'Feature',
-                                        geometry: {
-                                            type: 'Point',
-                                            coordinates: [-77.032, 38.913]
-                                        },
-                                        properties: {
-                                            title: 'Mapbox',
-                                            description: 'Washington, D.C.'
-                                        }
-                                    },
-                                    {
-                                        type: 'Feature',
-                                        geometry: {
-                                            type: 'Point',
-                                            coordinates: [-122.414, 37.776]
-                                        },
-                                        properties: {
-                                            title: 'Mapbox',
-                                            description: 'San Francisco, California'
-                                        }
-                                    }]
-                                };
+                                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                                    maxZoom: 18,
+                                    id: 'mapbox.streets',
+                                    accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
+                                }).addTo(map);
 
-                                // add markers to map
-                                geojson.features.forEach(function (marker) {
-                                    // create a HTML element for each feature
-                                    var el = document.createElement('div');
-                                    el.className = 'marker';
+                                var marker = L.marker([51.5, -0.09]).addTo(map);
 
-                                    // make a marker for each feature and add to the map
-                                    new mapboxgl.Marker(el)
-                                        .setLngLat(marker.geometry.coordinates)
-                                        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                                            .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-                                        .addTo(map);
-                                });
+                                //marker.bindPopup("<b>Test popup.").openPopup();
 
-                                map.on('click', function (e) {
-                                    var el = document.createElement('div');
-                                    el.className = 'marker';
+                                function onMapClick(e) {
+                                    //alert(e.latlng);
+                                    //console.log(map);
+                                    map.removeLayer(marker);
+                                    marker = L.marker(e.latlng).addTo(map);
+                                }
 
-                                    new mapboxgl.Marker(el)
-                                        .setLngLat(e.lngLat)
-                                        .setPopup(new mapboxgl.Popup({ offset: 25 }))
-                                        .addTo(map)
-                                })
-
+                                map.on('click', onMapClick);
                             </script>
 
                         </div>
                         <div class="modal-form-container">...</div>
-                        
+                        </div>
                     </div>
                 </div>
             </div>
