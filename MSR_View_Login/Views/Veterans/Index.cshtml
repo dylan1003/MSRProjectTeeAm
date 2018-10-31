@@ -72,6 +72,12 @@
                     </tr>
                 }
             </table>
+            @if (Model.Item1.Count() == 0)
+            {
+                <div class="row col-sm-12" style="padding-bottom: 2vh">
+                    <p>No results found in MSR Database.</p>
+                </div>
+            }
             <!--./Results Field-->
             <!--AIF Results-->
             @if (Model.Item2.Count > 0)
