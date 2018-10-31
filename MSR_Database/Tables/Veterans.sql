@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Veterans]
 (
-	[Id] int IDENTITY(1,1) PRIMARY KEY,
+	[Id] int PRIMARY KEY,
 	[FirstName] nvarchar(50),
 	[MiddleName] nvarchar(50),	
 	[Surname] nvarchar(50),
