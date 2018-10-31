@@ -92,6 +92,8 @@ namespace MSR_Web_App.Controllers
             return View(Tuple.Create(veterans, searchResults));
         }
 
+
+
         // Get By Id
         /*
        public ActionResult Portfolio(int? id)
