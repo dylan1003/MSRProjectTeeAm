@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(SimplifiedLogin.Startup))]
-namespace SimplifiedLogin
+[assembly: OwinStartupAttribute(typeof(MSR_Web_App.Startup))]
+namespace MSR_Web_App
 {
     public partial class Startup
     {

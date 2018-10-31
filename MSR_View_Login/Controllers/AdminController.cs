@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using MSR_Web_App.Models;
 
-namespace SimplifiedLogin.Controllers
+namespace MSR_Web_App.Controllers
 {
     [Authorize]
     public class AdminController : Controller

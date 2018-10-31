@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using MSR_mvc.Models;
+using MSR_Web_App.Models;
 
-namespace MSR_mvc.Controllers
+namespace MSR_Web_App.Controllers
 {
     public class VeteransController : Controller
     {
-        private MSRContext db = new MSRContext();
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
 
         public List<AifResult> AifSearch(string search, string searchType)
         {
@@ -71,7 +71,7 @@ namespace MSR_mvc.Controllers
                 }
                 else if (inlineRadioOptions == "Regiment")
                 {
-                    veterans = veterans.Where(n => n.ServiceNo.ToLower().Contains(searchString)).ToList();
+                    veterans = veterans.Where(n => n.RegimentNumber.ToLower().Contains(searchString)).ToList();
                     searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Address")
@@ -86,31 +86,34 @@ namespace MSR_mvc.Controllers
                 }
                 else if (inlineRadioOptions == "Unit")
                 {
-                    veterans = veterans.Where(n => n.Unit.ToLower().Contains(searchString)).ToList();
+                    veterans = veterans.Where(n => n.Battalion.ToLower().Contains(searchString)).ToList();
                 }
             }
             return View(Tuple.Create(veterans, searchResults));
         }
 
         // Get By Id
-        public ActionResult Portfolio(int? id)
-        {
-            Veteran veteran = db.Veterans.Find(id);
-            ProfilePicture picture = db.ProfilePictures.Find(veteran.Fk_Profile_Picture_Id);
-            Console.WriteLine(picture);
-            Portfolio portfolio = db.Portfolios.Find(veteran.Fk_Portfolio_Id);
-            List<Section> DisplaySections = new List<Section>();
-            List<Content> Content = new List<Content>();
+        /*
+       public ActionResult Portfolio(int? id)
+       {
 
-            foreach (var item in db.Sections.ToList())
-            {
-                if (item.Fk_Portfolio_Id == portfolio.Id)
-                {
-                    DisplaySections.Add(item);
-                }
-            }
+           Veteran veteran = db.Veterans.Find(id);
+           ProfilePicture picture = db.ProfilePictures.Find(veteran.Fk_Profile_Picture_Id);
+           Console.WriteLine(picture);
+           Portfolio portfolio = db.Portfolios.Find(veteran.Fk_Portfolio_Id);
+           List<Section> DisplaySections = new List<Section>();
+           List<Content> Content = new List<Content>();
 
-            return View(Tuple.Create(DisplaySections, veteran, picture));
+           foreach (var item in db.Sections.ToList())
+           {
+               if (item.Fk_Portfolio_Id == portfolio.Id)
+               {
+                   DisplaySections.Add(item);
+               }
+           }
+
+           return View(Tuple.Create(DisplaySections, veteran, picture));
         }
+    */
     }
 }

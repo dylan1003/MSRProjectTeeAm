@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimplifiedLogin.Models
+namespace MSR_Web_App.Models
 {
     using System;
     using System.Collections.Generic;

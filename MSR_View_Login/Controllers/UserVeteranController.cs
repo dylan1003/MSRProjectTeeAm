@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MSR_mvc.Models;
+using MSR_Web_App.Models;
 using Microsoft.AspNet.Identity;
 
-namespace SimplifiedLogin.Controllers
+namespace MSR_Web_App.Controllers
 {
     [Authorize]
     public class UserVeteranController : Controller
     {
-        private MSRContext db = new MSRContext();
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
         // GET: Veteran
         public ActionResult Index()
         {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SimplifiedLogin
+namespace MSR_Web_App
 {
     public class RouteConfig
     {

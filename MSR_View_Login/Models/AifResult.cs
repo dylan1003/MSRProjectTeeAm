@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MSR_mvc.Models
+namespace MSR_Web_App.Models
 {
     public class AifResult
     {

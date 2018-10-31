@@ -1,5 +1,5 @@
-﻿@*@using Microsoft.AspNet.Identity*@
-@model MSR_mvc.Models.Veteran
+﻿@using Microsoft.AspNet.Identity
+@model MSR_Web_App.Models.Veteran
 @{
     ViewBag.Title = "CreateVeteran";
 }
@@ -47,25 +47,25 @@
                         <div class="col-md-10">
                             @Html.TextBoxFor(m => m.EnlistedDate, new { @class = "form-control" })
                         </div>
-                        <label class="col-md-2 control-label" for="Id">Service/Regiement Number</label>
+                        <label class="col-md-2 control-label" for="Id">Regiement Number</label>
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.ServiceNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.RegimentNumber, new { @class = "form-control" })
                         </div>
-                        <label class="col-md-2 control-label" for="Id">Unit</label>
+                        <label class="col-md-2 control-label" for="Id">Battalion</label>
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Unit, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Battalion, new { @class = "form-control" })
                         </div>
-                        <label class="col-md-2 control-label" for="Id">Parish</label>
+                        <label class="col-md-2 control-label" for="Id">Religion</label>
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Parish, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Religion, new { @class = "form-control" })
                         </div>
                         <label class="col-md-2 control-label" for="Id">Address</label>
                         <div class="col-md-10">
                             @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                         </div>
-                        <label class="col-md-2 control-label" for="Id">Town</label>
+                        <label class="col-md-2 control-label" for="Id">State</label>
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Town, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
                         </div>
                         <label class="col-md-2 control-label" for="Id">Country</label>
                         <div class="col-md-10">

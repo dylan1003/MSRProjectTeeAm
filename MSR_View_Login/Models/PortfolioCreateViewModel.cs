@@ -1,10 +1,10 @@
-﻿using MSR_mvc.Models;
+﻿using MSR_Web_App.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SimplifiedLogin.Models
+namespace MSR_Web_App.Models
 {
     public class PortfolioCreateViewModel
     {
