@@ -1,4 +1,4 @@
-﻿@model Tuple<List<MSR_Web_App.Models.Section>, MSR_Web_App.Models.Veteran, MSR_Web_App.Models.ProfilePicture>
+﻿@model Tuple<List<MSR_Web_App.Models.Section>, MSR_Web_App.Models.Veteran>
 
 @{
     ViewBag.Title = "Index";
@@ -99,10 +99,10 @@
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
-                                                        @Html.DisplayNameFor(model => model.Item2.ServiceNo)
+                                                        @Html.DisplayNameFor(model => model.Item2.RegimentNumber)
                                                     </th>
                                                     <td>
-                                                        @Html.DisplayFor(model => model.Item2.ServiceNo)
+                                                        @Html.DisplayFor(model => model.Item2.RegimentNumber)
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -160,14 +160,14 @@
                                                     <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                    <img src="data:image;base64,@System.Convert.ToBase64String(c.MultiMedia.Media)" style="width:50%;" />
+                                                    <img src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
                                                 }
                                                 else
                                                 {
                                                     <p style="font-weight:bold;">@c.Title</p>
 
-                                                    @System.Text.Encoding.UTF8.GetString(c.MultiMedia.Media)
+                                                    @System.Text.Encoding.UTF8.GetString(c.Media)
 
                                                 }
                                             }
@@ -212,7 +212,7 @@
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var t in Model.Item1)
         {
-                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.Title)</a>
+                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.EventTitle)</a>
 }
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
