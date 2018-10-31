@@ -20,7 +20,6 @@ namespace MSR_Web_App.Models
             this.Sections = new HashSet<Section>();
         }
     
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string Surname { get; set; }
@@ -42,6 +41,7 @@ namespace MSR_Web_App.Models
         public string Fate { get; set; }
         public Nullable<int> Status { get; set; }
         public byte[] ProfilePicture { get; set; }
+        public int Id { get; set; }
         public Nullable<int> Fk_User_Id { get; set; }
         public Nullable<int> Fk_Veteran_Queue_Id { get; set; }
     

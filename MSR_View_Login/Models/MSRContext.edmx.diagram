@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="305157d1c2b140d5a1ee71565aea6b23" Name="Diagram1">
+      <Diagram DiagramId="8886d6fe53e842e3bf260a5e167fb83b" Name="Diagram1">
         <EntityTypeShape EntityType="Msr_Database_Release_TwoModel.Content" Width="1.5" PointX="9.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Msr_Database_Release_TwoModel.Section" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Msr_Database_Release_TwoModel.User" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Msr_Database_Release_TwoModel.VeteranQueue" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Msr_Database_Release_TwoModel.Veteran" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Contents__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Sections__Fk_Vet__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__VeteranQu__Fk_Te__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Veterans__Fk_Use__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Veterans__Fk_Vet__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Contents__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Sections__Fk_Vet__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__VeteranQu__Fk_Te__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Veterans__Fk_Use__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="Msr_Database_Release_TwoModel.FK__Veterans__Fk_Vet__6FE99F9F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

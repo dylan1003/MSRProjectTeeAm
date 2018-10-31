@@ -86,7 +86,7 @@
     @for (int s = 0; s < Model.Sections.Count; s++)
     {
         <section id="section" class="section">
-            <p>@Model.Sections.ElementAt(s).Title</p>
+            <p>@Model.Sections.ElementAt(s).EventTitle</p>
 
             @*Loop through Contents in Sections and display*@
             @for (int c = 0; c < @Model.Sections.ElementAt(s).Contents.Count; c++)
@@ -98,24 +98,24 @@
 
                         <div class="form-group">
                             @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Id)
-                            @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).SectionId)
+                            @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).FK_Section_Id)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title)
                             @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title)
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Date)
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Date)
+                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp)
+                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp)
                         </div>
                         <div class="form-group" id="type">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Type)
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Type)
+                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).type)
+                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).type)
                         </div>
                         <div class="hidden" id="type2-@a"><input /></div>
                         <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source)
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source)
+                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).source)
+                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).source)
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).DisplayPosition)
@@ -132,7 +132,7 @@
             {
                 @Html.HiddenFor(section => section.content.Id)
 
-                @Html.HiddenFor(section => section.content.SectionId, new { Value = Model.Sections.ElementAt(s).Id })
+                @Html.HiddenFor(section => section.content.FK_Section_Id, new { Value = Model.Sections.ElementAt(s).Id })
 
                 <div class="form-group">
                     @Html.LabelFor(section => section.content.Title)
@@ -152,8 +152,8 @@
 
         @Html.HiddenFor(s => s.section.Id)
 
-        @Html.LabelFor(s => s.section.Title)
-        @Html.TextBoxFor(s => s.section.Title)
+        @Html.LabelFor(s => s.section.EventTitle)
+        @Html.TextBoxFor(s => s.section.EventTitle)
 
         @Html.LabelFor(s => s.section.Approved)
         @Html.TextBoxFor(s => s.section.Approved)

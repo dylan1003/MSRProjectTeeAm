@@ -11,7 +11,7 @@ namespace MSR_Web_App.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private Msr_Database_Release_TwoEntities1 db = new Msr_Database_Release_TwoEntities1();
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
         // GET: Admin
         public ActionResult Index()
         {

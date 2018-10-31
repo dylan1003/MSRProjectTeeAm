@@ -13,10 +13,10 @@ namespace MSR_Web_App.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Msr_Database_Release_TwoEntities1 : DbContext
+    public partial class Msr_Database_Release_TwoEntities : DbContext
     {
-        public Msr_Database_Release_TwoEntities1()
-            : base("name=Msr_Database_Release_TwoEntities1")
+        public Msr_Database_Release_TwoEntities()
+            : base("name=Msr_Database_Release_TwoEntities")
         {
         }
     
