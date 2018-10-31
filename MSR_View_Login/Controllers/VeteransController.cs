@@ -63,30 +63,29 @@ namespace MSR_Web_App.Controllers
 
                 if (inlineRadioOptions == "Name")
                 {
-                    veterans = veterans.Where(n => n.FirstName.ToLower().ToLower().Contains(searchString) ||
-                                               n.MiddleName.ToLower().Contains(searchString) ||
-                                               n.Surname.ToLower().Contains(searchString)).ToList();
-
-                     searchResults = AifSearch(searchString, inlineRadioOptions);
+                    
+                    veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.FirstName) ? n.FirstName.ToLower().Contains(searchString): false) ||
+                                            (!String.IsNullOrEmpty(n.MiddleName) ? n.MiddleName.ToLower().Contains(searchString) : false) ||
+                                            (!String.IsNullOrEmpty(n.Surname) ? n.Surname.ToLower().Contains(searchString) : false)).ToList();
+                    searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Regiment")
                 {
-                    veterans = veterans.Where(n => n.RegimentNumber.ToLower().Contains(searchString)).ToList();
+                    veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.RegimentNumber) ? n.RegimentNumber.ToLower().Contains(searchString) : false)).ToList();
                     searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Address")
                 {
-                    /* Currently country and town are null for veterans in db. Enable when data exists in db
-                     *veterans = veterans.Where(n => n.Address.Contains(searchString) ||
-                                                   n.Country.Contains(searchString) ||
-                                                   n.Town.Contains(searchString)).ToList();
-                    */
-                    veterans = veterans.Where(n => n.Address.ToLower().Contains(searchString)).ToList();
+                    // Currently country and town are null for veterans in db. Enable when data exists in db
+                    veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.Address) ? n.Address.ToLower().Contains(searchString) : false) ||
+                                                   (!String.IsNullOrEmpty(n.Country) ? n.Country.ToLower().Contains(searchString) : false) ||
+                                                   (!String.IsNullOrEmpty(n.State) ? n.State.ToLower().Contains(searchString) : false)).ToList();
+                    
                     searchResults = AifSearch(searchString, inlineRadioOptions);
                 }
                 else if (inlineRadioOptions == "Unit")
                 {
-                    veterans = veterans.Where(n => n.Battalion.ToLower().Contains(searchString)).ToList();
+                    veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.Battalion) ? n.Battalion.ToLower().Contains(searchString) : false)).ToList();
                 }
             }
             return View(Tuple.Create(veterans, searchResults));
