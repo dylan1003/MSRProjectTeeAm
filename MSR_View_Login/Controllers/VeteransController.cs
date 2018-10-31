@@ -10,7 +10,7 @@ namespace MSR_Web_App.Controllers
 {
     public class VeteransController : Controller
     {
-        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+        private Msr_Database_Release_TwoEntities1 db = new Msr_Database_Release_TwoEntities1();
 
         public List<AifResult> AifSearch(string search, string searchType)
         {

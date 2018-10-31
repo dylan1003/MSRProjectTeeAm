@@ -11,7 +11,7 @@ namespace MSR_Web_App.Controllers
     [Authorize]
     public class UserVeteranController : Controller
     {
-        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+        private Msr_Database_Release_TwoEntities1 db = new Msr_Database_Release_TwoEntities1();
         // GET: Veteran
         public ActionResult Index()
         {

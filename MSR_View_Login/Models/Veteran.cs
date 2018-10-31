@@ -36,14 +36,14 @@ namespace MSR_Web_App.Models
         public string Address { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
+        public string PreWarOccupation { get; set; }
+        public string NextOfKin { get; set; }
         public string ShortBio { get; set; }
         public string Fate { get; set; }
         public Nullable<int> Status { get; set; }
         public byte[] ProfilePicture { get; set; }
         public Nullable<int> Fk_User_Id { get; set; }
         public Nullable<int> Fk_Veteran_Queue_Id { get; set; }
-        public string PreWarOccupation { get; set; }
-        public string NextOfKin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Section> Sections { get; set; }
