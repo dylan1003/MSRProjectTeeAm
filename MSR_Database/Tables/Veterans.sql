@@ -16,6 +16,8 @@
 	[Address] nvarchar(150),
 	[State] nvarchar(50),
 	[Country] nvarchar(50),
+	[PreWarOccupation] nvarchar(50),
+	[NextOfKin] nvarchar(50),
 	[ShortBio] nvarchar(1000),
 	[Fate] nvarchar(50),
 	[Status] int null,

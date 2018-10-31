@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Msr_Database_Release_TwoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Msr_Database_Release_TwoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Contents">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,6 +72,8 @@
           <Property Name="Address" Type="nvarchar" MaxLength="150" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreWarOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="NextOfKin" Type="nvarchar" MaxLength="50" />
           <Property Name="ShortBio" Type="nvarchar" MaxLength="1000" />
           <Property Name="Fate" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="int" />
@@ -93,7 +95,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sections__Fk_Vet__5441852A">
+        <Association Name="FK__Sections__Fk_Vet__5AEE82B9">
           <End Role="Veterans" Type="Self.Veterans" Multiplicity="1" />
           <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +119,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Use__5629CD9C">
+        <Association Name="FK__Veterans__Fk_Use__5BE2A6F2">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Vet__571DF1D5">
+        <Association Name="FK__Veterans__Fk_Vet__5CD6CB2B">
           <End Role="VeteranQueues" Type="Self.VeteranQueues" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +153,7 @@
             <End Role="Sections" EntitySet="Sections" />
             <End Role="Contents" EntitySet="Contents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sections__Fk_Vet__5441852A" Association="Self.FK__Sections__Fk_Vet__5441852A">
+          <AssociationSet Name="FK__Sections__Fk_Vet__5AEE82B9" Association="Self.FK__Sections__Fk_Vet__5AEE82B9">
             <End Role="Veterans" EntitySet="Veterans" />
             <End Role="Sections" EntitySet="Sections" />
           </AssociationSet>
@@ -159,17 +161,16 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Use__5629CD9C" Association="Self.FK__Veterans__Fk_Use__5629CD9C">
+          <AssociationSet Name="FK__Veterans__Fk_Use__5BE2A6F2" Association="Self.FK__Veterans__Fk_Use__5BE2A6F2">
             <End Role="Users" EntitySet="Users" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Vet__571DF1D5" Association="Self.FK__Veterans__Fk_Vet__571DF1D5">
+          <AssociationSet Name="FK__Veterans__Fk_Vet__5CD6CB2B" Association="Self.FK__Veterans__Fk_Vet__5CD6CB2B">
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Msr_Database_Release_TwoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -256,6 +257,8 @@
           <NavigationProperty Name="Sections" Relationship="Self.FK__Sections__Fk_Vet__5441852A" FromRole="Veterans" ToRole="Sections" />
           <NavigationProperty Name="User" Relationship="Self.FK__Veterans__Fk_Use__5629CD9C" FromRole="Veterans" ToRole="Users" />
           <NavigationProperty Name="VeteranQueue" Relationship="Self.FK__Veterans__Fk_Vet__571DF1D5" FromRole="Veterans" ToRole="VeteranQueues" />
+          <Property Name="PreWarOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NextOfKin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Contents__534D60F1">
           <End Role="Sections" Type="Self.Section" Multiplicity="1" />
@@ -403,6 +406,8 @@
           <EntitySetMapping Name="Veterans">
             <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.Veteran">
               <MappingFragment StoreEntitySet="Veterans">
+                <ScalarProperty Name="NextOfKin" ColumnName="NextOfKin" />
+                <ScalarProperty Name="PreWarOccupation" ColumnName="PreWarOccupation" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />

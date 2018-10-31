@@ -42,6 +42,8 @@ namespace MSR_Web_App.Models
         public byte[] ProfilePicture { get; set; }
         public Nullable<int> Fk_User_Id { get; set; }
         public Nullable<int> Fk_Veteran_Queue_Id { get; set; }
+        public string PreWarOccupation { get; set; }
+        public string NextOfKin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Section> Sections { get; set; }
