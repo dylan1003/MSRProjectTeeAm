@@ -160,7 +160,8 @@ namespace MSR_Web_App.Controllers
             
             model.Email = model.UserName + "@msr.com";
             Veteran ExisitingVeteran = db.Veterans.Find(Int32.Parse(model.UserName));
-            if (ExisitingVeteran != null)
+            var ExistingUser = UserManager.FindByName(model.UserName);
+            if (ExisitingVeteran != null && ExistingUser == null)
             {
                 if (ModelState.IsValid)
                 {
