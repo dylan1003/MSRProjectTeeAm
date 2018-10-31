@@ -361,7 +361,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\UserVeteran\Index.cshtml" />
+    <Content Include="Views\UserVeteran\Portfolio.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />
     <Content Include="Views\Veterans\Search.cshtml" />
