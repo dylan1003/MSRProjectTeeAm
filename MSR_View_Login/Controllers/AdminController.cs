@@ -11,6 +11,7 @@ namespace MSR_Web_App.Controllers
     [Authorize]
     public class AdminController : Controller
     {
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
         // GET: Admin
         public ActionResult Index()
         {
@@ -29,9 +30,17 @@ namespace MSR_Web_App.Controllers
 
         // Post: Create Veteran
         [HttpPost]
-        public ActionResult CreateVeteran(Veteran newVeteran)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateVeteran([Bind(Include = "Id,FirstName,MiddleName,Surname,DOB,BirthPlace,Death,MaritalStatus,EnlistedDate,EmbarkmentAge,RegimentNumber,Battalion,Religion,Address,State,Country,ShortBio,Fate,Status,ProfilePicture,Fk_User_Id,Fk_Veteran_Queue_Id,PreWarOccupation,NextOfKin")] Veteran veteran)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Veterans.Add(veteran);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(veteran);
         }
     }
 }
