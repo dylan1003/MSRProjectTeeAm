@@ -7,12 +7,11 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
-
 @{ if (User.Identity.GetUserName() == "admin" || User.Identity.GetUserName() == "Admin")
     {
-        <section class="jumbotron bg-dark">
-            <div class="container">
+        <section id="page-layout2">
+            <h2>@ViewBag.Title.</h2>
+            <div class="jumbotron bg-dark">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal text-white", role = "form" }))
                 {
                     @Html.AntiForgeryToken()

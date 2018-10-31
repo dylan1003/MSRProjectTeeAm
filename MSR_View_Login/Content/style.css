@@ -17,10 +17,22 @@ body {
     display: inline-block;
     width: 100%;
     position: relative;
-    overflow-y: scroll;
     height: 450px;
 }
 
 .card {
     margin-top: 4%;
+}
+
+#page-layout {
+    padding-top: 7vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    min-height: 100vh;
+}
+#page-layout2 {
+    padding-top: 9vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    min-height: 94.5vh;
 }
