@@ -88,6 +88,10 @@ namespace MSR_Web_App.Controllers
                 {
                     veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.Battalion) ? n.Battalion.ToLower().Contains(searchString) : false)).ToList();
                 }
+                else if (inlineRadioOptions == "PreWarOccupation")
+                {
+                    veterans = veterans.Where(n => (!String.IsNullOrEmpty(n.PreWarOccupation) ? n.PreWarOccupation.ToLower().Contains(searchString) : false)).ToList();
+                }
             }
             return View(Tuple.Create(veterans, searchResults));
         }
