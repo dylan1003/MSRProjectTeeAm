@@ -1,1 +1,2 @@
-﻿
+﻿INSERT INTO Veterans(Id, FirstName, MiddleName, SurName, DOB, BirthPlace, Death, MaritalStatus, EnlistedDate, EmbarkmentAge, RegimentNumber, Battalion, Religion, Address, State, Country, PreWarOccupation, NextOfKin, ShortBio, Fate, Status, ProfilePicture, User_Id, Veteran_Queue_Id) VALUES
+(211722, 'John', null,'Monash', '27/06/1865', 'Melbourne,Victoria', '8/10/1931', 'Married', '19/09/1914', '49', null, '4th Infantry Brigade Headquarters', 'Jewish', '36 Collins St, Melbourne', 'Victoria', 'Australia' , 'Civil Engineer' , 'Mrs V Monash', null, null, 0, null, null, null);

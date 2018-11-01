@@ -16,13 +16,13 @@ namespace MSR_Web_App.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public System.DateTime Timestamp { get; set; }
-        public string type { get; set; }
-        public string source { get; set; }
-        public int DisplayPosition { get; set; }
+        public Nullable<System.DateTime> Timestamp { get; set; }
+        public string MediaType { get; set; }
+        public string Source { get; set; }
+        public Nullable<int> DisplayPosition { get; set; }
         public byte[] Media { get; set; }
-        public int FK_Section_Id { get; set; }
-        public int FK_Veterans_Id { get; set; }
+        public int Section_Id { get; set; }
+        public int Veteran_Id { get; set; }
     
         public virtual Section Section { get; set; }
     }

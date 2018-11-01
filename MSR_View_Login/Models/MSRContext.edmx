@@ -8,23 +8,23 @@
         <EntityType Name="Contents">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="FK_Section_Id" />
-            <PropertyRef Name="FK_Veterans_Id" />
+            <PropertyRef Name="Section_Id" />
+            <PropertyRef Name="Veteran_Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Timestamp" Type="datetime" Nullable="false" />
-          <Property Name="type" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="source" Type="text" />
-          <Property Name="DisplayPosition" Type="int" Nullable="false" />
-          <Property Name="Media" Type="varbinary(max)" Nullable="false" />
-          <Property Name="FK_Section_Id" Type="int" Nullable="false" />
-          <Property Name="FK_Veterans_Id" Type="int" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="MediaType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Source" Type="text" />
+          <Property Name="DisplayPosition" Type="int" />
+          <Property Name="Media" Type="varbinary(max)" />
+          <Property Name="Section_Id" Type="int" Nullable="false" />
+          <Property Name="Veteran_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Sections">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Fk_Veterans_Id" />
+            <PropertyRef Name="Veteran_Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="EventTitle" Type="nvarchar" MaxLength="40" Nullable="false" />
@@ -34,7 +34,7 @@
           <Property Name="CoordX" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar" MaxLength="60" />
           <Property Name="CameraZoom" Type="nvarchar" MaxLength="10" />
-          <Property Name="Fk_Veterans_Id" Type="int" Nullable="false" />
+          <Property Name="Veteran_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -50,12 +50,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Fk_Teacher_Id" Type="int" Nullable="false" />
+          <Property Name="Teacher_Id" Type="int" />
         </EntityType>
         <EntityType Name="Veterans">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" />
@@ -77,49 +78,36 @@
           <Property Name="Fate" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="int" />
           <Property Name="ProfilePicture" Type="varbinary(max)" />
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Fk_User_Id" Type="int" />
-          <Property Name="Fk_Veteran_Queue_Id" Type="int" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="Veteran_Queue_Id" Type="int" />
         </EntityType>
-        <Association Name="FK__Contents__75A278F5">
+        <Association Name="FK_Section">
           <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
           <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sections">
               <PropertyRef Name="Id" />
-              <PropertyRef Name="Fk_Veterans_Id" />
+              <PropertyRef Name="Veteran_Id" />
             </Principal>
             <Dependent Role="Contents">
-              <PropertyRef Name="FK_Section_Id" />
-              <PropertyRef Name="FK_Veterans_Id" />
+              <PropertyRef Name="Section_Id" />
+              <PropertyRef Name="Veteran_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sections__Fk_Vet__72C60C4A">
-          <End Role="Veterans" Type="Self.Veterans" Multiplicity="1" />
-          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Veterans">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sections">
-              <PropertyRef Name="Fk_Veterans_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__VeteranQu__Fk_Te__6C190EBB">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+        <Association Name="FK_Teacher">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="VeteranQueues" Type="Self.VeteranQueues" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="VeteranQueues">
-              <PropertyRef Name="Fk_Teacher_Id" />
+              <PropertyRef Name="Teacher_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Use__6EF57B66">
+        <Association Name="FK_User">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,11 +115,23 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Veterans">
-              <PropertyRef Name="Fk_User_Id" />
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Vet__6FE99F9F">
+        <Association Name="FK_Veteran">
+          <End Role="Veterans" Type="Self.Veterans" Multiplicity="1" />
+          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="Veteran_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran_Queue">
           <End Role="VeteranQueues" Type="Self.VeteranQueues" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +139,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Veterans">
-              <PropertyRef Name="Fk_Veteran_Queue_Id" />
+              <PropertyRef Name="Veteran_Queue_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,23 +149,23 @@
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VeteranQueues" EntityType="Self.VeteranQueues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Veterans" EntityType="Self.Veterans" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Contents__75A278F5" Association="Self.FK__Contents__75A278F5">
+          <AssociationSet Name="FK_Section" Association="Self.FK_Section">
             <End Role="Sections" EntitySet="Sections" />
             <End Role="Contents" EntitySet="Contents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sections__Fk_Vet__72C60C4A" Association="Self.FK__Sections__Fk_Vet__72C60C4A">
-            <End Role="Veterans" EntitySet="Veterans" />
-            <End Role="Sections" EntitySet="Sections" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VeteranQu__Fk_Te__6C190EBB" Association="Self.FK__VeteranQu__Fk_Te__6C190EBB">
+          <AssociationSet Name="FK_Teacher" Association="Self.FK_Teacher">
             <End Role="Users" EntitySet="Users" />
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Use__6EF57B66" Association="Self.FK__Veterans__Fk_Use__6EF57B66">
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Vet__6FE99F9F" Association="Self.FK__Veterans__Fk_Vet__6FE99F9F">
+          <AssociationSet Name="FK_Veteran" Association="Self.FK_Veteran">
+            <End Role="Veterans" EntitySet="Veterans" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran_Queue" Association="Self.FK_Veteran_Queue">
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
@@ -178,24 +178,24 @@
         <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="FK_Section_Id" />
-            <PropertyRef Name="FK_Veterans_Id" />
+            <PropertyRef Name="Section_Id" />
+            <PropertyRef Name="Veteran_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DisplayPosition" Type="Int32" Nullable="false" />
-          <Property Name="Media" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="FK_Section_Id" Type="Int32" Nullable="false" />
-          <Property Name="FK_Veterans_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Section" Relationship="Self.FK__Contents__75A278F5" FromRole="Contents" ToRole="Sections" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="MediaType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayPosition" Type="Int32" />
+          <Property Name="Media" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Section_Id" Type="Int32" Nullable="false" />
+          <Property Name="Veteran_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Section" FromRole="Contents" ToRole="Sections" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Fk_Veterans_Id" />
+            <PropertyRef Name="Veteran_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="EventTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
@@ -205,9 +205,9 @@
           <Property Name="CoordX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="CameraZoom" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Fk_Veterans_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Contents" Relationship="Self.FK__Contents__75A278F5" FromRole="Sections" ToRole="Contents" />
-          <NavigationProperty Name="Veteran" Relationship="Self.FK__Sections__Fk_Vet__72C60C4A" FromRole="Sections" ToRole="Veterans" />
+          <Property Name="Veteran_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_Section" FromRole="Sections" ToRole="Contents" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_Veteran" FromRole="Sections" ToRole="Veterans" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -217,22 +217,23 @@
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Permissions" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="VeteranQueues" Relationship="Self.FK__VeteranQu__Fk_Te__6C190EBB" FromRole="Users" ToRole="VeteranQueues" />
-          <NavigationProperty Name="Veterans" Relationship="Self.FK__Veterans__Fk_Use__6EF57B66" FromRole="Users" ToRole="Veterans" />
+          <NavigationProperty Name="VeteranQueues" Relationship="Self.FK_Teacher" FromRole="Users" ToRole="VeteranQueues" />
+          <NavigationProperty Name="Veterans" Relationship="Self.FK_User" FromRole="Users" ToRole="Veterans" />
         </EntityType>
         <EntityType Name="VeteranQueue">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fk_Teacher_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__VeteranQu__Fk_Te__6C190EBB" FromRole="VeteranQueues" ToRole="Users" />
-          <NavigationProperty Name="Veterans" Relationship="Self.FK__Veterans__Fk_Vet__6FE99F9F" FromRole="VeteranQueues" ToRole="Veterans" />
+          <Property Name="Teacher_Id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Teacher" FromRole="VeteranQueues" ToRole="Users" />
+          <NavigationProperty Name="Veterans" Relationship="Self.FK_Veteran_Queue" FromRole="VeteranQueues" ToRole="Veterans" />
         </EntityType>
         <EntityType Name="Veteran">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -254,28 +255,27 @@
           <Property Name="Fate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" />
           <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Fk_User_Id" Type="Int32" />
-          <Property Name="Fk_Veteran_Queue_Id" Type="Int32" />
-          <NavigationProperty Name="Sections" Relationship="Self.FK__Sections__Fk_Vet__72C60C4A" FromRole="Veterans" ToRole="Sections" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Veterans__Fk_Use__6EF57B66" FromRole="Veterans" ToRole="Users" />
-          <NavigationProperty Name="VeteranQueue" Relationship="Self.FK__Veterans__Fk_Vet__6FE99F9F" FromRole="Veterans" ToRole="VeteranQueues" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="Veteran_Queue_Id" Type="Int32" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Veteran" FromRole="Veterans" ToRole="Sections" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User" FromRole="Veterans" ToRole="Users" />
+          <NavigationProperty Name="VeteranQueue" Relationship="Self.FK_Veteran_Queue" FromRole="Veterans" ToRole="VeteranQueues" />
         </EntityType>
-        <Association Name="FK__Contents__75A278F5">
+        <Association Name="FK_Section">
           <End Role="Sections" Type="Self.Section" Multiplicity="1" />
           <End Role="Contents" Type="Self.Content" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sections">
               <PropertyRef Name="Id" />
-              <PropertyRef Name="Fk_Veterans_Id" />
+              <PropertyRef Name="Veteran_Id" />
             </Principal>
             <Dependent Role="Contents">
-              <PropertyRef Name="FK_Section_Id" />
-              <PropertyRef Name="FK_Veterans_Id" />
+              <PropertyRef Name="Section_Id" />
+              <PropertyRef Name="Veteran_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sections__Fk_Vet__72C60C4A">
+        <Association Name="FK_Veteran">
           <End Role="Veterans" Type="Self.Veteran" Multiplicity="1" />
           <End Role="Sections" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -283,23 +283,23 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Sections">
-              <PropertyRef Name="Fk_Veterans_Id" />
+              <PropertyRef Name="Veteran_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VeteranQu__Fk_Te__6C190EBB">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Teacher">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="VeteranQueues" Type="Self.VeteranQueue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="VeteranQueues">
-              <PropertyRef Name="Fk_Teacher_Id" />
+              <PropertyRef Name="Teacher_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Use__6EF57B66">
+        <Association Name="FK_User">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veteran" Multiplicity="*" />
           <ReferentialConstraint>
@@ -307,11 +307,11 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Veterans">
-              <PropertyRef Name="Fk_User_Id" />
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Veterans__Fk_Vet__6FE99F9F">
+        <Association Name="FK_Veteran_Queue">
           <End Role="VeteranQueues" Type="Self.VeteranQueue" Multiplicity="0..1" />
           <End Role="Veterans" Type="Self.Veteran" Multiplicity="*" />
           <ReferentialConstraint>
@@ -319,7 +319,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Veterans">
-              <PropertyRef Name="Fk_Veteran_Queue_Id" />
+              <PropertyRef Name="Veteran_Queue_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -329,23 +329,23 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="VeteranQueues" EntityType="Self.VeteranQueue" />
           <EntitySet Name="Veterans" EntityType="Self.Veteran" />
-          <AssociationSet Name="FK__Contents__75A278F5" Association="Self.FK__Contents__75A278F5">
+          <AssociationSet Name="FK_Section" Association="Self.FK_Section">
             <End Role="Sections" EntitySet="Sections" />
             <End Role="Contents" EntitySet="Contents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sections__Fk_Vet__72C60C4A" Association="Self.FK__Sections__Fk_Vet__72C60C4A">
+          <AssociationSet Name="FK_Veteran" Association="Self.FK_Veteran">
             <End Role="Veterans" EntitySet="Veterans" />
             <End Role="Sections" EntitySet="Sections" />
           </AssociationSet>
-          <AssociationSet Name="FK__VeteranQu__Fk_Te__6C190EBB" Association="Self.FK__VeteranQu__Fk_Te__6C190EBB">
+          <AssociationSet Name="FK_Teacher" Association="Self.FK_Teacher">
             <End Role="Users" EntitySet="Users" />
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Use__6EF57B66" Association="Self.FK__Veterans__Fk_Use__6EF57B66">
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Veterans__Fk_Vet__6FE99F9F" Association="Self.FK__Veterans__Fk_Vet__6FE99F9F">
+          <AssociationSet Name="FK_Veteran_Queue" Association="Self.FK_Veteran_Queue">
             <End Role="VeteranQueues" EntitySet="VeteranQueues" />
             <End Role="Veterans" EntitySet="Veterans" />
           </AssociationSet>
@@ -362,12 +362,12 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="DisplayPosition" ColumnName="DisplayPosition" />
                 <ScalarProperty Name="Media" ColumnName="Media" />
-                <ScalarProperty Name="FK_Section_Id" ColumnName="FK_Section_Id" />
-                <ScalarProperty Name="FK_Veterans_Id" ColumnName="FK_Veterans_Id" />
+                <ScalarProperty Name="Section_Id" ColumnName="Section_Id" />
+                <ScalarProperty Name="Veteran_Id" ColumnName="Veteran_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -382,7 +382,7 @@
                 <ScalarProperty Name="CoordX" ColumnName="CoordX" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="CameraZoom" ColumnName="CameraZoom" />
-                <ScalarProperty Name="Fk_Veterans_Id" ColumnName="Fk_Veterans_Id" />
+                <ScalarProperty Name="Veteran_Id" ColumnName="Veteran_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -400,13 +400,14 @@
             <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.VeteranQueue">
               <MappingFragment StoreEntitySet="VeteranQueues">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Fk_Teacher_Id" ColumnName="Fk_Teacher_Id" />
+                <ScalarProperty Name="Teacher_Id" ColumnName="Teacher_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Veterans">
             <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.Veteran">
               <MappingFragment StoreEntitySet="Veterans">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -428,9 +429,8 @@
                 <ScalarProperty Name="Fate" ColumnName="Fate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Fk_User_Id" ColumnName="Fk_User_Id" />
-                <ScalarProperty Name="Fk_Veteran_Queue_Id" ColumnName="Fk_Veteran_Queue_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Veteran_Queue_Id" ColumnName="Veteran_Queue_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

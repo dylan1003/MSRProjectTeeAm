@@ -61,7 +61,7 @@ namespace MSR_Web_App.Controllers
             viewModel.Sections = db.Sections.ToList();
             int vetId = Int32.Parse(User.Identity.GetUserName());
             Veteran veteran = db.Veterans.SingleOrDefault(v => v.Id == vetId);
-            Section currentSection = db.Sections.SingleOrDefault(s => s.Id == content.FK_Section_Id);
+            Section currentSection = db.Sections.SingleOrDefault(s => s.Id == content.Section_Id);
             //content.FK_Section_Id = currentSection.Id;
             content.Section = currentSection;
 
@@ -80,7 +80,7 @@ namespace MSR_Web_App.Controllers
 
             content.Id = nextId + 1;
 
-            content.FK_Veterans_Id = Int32.Parse(User.Identity.GetUserName());
+            content.Veteran_Id = Int32.Parse(User.Identity.GetUserName());
 
             db.Contents.Add(content);
             db.SaveChanges();

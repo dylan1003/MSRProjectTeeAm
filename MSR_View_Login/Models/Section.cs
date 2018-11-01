@@ -28,7 +28,7 @@ namespace MSR_Web_App.Models
         public string CoordX { get; set; }
         public string Message { get; set; }
         public string CameraZoom { get; set; }
-        public int Fk_Veterans_Id { get; set; }
+        public int Veteran_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Content> Contents { get; set; }

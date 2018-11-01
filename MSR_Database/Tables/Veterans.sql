@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Veterans]
 (
+	[Id] int,
 	[FirstName] nvarchar(50),
 	[MiddleName] nvarchar(50),	
 	[Surname] nvarchar(50),
@@ -21,7 +22,9 @@
 	[Fate] nvarchar(50),
 	[Status] int null,
 	[ProfilePicture] varbinary(MAX),
-	Id INT PRIMARY KEY,
-	Fk_User_Id INT FOREIGN KEY REFERENCES Users(Id),
-	Fk_Veteran_Queue_Id INT FOREIGN KEY REFERENCES VeteranQueues(Id) 
+	[User_Id] int,
+	[Veteran_Queue_Id] int,
+	CONSTRAINT PK_Veteran PRIMARY KEY (Id),
+	CONSTRAINT FK_User FOREIGN KEY (User_Id) REFERENCES Users(Id),
+	CONSTRAINT FK_Veteran_Queue FOREIGN KEY (Veteran_Queue_Id) REFERENCES VeteranQueues(Id)
 )

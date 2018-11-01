@@ -21,7 +21,7 @@ namespace MSR_Web_App.Models
         }
     
         public int Id { get; set; }
-        public int Fk_Teacher_Id { get; set; }
+        public Nullable<int> Teacher_Id { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
