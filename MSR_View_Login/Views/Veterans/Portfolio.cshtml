@@ -169,21 +169,25 @@
 
                                                     @foreach (var c in Model.Sections[i].Contents)
                                                     {
-                                                        if (c.MediaType == "image")
+                                                        if (c.Media != null)
                                                         {
-                                                            <p style="font-weight:bold;">@c.Title</p>
+                                                            if (c.MediaType == "image")
+                                                            {
+                                                                <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                                <img src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
+                                                            }
+                                                            else
+                                                            {
+                                                                <p style="font-weight:bold;">@c.Title</p>
+
+                                                                @System.Text.Encoding.UTF8.GetString(c.Media)
+
+                                                            }
                                                         }
-                                                        else
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
 
-                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
-
-                                                        }
                                                     }
                                                 </div>
                                                 <!--./Block Content-->
