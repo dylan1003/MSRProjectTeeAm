@@ -11,6 +11,7 @@ namespace MSR_Web_App.Controllers
     public class VeteransController : Controller
     {
         private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+        PortfolioViewModel PortfolioModel = new PortfolioViewModel();
 
         public List<AifResult> AifSearch(string search, string searchType)
         {
@@ -97,10 +98,12 @@ namespace MSR_Web_App.Controllers
         
        public ActionResult Portfolio(int? id)
        {
-           Veteran veteran = db.Veterans.Find(id);
-           //Portfolio portfolio = db.Portfolios.Find(veteran.Fk_Portfolio_Id);
+            PortfolioModel.Veteran = db.Veterans.Find(id);
+            PortfolioModel.Sections = db.Sections.Where(s => s.Veteran_Id == id).ToList();
+            PortfolioModel.Contents = db.Contents.Where(c => c.Veteran_Id == id).ToList();
+            //Portfolio portfolio = db.Portfolios.Find(veteran.Fk_Portfolio_Id);
 
-           return View(veteran);
+           return View(PortfolioModel);
         }
     
     }
