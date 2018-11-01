@@ -324,6 +324,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\portfolio-forms.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -361,7 +362,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\UserVeteran\Portfolio.cshtml" />
+    <Content Include="Views\UserVeteran\PortfolioCreation.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />
     <Content Include="Views\Veterans\Search.cshtml" />
@@ -377,7 +378,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Veterans\PortfolioCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
