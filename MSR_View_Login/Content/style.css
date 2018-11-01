@@ -1,6 +1,4 @@
-﻿
-
-body {
+﻿body {
     margin: 0;
     padding: 0;
 }
@@ -47,3 +45,8 @@ body {
     background-color: blanchedalmond;
     margin: 10px 10px;
 }
+
+.img-click {
+    cursor: zoom-in;
+}
+
