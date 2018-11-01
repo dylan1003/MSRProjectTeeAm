@@ -102,7 +102,7 @@ html body {
 }
 
 .map-modal {
-    height: 450px;
+    max-height: none;
 }
 
 .modal-content {
@@ -114,12 +114,16 @@ html body {
     flex: 1;
 }
 
-.modal-form-container {
-    display: flex;
-    flex: 1;
-    text-align: center;
+.leaflet-map {
+    max-height: none;
 }
 
 .modal-flex-wrapper {
+    position:absolute;
     height: 100%;
+    width: 100%;
+    flex-direction: row;
+    min-height: 90%;
+    max-height: 90%;
+    min-width: 30vw
 }

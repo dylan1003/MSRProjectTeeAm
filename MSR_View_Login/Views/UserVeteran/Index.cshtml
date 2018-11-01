@@ -15,7 +15,7 @@
             <h2>@Html.ActionLink("Change Password", "Index", "Veteran/Changepassword", routeValues: null, htmlAttributes: new { title = "Change Password", @class = "nav-link" })</h2>
         </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".map-modal" data-whatever="something">Test Modal </button>
-        <div class="modal fade map-modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal fade map-modal" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -25,8 +25,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex flex-md-column flex-sm-row modal-flex-wrapper">
-                        <div class="modal-map-container" id="leaflet-map">
+                        <div class="d-flex modal-flex-wrapper">
+                        <div class="col-8 d-flex leaflet-map" id="leaflet-map">
                             <script>
                                 var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
 
@@ -36,11 +36,9 @@
                                     id: 'mapbox.streets',
                                     accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
                                 }).addTo(map);
-
+                                setTimeout(function () { map.invalidateSize(); debugger }, 100);
                                 var marker = L.marker([51.5, -0.09]).addTo(map);
-
                                 //marker.bindPopup("<b>Test popup.").openPopup();
-
                                 function onMapClick(e) {
                                     //alert(e.latlng);
                                     //console.log(map);
@@ -50,9 +48,20 @@
 
                                 map.on('click', onMapClick);
                             </script>
-
                         </div>
-                        <div class="modal-form-container">...</div>
+                        <div class="col-4 d-flex modal-form-container">
+                            <form>
+                                Search the map here: <br>
+                                <input type="search" name="search">
+                                <br>
+                                <br>
+                                Caption:<br>
+                                <input type="text" name="caption">
+                                <br>
+                                <input class="modal-button-group" type="submit" value="Cancel">
+                                <input class="modal-button-group" type="submit" value="Save">
+                            </form>
+                        </div>
                         </div>
                     </div>
                 </div>
