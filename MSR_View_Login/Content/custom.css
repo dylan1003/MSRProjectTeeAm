@@ -115,15 +115,9 @@ html body {
 }
 
 .leaflet-map {
-    max-height: none;
+    height: 260px;
 }
 
 .modal-flex-wrapper {
-    position:absolute;
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
-    min-height: 90%;
-    max-height: 90%;
-    min-width: 30vw
+    padding: 1em;
 }

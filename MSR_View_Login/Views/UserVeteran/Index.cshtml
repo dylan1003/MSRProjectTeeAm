@@ -25,8 +25,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex modal-flex-wrapper">
-                        <div class="col-8 d-flex leaflet-map" id="leaflet-map">
+                        <div class="row modal-flex-wrapper">
+                        <div class="col-md leaflet-map" id="leaflet-map">
                             <script>
                                 var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
 
@@ -36,7 +36,7 @@
                                     id: 'mapbox.streets',
                                     accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
                                 }).addTo(map);
-                                setTimeout(function () { map.invalidateSize(); debugger }, 100);
+                                
                                 var marker = L.marker([51.5, -0.09]).addTo(map);
                                 //marker.bindPopup("<b>Test popup.").openPopup();
                                 function onMapClick(e) {
@@ -46,10 +46,15 @@
                                     marker = L.marker(e.latlng).addTo(map);
                                 }
 
+                                // this fixes the issue with greyed out tiles displaying until resize
+                                $('.map-modal').on('shown.bs.modal', function (e) {
+                                    setTimeout(function () { map.invalidateSize() }, 50);
+                                })
+
                                 map.on('click', onMapClick);
                             </script>
                         </div>
-                        <div class="col-4 d-flex modal-form-container">
+                        <div class="col-md modal-form-container">
                             <form>
                                 Search the map here: <br>
                                 <input type="search" name="search">
