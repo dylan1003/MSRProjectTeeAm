@@ -39,11 +39,13 @@ body {
 
 .section {
     margin: 10px 0;
+    padding: 10px;
     color: white;
-    background-color:grey;
+    background-color:gray;
 }
 
 .content {
-    background-color: blanchedalmond;
-    margin: 10px 10px;
+    background-color: darkgray;
+    margin: 10px;
+    padding: 10px;
 }
