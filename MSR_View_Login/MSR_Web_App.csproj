@@ -368,7 +368,6 @@
     <Content Include="Views\UserVeteran\PortfolioCreation.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />
-    <Content Include="Views\Admin\index.cshtml" />
     <Content Include="Views\Admin\CreateVeteran.cshtml" />
     <Content Include="Views\Shared\_ImageModal.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />

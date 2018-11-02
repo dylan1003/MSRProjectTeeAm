@@ -11,11 +11,13 @@ namespace MSR_Web_App.Controllers
     [Authorize]
     public class AdminController : Controller
     {
+        //Database connection
         private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Create Veteran
@@ -39,7 +41,6 @@ namespace MSR_Web_App.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(veteran);
         }
     }
