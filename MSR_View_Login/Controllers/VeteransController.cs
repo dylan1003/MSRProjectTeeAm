@@ -73,7 +73,7 @@ namespace MSR_Web_App.Controllers
             PortfolioModel.Sections = db.Sections.Where(s => s.Veteran_Id == id).ToList();
             PortfolioModel.Contents = db.Contents.Where(c => c.Veteran_Id == id).ToList();
 
-           return View(PortfolioModel);
+            return View(PortfolioModel);
         }
     
     }

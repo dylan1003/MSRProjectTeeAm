@@ -1,46 +1,243 @@
 ﻿@model MSR_Web_App.Models.PortfolioViewModel
 
 @{
+    /**/
+
     ViewBag.Title = "Index";
 }
 
 @if (Model.Sections.Count > 0)
 {
-        @Html.Partial("_ImageModal")
-        <!--Jumbotron-->
-        <section class="jumbotron bg-dark">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-1"></div>
+    @Html.Partial("_ImageModal")
 
-                    <!--Left Control-->
-                    <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
-                        <i class="fa fa-chevron-left"></i>
-                    </a>
-                    <!--./Left Control-->
-                    <!--Card-->
-                    <div class="card col-8 px-0">
-                        <div class="row no-gutters">
-                            <!--Col One-->
-                            <div class="col-6 px-0">
-                                <div class="col-auto card-block px-0" style="width:100%; height:100%;">
-                                    <!--Map-->
-                                    <div id='map'></div>
+    <!--Jumbotron-->
+    <section class="jumbotron bg-dark">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-1"></div>
 
-                                    <!--./Map-->
+                <!--Left Control-->
+                <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
+                    <i class="fa fa-chevron-left"></i>
+                </a>
+                <!--./Left Control-->
+                <!--Card-->
+                <div class="card col-8 px-0">
+                    <div class="row no-gutters">
+                        <!--Col One-->
+                        <div class="col-6 px-0">
+                            <div class="col-auto card-block px-0" style="width:100%; height:100%;">
+                                <!--Map-->
+                                <div id='map'></div>
 
-                                </div>
+                                <!--./Map-->
+
                             </div>
-                            <!--./Col One-->
-                            <!--Col Two-->
-                            <div class="col-6">
-                                <!--Carousel-->
-                                <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
-                                    <!--All Slides-->
-                                    <div class="carousel-inner" role="listbox">
+                        </div>
+                        <!--./Col One-->
+                        <!--Col Two-->
+                        <div class="col-6">
+                            <!--Carousel-->
+                            <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
+                                <!--All Slides-->
+                                <div class="carousel-inner" role="listbox">
 
-                                        <!--First slide-->
-                                        <div class="carousel-item active">
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        <!--Header Content-->
+                                        <div class="card-block px-2">
+                                            @if (Model.Veteran.ProfilePicture != null)
+                                            {
+                                                <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
+                                            }
+                                            else
+                                            {
+                                                <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                                            }
+
+                                            <br>
+                                            <h4 class="card-title">
+                                                @{
+                                                    var fullName = Model.Veteran.Surname + ", " + Model.Veteran.FirstName;
+                                                    @Html.DisplayFor(m => fullName)
+                                                }
+                                            </h4>
+                                            <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
+                                        </div>
+                                        <!--./Header Content-->
+                                        <!--Block Content-->
+                                        <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
+                                            <hr>
+                                            <h4 class="card-title">About</h4>
+
+                                            <table class="table card-text">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            First Name
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.FirstName)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Middle Name
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.MiddleName)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Surname
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Surname)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Pre-War Occupation
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.PreWarOccupation)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Date Of Birth
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.DOB)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Place Of Birth
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.BirthPlace)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Death
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Death)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Marital Status
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.MaritalStatus)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Enlisted Date
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.EnlistedDate)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Embarkment Age
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.EmbarkmentAge)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Regiment Number
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.RegimentNumber)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Battalion
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Battalion)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Religion
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Religion)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Address
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Address)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            State
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.State)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Country
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Country)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Next Of Kin
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.NextOfKin)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Fate
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.Fate)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            Short Biography
+                                                        </th>
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.Veteran.ShortBio)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--./Block Content-->
+                                    </div>
+                                    <!--/.First slide-->
+
+
+
+
+                                    @for (int i = 0; i < Model.Sections.Count; i++)
+                                    {
+                                        <!--Next slide-->
+                                        <div class="carousel-item">
                                             <!--Header Content-->
                                             <div class="card-block px-2">
                                                 @if (Model.Veteran.ProfilePicture != null)
@@ -51,11 +248,10 @@
                                                 {
                                                     <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
                                                 }
-
                                                 <br>
                                                 <h4 class="card-title">
                                                     @{
-                                                        var fullName = Model.Veteran.Surname + ", " + Model.Veteran.FirstName;
+
                                                         @Html.DisplayFor(m => fullName)
                                                     }
                                                 </h4>
@@ -65,307 +261,115 @@
                                             <!--Block Content-->
                                             <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
                                                 <hr>
-                                                <h4 class="card-title">About</h4>
 
-                                                <table class="table card-text">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                First Name
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.FirstName)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Middle Name
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.MiddleName)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Surname
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Surname)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Pre-War Occupation
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.PreWarOccupation)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Date Of Birth
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.DOB)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Place Of Birth
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.BirthPlace)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Death
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Death)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Marital Status
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.MaritalStatus)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Enlisted Date 
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.EnlistedDate)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Embarkment Age
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.EmbarkmentAge)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Regiment Number
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.RegimentNumber)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Battalion
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Battalion)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Religion
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Religion)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Address
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Address)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                State
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.State)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Country
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Country)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Next Of Kin
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.NextOfKin)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Fate
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.Fate)
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">
-                                                                Short Biography
-                                                            </th>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.Veteran.ShortBio)
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!--./Block Content-->
-                                        </div>
-                                        <!--/.First slide-->
-
-
-
-
-                                        @for (int i = 0; i < Model.Sections.Count; i++)
-                                        {
-                                            <!--Next slide-->
-                                            <div class="carousel-item">
-                                                <!--Header Content-->
-                                                <div class="card-block px-2">
-                                                    @if (Model.Veteran.ProfilePicture != null)
+                                                @foreach (var c in Model.Sections[i].Contents)
+                                                {
+                                                    if (c.Media != null)
                                                     {
-                                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
-                                                    }
-                                                    <br>
-                                                    <h4 class="card-title">
-                                                        @{
-
-                                                            @Html.DisplayFor(m => fullName)
-                                                        }
-                                                    </h4>
-                                                    <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
-                                                </div>
-                                                <!--./Header Content-->
-                                                <!--Block Content-->
-                                                <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                                    <hr>
-
-                                                    @foreach (var c in Model.Sections[i].Contents)
-                                                    {
-                                                        if (c.Media != null)
+                                                        if (c.MediaType == "image")
                                                         {
-                                                            if (c.MediaType == "image")
-                                                            {
-                                                                <p style="font-weight:bold;">@c.Title</p>
+                                                            <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                                <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                            <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="font-weight:bold;">@c.Title</p>
-
-                                                                @System.Text.Encoding.UTF8.GetString(c.Media)
-
-                                                            }
                                                         }
                                                         else
                                                         {
                                                             <p style="font-weight:bold;">@c.Title</p>
+
+                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
+
                                                         }
-
                                                     }
-                                                </div>
-                                                <!--./Block Content-->
+                                                    else
+                                                    {
+                                                        <p style="font-weight:bold;">@c.Title</p>
+                                                    }
+
+                                                }
                                             </div>
-                                            <!--/.Next slide-->
-                                                            }
-
-
-
-                                    </div>
-                                    <!--./All Slides-->
-                                </div>
-                                <!--./Carousel-->
-                            </div>
-                            <!--./Col Two-->
-                        </div>
-                        <!--Card Footer & Navigation-->
-                        <div class="card-footer w-100 text-muted text-center">
-                            <div>
-                                <style>
-                                    div.scrollmenu {
-                                        background-color: inherit;
-                                        overflow: auto;
-                                        white-space: nowrap;
+                                            <!--./Block Content-->
+                                        </div>
+                                        <!--/.Next slide-->
                                     }
 
-                                        div.scrollmenu a {
-                                            display: inline-block;
-                                            color: rgba(0,0,0,.03);
-                                            text-align: center;
-                                            padding: 14px;
-                                            text-decoration: none;
-                                        }
 
-                                            div.scrollmenu a:hover {
-                                                background-color: #777;
-                                            }
-                                </style>
-                                <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    @foreach (var E in Model.Sections)
-                                    {
-                                        <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
-                                    }
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+
                                 </div>
+                                <!--./All Slides-->
                             </div>
-                            <!--./Card Footer & Navigation-->
+                            <!--./Carousel-->
                         </div>
-                        <!--./Cards-->
+                        <!--./Col Two-->
                     </div>
-                    <!--Right Controls-->
-                    <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
-                        <i class="fa fa-chevron-right"></i>
-                    </a>
-                    <!--./Right Controls-->
+                    <!--Card Footer & Navigation-->
+                    <div class="card-footer w-100 text-muted text-center">
+                        <div>
+                            <style>
+                                div.scrollmenu {
+                                    background-color: inherit;
+                                    overflow: auto;
+                                    white-space: nowrap;
+                                }
 
-                    <div class="col-1"></div>
+                                    div.scrollmenu a {
+                                        display: inline-block;
+                                        color: rgba(0,0,0,.03);
+                                        text-align: center;
+                                        padding: 14px;
+                                        text-decoration: none;
+                                    }
+
+                                        div.scrollmenu a:hover {
+                                            background-color: #777;
+                                        }
+                            </style>
+                            <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                @foreach (var E in Model.Sections)
+                                {
+                                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
+                                }
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            </div>
+                        </div>
+                        <!--./Card Footer & Navigation-->
+                    </div>
+                    <!--./Cards-->
                 </div>
+                <!--Right Controls-->
+                <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+                <!--./Right Controls-->
+
+                <div class="col-1"></div>
             </div>
-        </section>
-    
+        </div>
+    </section>
+    @Html.Partial("_PortfolioMap")
+
 }
 else
 {
-    
+
     var fullName = Model.Veteran.Surname + ", " + Model.Veteran.FirstName;
     @Html.DisplayFor(m => fullName)
-   
+
     <section class="jumbotron">
         <div class="container">
             <div class="row">
