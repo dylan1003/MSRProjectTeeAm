@@ -73,8 +73,15 @@ namespace MSR_Web_App.Controllers
             PortfolioModel.Sections = db.Sections.Where(s => s.Veteran_Id == id).ToList();
             PortfolioModel.Contents = db.Contents.Where(c => c.Veteran_Id == id).ToList();
 
-            return View(PortfolioModel);
+            if (PortfolioModel.Sections.Count > 0)
+            {
+                return View(PortfolioModel);
+            }
+            else
+            {
+                return View("EmptyPortfolio", PortfolioModel);
+            }
+            
         }
-    
     }
 }
