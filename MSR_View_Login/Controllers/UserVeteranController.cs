@@ -30,72 +30,200 @@ namespace MSR_Web_App.Controllers
             return View();
         }
 
-        public ActionResult AddSection(Section section)
+        public ActionResult EditSection(Content content, Section section, string editSection)
         {
+            
             // get ALL current sections
             viewModel.Sections = db.Sections.ToList();
 
-            // find next Id for section (largest)
-            int nextId = 0;
-            foreach (Section s in viewModel.Sections)
+            if (editSection == "AddContent")
             {
-                if (s.Id > nextId)
+                // get current sections
+                viewModel.Sections = db.Sections.ToList();
+                int vetId = Int32.Parse(User.Identity.GetUserName());
+                Veteran veteran = db.Veterans.SingleOrDefault(v => v.Id == vetId);
+                Section currentSection = db.Sections.SingleOrDefault(s => s.Id == content.Section_Id);
+                //content.FK_Section_Id = currentSection.Id;
+                content.Section = currentSection;
+
+                content.Section.Veteran = veteran;
+
+                // find next Id for section (largest)
+                int nextId = 0;
+                foreach (Content c in currentSection.Contents)
                 {
-                    nextId = s.Id;
+                    if (c.Id > nextId)
+                    {
+                        nextId = c.Id;
+                    }
+
                 }
 
+                content.Id = nextId + 1;
+
+                content.Veteran_Id = Int32.Parse(User.Identity.GetUserName());
+
+                db.Contents.Add(content);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
+                
+            }
+            else if (editSection == "Delete")
+            {
+                // Delete contents for section first
+                foreach (Content c in db.Contents)
+                {
+                    if (c.Section_Id == section.Id && section.Veteran_Id == c.Veteran_Id)
+                    {
+                        db.Contents.Remove(c);
+                    }
+                }
+
+                // Delete section
+                Section sectionToDelete = db.Sections.SingleOrDefault(s => s.Id == section.Id && s.Veteran_Id == section.Veteran_Id);
+                db.Sections.Remove(sectionToDelete);
             }
 
-            section.Id = nextId + 1;
-
-            db.Sections.Add(section);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
 
             return RedirectToAction("PortfolioCreation", viewModel);
         }
 
-        public ActionResult AddContent(Content content)
+        public ActionResult AddSection(Section section)
         {
+            int veteranId = Convert.ToInt32(User.Identity.GetUserName());
 
-            // get current sections
-            viewModel.Sections = db.Sections.ToList();
-            int vetId = Int32.Parse(User.Identity.GetUserName());
-            Veteran veteran = db.Veterans.SingleOrDefault(v => v.Id == vetId);
-            Section currentSection = db.Sections.SingleOrDefault(s => s.Id == content.Section_Id);
-            //content.FK_Section_Id = currentSection.Id;
-            content.Section = currentSection;
-
-            content.Section.Veteran = veteran;
+            viewModel.Sections = db.Sections.Where(s => s.Veteran_Id == veteranId).ToList();
 
             // find next Id for section (largest)
+            
             int nextId = 0;
-            foreach (Content c in currentSection.Contents)
-            {
-                if (c.Id > nextId)
-                {
-                    nextId = c.Id;
-                }
 
+            if (viewModel.Sections.Count == 0)
+            {
+                section.Id = 1;
+            }
+            else
+            {
+                foreach (Section s in viewModel.Sections)
+                {
+                    if (s.Id > nextId)
+                    {
+                        nextId = s.Id;
+                    }
+                    section.Id = nextId + 1;
+                }
             }
 
-            content.Id = nextId + 1;
+            db.Sections.Add(section);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+
+            return RedirectToAction("PortfolioCreation", viewModel);
+        }
+
+        public ActionResult EditContent(Content content, string editContent)
+        {
 
             content.Veteran_Id = Int32.Parse(User.Identity.GetUserName());
 
-            db.Contents.Add(content);
-            db.SaveChanges();
+            if (editContent == "Save")
+            {
+                Content contentToSave = db.Contents.Single(c => c.Id == content.Id && c.Section_Id == content.Section_Id && c.Veteran_Id == content.Veteran_Id);
+                contentToSave.Title = content.Title;
+                contentToSave.Timestamp = content.Timestamp;
+                contentToSave.MediaType = content.MediaType;
+                contentToSave.Source = content.Source;
+                contentToSave.DisplayPosition = content.DisplayPosition;
+            }
+            else if (editContent == "Delete")
+            {
+                Content contentToDelete = db.Contents.SingleOrDefault(c => c.Id == content.Id && c.Section_Id == content.Section_Id && content.Veteran_Id == c.Veteran_Id);
+                db.Contents.Remove(contentToDelete);
+            }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
 
             return RedirectToAction("PortfolioCreation", viewModel);
-        }
-
-        public ActionResult DeleteContent(Content content)
-        {
-
-            Content contentToDelete = db.Contents.SingleOrDefault(c => c.Id == content.Id && c.Section.Id == content.Section.Id);
-            db.Contents.Remove(contentToDelete);
-            db.SaveChanges();
-
-            return RedirectToAction("Index", viewModel);
         }
 
     }
