@@ -1,17 +1,11 @@
-﻿@model MSR_Web_App.Models.Veteran
+﻿@model MSR_Web_App.Models.PortfolioViewModel
 
 @{
     ViewBag.Title = "Index";
 }
-<style>
-    img {
-        cursor: zoom-in;
-    }
-</style>
+
 @if (Model.Sections.Count > 0)
 {
-    
-    @*
         @Html.Partial("_ImageModal")
         <!--Jumbotron-->
         <section class="jumbotron bg-dark">
@@ -49,16 +43,23 @@
                                         <div class="carousel-item active">
                                             <!--Header Content-->
                                             <div class="card-block px-2">
-
-                                                <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
+                                                @if (Model.Veteran.ProfilePicture != null)
+                                                {
+                                                    <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                                                }
 
                                                 <br>
                                                 <h4 class="card-title">
                                                     @{
-                                                        var fullName = Model.Item2.Surname + ", " + Model.Item2.FirstName;
+                                                        var fullName = Model.Veteran.Surname + ", " + Model.Veteran.FirstName;
                                                         @Html.DisplayFor(m => fullName)
                                                     }
                                                 </h4>
+                                                <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
                                             </div>
                                             <!--./Header Content-->
                                             <!--Block Content-->
@@ -70,58 +71,154 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.FirstName)
+                                                                First Name
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.FirstName)
+                                                                @Html.DisplayFor(model => model.Veteran.FirstName)
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.MiddleName)
+                                                                Middle Name
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.MiddleName)
+                                                                @Html.DisplayFor(model => model.Veteran.MiddleName)
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.Surname)
+                                                                Surname
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.Surname)
+                                                                @Html.DisplayFor(model => model.Veteran.Surname)
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.DOB)
+                                                                Pre-War Occupation
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.DOB)
+                                                                @Html.DisplayFor(model => model.Veteran.PreWarOccupation)
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.RegimentNumber)
+                                                                Date Of Birth
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.RegimentNumber)
+                                                                @Html.DisplayFor(model => model.Veteran.DOB)
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">
-                                                                @Html.DisplayNameFor(model => model.Item2.Address)
+                                                                Place Of Birth
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.Address)
+                                                                @Html.DisplayFor(model => model.Veteran.BirthPlace)
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row" style="margin-right:1px;">
-                                                                @Html.DisplayNameFor(model => model.Item2.ShortBio)
+                                                            <th scope="row">
+                                                                Death
                                                             </th>
                                                             <td>
-                                                                @Html.DisplayFor(model => model.Item2.ShortBio)
+                                                                @Html.DisplayFor(model => model.Veteran.Death)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Marital Status
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.MaritalStatus)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Enlisted Date 
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.EnlistedDate)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Embarkment Age
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.EmbarkmentAge)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Regiment Number
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.RegimentNumber)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Battalion
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.Battalion)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Religion
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.Religion)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Address
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.Address)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                State
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.State)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Country
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.Country)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Next Of Kin
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.NextOfKin)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Fate
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.Fate)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                Short Biography
+                                                            </th>
+                                                            <td>
+                                                                @Html.DisplayFor(model => model.Veteran.ShortBio)
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -134,15 +231,20 @@
 
 
 
-                                        @for (int i = 0; i < Model.Item1.Count; i++)
+                                        @for (int i = 0; i < Model.Sections.Count; i++)
                                         {
                                             <!--Next slide-->
                                             <div class="carousel-item">
                                                 <!--Header Content-->
                                                 <div class="card-block px-2">
-
-                                                    <img class="float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Item3.Picture)" alt="Portfolio Picture">
-
+                                                    @if (Model.Veteran.ProfilePicture != null)
+                                                    {
+                                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                                                    }
                                                     <br>
                                                     <h4 class="card-title">
                                                         @{
@@ -150,29 +252,34 @@
                                                             @Html.DisplayFor(m => fullName)
                                                         }
                                                     </h4>
+                                                    <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
                                                 </div>
                                                 <!--./Header Content-->
                                                 <!--Block Content-->
                                                 <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
                                                     <hr>
 
-                                                    @foreach (var c in Model.Item1[i].Contents)
+                                                    @foreach (var c in Model.Sections[i].Contents)
                                                     {
-                                                        if (c.type == "image")
+                                                        if (c.Media != null)
                                                         {
-                                                            <p style="font-weight:bold;">@c.Title</p>
+                                                            if (c.MediaType == "image")
+                                                            {
+                                                                <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                            <img src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                                <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
+                                                            }
+                                                            else
+                                                            {
+                                                                <p style="font-weight:bold;">@c.Title</p>
+
+                                                                @System.Text.Encoding.UTF8.GetString(c.Media)
+
+                                                            }
                                                         }
-                                                        else
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
 
-                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
-
-                                                        }
                                                     }
                                                 </div>
                                                 <!--./Block Content-->
@@ -213,9 +320,9 @@
                                 </style>
                                 <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
                                     <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                    @foreach (var t in Model.Item1)
+                                    @foreach (var E in Model.Sections)
                                     {
-                                        <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{t.Id}")" id="carousel-slide-@($"{t.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => t.EventTitle)</a>
+                                        <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
                                     }
                                     <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                                     <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
@@ -247,12 +354,12 @@
                 </div>
             </div>
         </section>
-    *@
+    
 }
 else
 {
     
-    var fullName = Model.Surname + ", " + Model.FirstName;
+    var fullName = Model.Veteran.Surname + ", " + Model.Veteran.FirstName;
     @Html.DisplayFor(m => fullName)
    
     <section class="jumbotron">

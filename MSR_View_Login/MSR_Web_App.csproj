@@ -240,6 +240,7 @@
       <DependentUpon>MSRContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PortfolioCreateViewModel.cs" />
+    <Compile Include="Models\PortfolioViewModel.cs" />
     <Compile Include="Models\Section.cs">
       <DependentUpon>MSRContext.tt</DependentUpon>
     </Compile>
@@ -263,6 +264,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\Default_Profile_Pictures.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -365,7 +367,6 @@
     <Content Include="Views\UserVeteran\PortfolioCreation.cshtml" />
     <Content Include="Views\Veterans\Index.cshtml" />
     <Content Include="Views\Veterans\Portfolio.cshtml" />
-    <Content Include="Views\Veterans\Search.cshtml" />
     <Content Include="Views\Admin\index.cshtml" />
     <Content Include="Views\Admin\CreateVeteran.cshtml" />
     <Content Include="Views\Shared\_ImageModal.cshtml" />

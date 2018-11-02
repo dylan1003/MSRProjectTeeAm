@@ -11,7 +11,7 @@
 	[EnlistedDate] nvarchar(20),
 	[EmbarkmentAge] nvarchar(20),
 	[RegimentNumber] nvarchar(10),
-	[Battalion] nvarchar(50),
+	[Battalion] nvarchar(100),
 	[Religion] nvarchar(50),
 	[Address] nvarchar(150),
 	[State] nvarchar(50),
