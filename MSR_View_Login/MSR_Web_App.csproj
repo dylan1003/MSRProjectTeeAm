@@ -218,7 +218,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AifResult.cs" />
+    <Compile Include="Classes\AifResult.cs" />
     <Compile Include="Models\Content.cs">
       <DependentUpon>MSRContext.tt</DependentUpon>
     </Compile>
@@ -253,6 +253,7 @@
     <Compile Include="Models\VeteranQueue.cs">
       <DependentUpon>MSRContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VeteranSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

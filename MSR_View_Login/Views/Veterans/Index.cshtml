@@ -1,4 +1,4 @@
-﻿@model Tuple<List<MSR_Web_App.Models.Veteran>, List<MSR_Web_App.Models.AifResult>>
+﻿@model MSR_Web_App.Models.VeteranSearchModel
 
 @{
     ViewBag.Title = "Veteran";
@@ -58,31 +58,31 @@
                         Pre-War Occupation
                     </th>
                 </tr>
-                @for (int i = 0; i < Model.Item1.Count; i++)
+                @for (int i = 0; i < Model.Veteran.Count; i++)
                 {
                     <tr>
                         <td>
                             @{
-                                var fullName = Model.Item1[i].Surname + ", " + Model.Item1[i].FirstName;
-                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => Model.Item1[i].Id)">@Html.DisplayFor(m => fullName)</a>
+                                var fullName = Model.Veteran[i].Surname + ", " + Model.Veteran[i].FirstName;
+                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => Model.Veteran[i].Id)">@Html.DisplayFor(m => fullName)</a>
                             }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].RegimentNumber)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].RegimentNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].Address)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].Address)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].Battalion)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].Battalion)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].PreWarOccupation)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].PreWarOccupation)
                         </td>
                     </tr>
                 }
             </table>
-            @if (Model.Item1.Count() == 0)
+            @if (Model.Veteran.Count() == 0)
             {
                 <div class="row col-sm-12" style="padding-bottom: 2vh">
                     <p>No results found in MSR Database.</p>
@@ -90,7 +90,7 @@
             }
             <!--./Results Field-->
             <!--AIF Results-->
-            @if (Model.Item2.Count > 0)
+            @if (Model.AifResults != null && Model.AifResults.Count > 0)
             {
                 <h3 class="col text-black-50 text-center">Partial results from the AIF Database</h3>
                 <table class="table table-light text-center rounded-bottom">
@@ -102,13 +102,13 @@
                             <th>Battalion</th>
                         </tr>
                         <tbody>
-                            @for (int i = 0; i < Model.Item2.Count; i++)
+                            @for (int i = 0; i < Model.AifResults.Count; i++)
                             {
                                 <tr>
-                                    <td>@Model.Item2[i].RegimentNumber</td>
-                                    <td><a href="@Model.Item2[i].ProfileLink" target="_blank">@Model.Item2[i].Name</a></td>
-                                    <td>@Model.Item2[i].Address</td>
-                                    <td>@Model.Item2[i].Battalion</td>
+                                    <td>@Model.AifResults[i].RegimentNumber</td>
+                                    <td><a href="@Model.AifResults[i].ProfileLink" target="_blank">@Model.AifResults[i].Name</a></td>
+                                    <td>@Model.AifResults[i].Address</td>
+                                    <td>@Model.AifResults[i].Battalion</td>
                                 </tr>
                             }
                         </tbody>
