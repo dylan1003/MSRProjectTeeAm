@@ -40,7 +40,7 @@
                             <div class="carousel-inner" role="listbox">
 
                                 <!--First slide-->
-                                <div class="carousel-item active">
+                                <div class="carousel-item active" data-zoom="3" data-lng="134.88" data-lat="-26.28">
                                     <!--Header Content-->
                                     <div class="card-block px-2">
                                         @if (Model.Veteran.ProfilePicture != null)
@@ -364,7 +364,7 @@
                                 @for (int i = 0; i < Model.Sections.Count; i++)
                                 {
                                     <!--Next slide-->
-                                    <div class="carousel-item">
+                                    <div class="carousel-item" data-zoom="@Model.Sections[i].CameraZoom" data-lng="@Model.Sections[i].CoordX" data-lat="@Model.Sections[i].CoordY">
                                         <!--Header Content-->
                                         <div class="card-block px-2">
                                             @if (Model.Veteran.ProfilePicture != null)
@@ -453,10 +453,10 @@
                                     }
                         </style>
                         <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
-                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-zoom="3" data-lng="134.88" data-lat="-26.28" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var E in Model.Sections)
                             {
-                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-zoom="@E.CameraZoom" data-lng="@E.CoordX" data-lat="@E.CoordY" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
                             }
                         </div>
                     </div>
@@ -490,14 +490,14 @@
     //set map to the default location
     //add click function to timeline list to set data on page dynamically
     window.onload = function () {
-        var mapCords = [$("a.btn")[0].dataset.lng, $("a.btn")[0].dataset.lat];
+        var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
         map.flyTo({ center: mapCords, speed: 4 })
     };
 
-    $("a.btn").click(function () {
+    $('#multi-item-example').on('slid.bs.carousel',function () {
         //set map co ordinates of timeline entry
-        var mapCords = [this.dataset.lng, this.dataset.lat];
-        var mapZoom = parseInt(this.dataset.zoom);
+        var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
+        var mapZoom = parseInt($("div.active")[0].dataset.zoom);
         //update map
         map.flyTo({ center: mapCords, speed: 4, zoom: mapZoom})
     });
