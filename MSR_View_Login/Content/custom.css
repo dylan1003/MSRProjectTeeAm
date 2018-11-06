@@ -150,3 +150,23 @@ html body {
     color: dimgray
 }
 
+.map-modal {
+    max-height: none;
+}
+
+.modal-content {
+    height: 450px;
+}
+
+.modal-map-container {
+    display: flex;
+    flex: 1;
+}
+
+.leaflet-map {
+    height: 360px;
+}
+
+.modal-flex-wrapper {
+    padding: 1em;
+}
