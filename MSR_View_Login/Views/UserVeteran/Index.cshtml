@@ -60,9 +60,10 @@
                                     //marker.bindPopup("<b>Test popup.").openPopup();
                                     function onMapClick(e) {
                                         //alert(e.latlng);
-                                        //console.log(map);
                                         map.removeLayer(marker);
                                         marker = L.marker(e.latlng).addTo(map);
+                                        console.log(marker);
+                                        console.log(map);
                                     }
 
                                     // this fixes the issue with greyed out tiles displaying until resize
