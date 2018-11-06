@@ -26,7 +26,13 @@ html body {
     color: #fff
 }
 
-
+.title {
+    line-height: 60vh;
+    text-align: center;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 5em;
+}
 .home-container{
     padding-top: 7vh;
     padding-left: 5vw;
@@ -140,6 +146,18 @@ html body {
 @media only screen and (max-width: 800) {
     .table-mobile {
         border: none;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .title {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .title {
+        font-size: 25px;
     }
 }
 

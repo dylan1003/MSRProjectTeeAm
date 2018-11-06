@@ -24,6 +24,12 @@ body {
     margin-top: 4%;
 }
 
+#home-hero {
+    background-image: url(https://www.awm.gov.au/sites/default/files/styles/background_large/public/images/feature/fcfn.JPG?itok=7cFEx-PK);
+    background-size: cover;
+    height: 60vh;
+}
+
 #page-layout {
     padding-top: 7vh;
     padding-left: 5vw;
