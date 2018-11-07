@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/MSR_View/Content
+/MSR_View/Scripts/esm
+/MSR_View/Scripts/umd
+/MSR_View/Scripts
