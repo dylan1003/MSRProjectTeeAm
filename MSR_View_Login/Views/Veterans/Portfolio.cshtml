@@ -453,10 +453,10 @@
                                     }
                         </style>
                         <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
-                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="0" id="carousel-slide-0">About</a>
                             @foreach (var E in Model.Sections)
                             {
-                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")">@Html.DisplayFor(m => E.EventTitle)</a>
                             }
                         </div>
                     </div>
@@ -465,7 +465,7 @@
                 <!--./Cards-->
             </div>
             <!--Right Controls-->
-            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
+            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next" >
                 <i class="fa fa-chevron-right"></i>
             </a>
             <!--./Right Controls-->
@@ -494,7 +494,19 @@
         map.flyTo({ center: mapCords, speed: 4 })
     };
 
-    $('#multi-item-example').on('slid.bs.carousel',function () {
+    $('#multi-item-example').on('slid.bs.carousel', function () {
+        var navList = $("a.btn");
+        for (var i = 0; i < navList.length; i++) {
+            if (navList[i].attributes["data-slide-to"].value == $(".active").index())
+            {
+                navList[i].classList.add("highlightElement");
+            }  
+            else if (navList[i].attributes["data-slide-to"].value != $(".active").index())
+            {
+                navList[i].classList.remove("highlightElement");
+            }
+        }
+        
         //set map co ordinates of timeline entry
         var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
         var mapZoom = parseInt($("div.active")[0].dataset.zoom);
