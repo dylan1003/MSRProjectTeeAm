@@ -26,32 +26,32 @@
                 <form>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Veteran.FirstName, "First Name", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control", @readonly = true })
                     </div>
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.MiddleName, "Middle Name", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control", @readonly = true })
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.Surname, "Surname", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control", @readonly = true })
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.RegimentNumber, "Regiment Number", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control", @readonly = true })
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.Battalion, "Battalion", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control", @readonly = true })
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.DOB, "Date of Birth", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control", @readonly = true })
                 </form>
                 <form class="form-group">
                     @Html.LabelFor(m => m.Veteran.PreWarOccupation, "Pre-War Occupation", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control", @readonly = true})
                 </form>
             </div>
         </div>
@@ -95,11 +95,11 @@
                                 </div>
                                 @* portfolio-forms.js controls which of the media/source fields display depending on how mediatype is populated *@
                                 <div class="form-group">
-                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-label", @id = "mediaLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, "Text Data", new { @class = "form-label", @id = "mediaLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                     @Html.TextAreaFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-control", @id = "mediaTextArea-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, new { @class = "form-label", @id = "sourceLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "Image URL", new { @class = "form-label", @id = "sourceLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                     @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "", new { @class = "form-control", @id = "sourceTextbox-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                 </div>
 
