@@ -64,12 +64,14 @@
                         </form>
                         <form class="map-zoom-radio-group">
                             Zoom Level:  <a href="#" data-toggle="zoom-tooltip" title="This is how zoomed in the map will be when the user views the veteran profile">?</a><br>
-                            <input type="radio" name="street">Street<br>
-                            <input type="radio" name="suburb">Suburb<br>
-                            <input type="radio" name="city">City<br>
-                            <input type="radio" name="state">State<br>
-                            <input type="radio" name="country">Country<br>
-                            <input type="radio" name="custom">Custom <a href="#" data-toggle="zoom-tooltip" title="This will take your current zoom level at the time of saving this dialog">?</a><br>
+                            <div class="zoom-level-radio-group">
+                                <label><input type="radio" name="street">Street</label><br>
+                                <label><input type="radio" name="suburb">Suburb</label><br>
+                                <label><input type="radio" name="city">City</label><br>
+                                <label><input type="radio" name="state">State</label><br>
+                                <label><input type="radio" name="country">Country</label><br>
+                                <label><input type="radio" name="custom">Custom <a href="#" data-toggle="zoom-tooltip" title="This will take your current zoom level at the time of saving this dialog">?</a></label><br>
+                            </div>
                         </form>
                         <div class="map-modal-button-group">
                             <input class="map-modal-button-group" type="submit" value="Cancel">
