@@ -4,7 +4,8 @@
 <div class="jumbotron-fluid" id="home-hero">
     <div class="hero-content">
         <h3 style="color: white">Veteran Search</h3>
-        <form class="col align-self-center" style="color: white; font-weight:bold;">
+        @using (Html.BeginForm("Index", "Veterans"))
+        {
             <div class="row form-group home">
                 <input type="text" class="col-10 form-control" id="SearchField" placeholder="Search For Veteran" name="SearchString" value="">
                 <button type="submit" class="col-2 btn btn-primary">Submit</button>
@@ -25,7 +26,7 @@
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Unit">
                 <label class="form-check-label text-black-50" for="inlineRadio4">Unit</label>
             </div>
-        </form>
+        }
     </div>
     <div @*class="hero-content"*@>
         <h1 class="title">MY SCHOOL REMEMBERS</h1>
