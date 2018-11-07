@@ -23,7 +23,7 @@
                             <div class="card-block text-center px-2">
                                 @if (Model.Veteran.ProfilePicture != null)
                                 {
-                                    <img class="img-click img-fluid" style="width:30%; height:auto; padding-top:1em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
+                                    <img class="img-click img-fluid" style="width:30%; height:auto; padding-top:1em;" src="@Model.Veteran.ProfilePicture" alt="Portfolio Picture">
                                 }
                                 else
                                 {
