@@ -193,6 +193,7 @@ namespace MSR_Web_App.Controllers
                 contentToSave.Title = content.Title;
                 contentToSave.Timestamp = content.Timestamp;
                 contentToSave.MediaType = content.MediaType;
+                contentToSave.Media = content.Media;
                 contentToSave.Source = content.Source;
                 contentToSave.DisplayPosition = content.DisplayPosition;
             }
