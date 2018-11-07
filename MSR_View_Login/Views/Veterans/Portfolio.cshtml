@@ -382,28 +382,24 @@
                                                 <hr>
                                                 @foreach (var c in Model.Sections[i].Contents)
                                                 {
-                                                    if (c.Media != null)
+                                                   
+                                                    if (c.MediaType == "Image")
                                                     {
-                                                        if (c.MediaType == "image")
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
+                                                        <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                            @*<img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />*@
+                                                        <img class="img-click" src="@c.Source" style="width:50%;" />
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
-
-                                                            @*@System.Text.Encoding.UTF8.GetString(c.Media) *@
-
-                                                        }
                                                     }
                                                     else
                                                     {
                                                         <p style="font-weight:bold;">@c.Title</p>
+
+                                                        <p>@c.Media</p>
+
                                                     }
+                                                    
+                                                    
 
                                                 }
                                             </div>
