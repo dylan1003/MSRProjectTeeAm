@@ -15,9 +15,9 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Timestamp" Type="datetime" />
           <Property Name="MediaType" Type="nvarchar" MaxLength="10" />
-          <Property Name="Source" Type="text" />
+          <Property Name="Source" Type="nvarchar" MaxLength="500" />
           <Property Name="DisplayPosition" Type="int" />
-          <Property Name="Media" Type="varbinary(max)" />
+          <Property Name="Media" Type="nvarchar" MaxLength="1000" />
           <Property Name="Section_Id" Type="int" Nullable="false" />
           <Property Name="Veteran_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -67,7 +67,7 @@
           <Property Name="EnlistedDate" Type="nvarchar" MaxLength="20" />
           <Property Name="EmbarkmentAge" Type="nvarchar" MaxLength="20" />
           <Property Name="RegimentNumber" Type="nvarchar" MaxLength="10" />
-          <Property Name="Battalion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Battalion" Type="nvarchar" MaxLength="100" />
           <Property Name="Religion" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="150" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
@@ -185,9 +185,9 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Timestamp" Type="DateTime" Precision="3" />
           <Property Name="MediaType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DisplayPosition" Type="Int32" />
-          <Property Name="Media" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Media" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Section_Id" Type="Int32" Nullable="false" />
           <Property Name="Veteran_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Section" Relationship="Self.FK_Section" FromRole="Contents" ToRole="Sections" />
@@ -244,7 +244,7 @@
           <Property Name="EnlistedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="EmbarkmentAge" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="RegimentNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Battalion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Battalion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

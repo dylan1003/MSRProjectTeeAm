@@ -6,43 +6,32 @@
 
 
 @Html.Partial("_ImageModal")
-
 <!--Jumbotron-->
-<section class="jumbotron bg-dark">
+<section class="overwrite-bg-jumbo">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-1"></div>
-
             <!--Left Control-->
-            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
-                <i class="fa fa-chevron-left"></i>
-            </a>
+            <div class="col-1 d-none d-sm-block align-self-center" id="navDiv">
+                <a class="btn-floating align-middle text-center d-none d-sm-block align-content-center" href="#multi-item-example" data-slide="prev">
+                    <i class="arrow-size arrow nav-arrow" id="left-arrow">➤</i>
+                </a>
+            </div>
             <!--./Left Control-->
             <!--Card-->
-            <div class="card col-8 px-0">
+            <div class="card col-md-10 col-sm-10 col-xs-10 align-self-center px-0" style="margin-top:10vh;margin-bottom:5vh">
                 <div class="row no-gutters">
-                    <!--Col One-->
-                    <div class="col-6 px-0">
-                        <div class="col-auto card-block px-0" style="width:100%; height:100%;">
-                            <!--Map-->
-                            <div id='map'></div>
-
-                            <!--./Map-->
-
-                        </div>
-                    </div>
-                    <!--./Col One-->
                     <!--Col Two-->
-                    <div class="col-6">
+                    <div class="col-md-6 col-md-push-6">
                         <!--Carousel-->
                         <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
                             <!--All Slides-->
                             <div class="carousel-inner" role="listbox">
 
                                 <!--First slide-->
-                                <div class="carousel-item active" data-zoom="3" data-lng="134.88" data-lat="-26.28">
+                                <div class="carousel-item active">
                                     <!--Header Content-->
                                     <div class="card-block px-2">
+
                                         @if (Model.Veteran.ProfilePicture != null)
                                         {
                                             <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
@@ -60,11 +49,11 @@
                                     </div>
                                     <!--./Header Content-->
                                     <!--Block Content-->
-                                    <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
+                                    <div class="card-block px-2" id="block" data-simplebar>
                                         <hr>
                                         <h4 class="card-title">About</h4>
 
-                                        <table class="table card-text">
+                                        <table class="table card-text table-mobile">
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">
@@ -364,9 +353,10 @@
                                 @for (int i = 0; i < Model.Sections.Count; i++)
                                 {
                                     <!--Next slide-->
-                                    <div class="carousel-item" data-zoom="@Model.Sections[i].CameraZoom" data-lng="@Model.Sections[i].CoordX" data-lat="@Model.Sections[i].CoordY">
+                                    <div class="carousel-item">
                                         <!--Header Content-->
                                         <div class="card-block px-2">
+
                                             @if (Model.Veteran.ProfilePicture != null)
                                             {
                                                 <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
@@ -386,49 +376,58 @@
                                         </div>
                                         <!--./Header Content-->
                                         <!--Block Content-->
-                                        <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                            <hr>
 
-                                            @foreach (var c in Model.Sections[i].Contents)
-                                            {
-                                                if (c.Media != null)
+                                        <div data-simplebar id="block">
+                                            <div class="card-block px-2" id="block">
+                                                <hr>
+                                                @foreach (var c in Model.Sections[i].Contents)
                                                 {
-                                                    if (c.MediaType == "image")
+                                                    if (c.Media != null)
                                                     {
-                                                        <p style="font-weight:bold;">@c.Title</p>
+                                                        if (c.MediaType == "image")
+                                                        {
+                                                            <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                        <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                            <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="font-weight:bold;">@c.Title</p>
+
+                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
+
+                                                        }
                                                     }
                                                     else
                                                     {
                                                         <p style="font-weight:bold;">@c.Title</p>
-
-                                                        @System.Text.Encoding.UTF8.GetString(c.Media)
-
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    <p style="font-weight:bold;">@c.Title</p>
-                                                }
 
-                                            }
+                                                }
+                                            </div>
                                         </div>
                                         <!--./Block Content-->
                                     </div>
                                     <!--/.Next slide-->
                                 }
-
-
-
                             </div>
                             <!--./All Slides-->
                         </div>
                         <!--./Carousel-->
                     </div>
                     <!--./Col Two-->
+                    <!--Col One-->
+                    <div class="col-md-6 col-md-pull-6 px-0">
+                        <div class="col-auto card-block px-0" style="width:100%; height:100%;">
+                            <!--Map-->
+                            <div id='map'></div>
+
+                            <!--./Map-->
+                        </div>
+                    </div>
+                    <!--./Col One-->
                 </div>
                 <!--Card Footer & Navigation-->
                 <div class="card-footer w-100 text-muted text-center">
@@ -452,11 +451,11 @@
                                         background-color: #777;
                                     }
                         </style>
-                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
-                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="0" id="carousel-slide-0">About</a>
+                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav">
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
                             @foreach (var E in Model.Sections)
                             {
-                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")">@Html.DisplayFor(m => E.EventTitle)</a>
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")">@Html.DisplayFor(m => E.EventTitle)</a>
                             }
                         </div>
                     </div>
@@ -465,15 +464,16 @@
                 <!--./Cards-->
             </div>
             <!--Right Controls-->
-            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
-                <i class="fa fa-chevron-right"></i>
+            <a class="col-1 btn-floating align-self-center text-center nav-arrow" href="#multi-item-example" data-slide="next">
+                <i class="arrow arrow-size">➤</i>
             </a>
+
             <!--./Right Controls-->
 
-            <div class="col-1"></div>
         </div>
     </div>
 </section>
+
 @Html.Partial("_PortfolioMap")
 
 @foreach (var Event in Model.Sections)
@@ -497,21 +497,18 @@
     $('#multi-item-example').on('slid.bs.carousel', function () {
         var navList = $("a.btn");
         for (var i = 0; i < navList.length; i++) {
-            if (navList[i].attributes["data-slide-to"].value == $(".active").index())
-            {
+            if (navList[i].attributes["data-slide-to"].value == $(".active").index()) {
                 navList[i].classList.add("highlightElement");
-            }  
-            else if (navList[i].attributes["data-slide-to"].value != $(".active").index())
-            {
+            }
+            else if (navList[i].attributes["data-slide-to"].value != $(".active").index()) {
                 navList[i].classList.remove("highlightElement");
             }
         }
-        
+
         //set map co ordinates of timeline entry
         var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
         var mapZoom = parseInt($("div.active")[0].dataset.zoom);
         //update map
-        map.flyTo({ center: mapCords, speed: 4, zoom: mapZoom})
+        map.flyTo({ center: mapCords, speed: 4, zoom: mapZoom })
     });
 </script>
-

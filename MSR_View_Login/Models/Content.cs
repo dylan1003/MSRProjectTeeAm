@@ -20,7 +20,7 @@ namespace MSR_Web_App.Models
         public string MediaType { get; set; }
         public string Source { get; set; }
         public Nullable<int> DisplayPosition { get; set; }
-        public byte[] Media { get; set; }
+        public string Media { get; set; }
         public int Section_Id { get; set; }
         public int Veteran_Id { get; set; }
     
