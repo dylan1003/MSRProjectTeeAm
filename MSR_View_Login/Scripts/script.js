@@ -14,6 +14,13 @@ function setCarouselActive(currentId) {
     document.getElementById(currentId).classList.add("highlightElement");
 };
 
+$(function() {
+    $(".map-modal-button").on('click', function () {
+        $('#mapModal').modal('show');
+    });
+});
+
+
 /*
 $(function () {
     $("#scrollmenu-nav").mousewheel(function (event, delta) {

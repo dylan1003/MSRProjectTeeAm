@@ -5,6 +5,7 @@
 
     ViewBag.Title = "Manage";
 }
+@Html.Partial("_MapModal")
 <section class="jumbotron bg-dark">
     <div class="container">
         <div class="row">
@@ -16,6 +17,6 @@
         <div class="row">
             <h2>@Html.ActionLink("Change Password", "Index", "Veteran/Changepassword", routeValues: null, htmlAttributes: new { title = "Change Password", @class = "nav-link" })</h2>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".map-modal" data-whatever="something">Test Modal </button>
+        <button type="button" class="btn btn-primary map-modal-button" data-toggle="modal" data-target=".map-modal">Test Modal </button>
     </div>
 </section>
