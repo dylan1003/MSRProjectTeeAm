@@ -21,7 +21,7 @@
 	[ShortBio] nvarchar(1000),
 	[Fate] nvarchar(50),
 	[Status] int null,
-	[ProfilePicture] varbinary(MAX),
+	[ProfilePicture] nvarchar(500),
 	[User_Id] int,
 	[Veteran_Queue_Id] int,
 	CONSTRAINT PK_Veteran PRIMARY KEY (Id),
