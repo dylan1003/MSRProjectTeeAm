@@ -1,12 +1,15 @@
 ﻿@model SimplifiedLogin.Models.IndexViewModel
+@model MSR_mvc.Models.Section
 @using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "Manage";
+                /**/
+
+                ViewBag.Title = "Manage";
 }
 <section class="jumbotron bg-dark">
     <div class="container">
         <div class="row">
-            <h2>Hello @User.Identity.GetUserName()!</h2> 
+            <h2>Hello @User.Identity.GetUserName()!</h2>
         </div>
         <div class="row">
             <h3>This is where you can edit veteran portfolio</h3>
@@ -14,5 +17,6 @@
         <div class="row">
             <h2>@Html.ActionLink("Change Password", "Index", "Veteran/Changepassword", routeValues: null, htmlAttributes: new { title = "Change Password", @class = "nav-link" })</h2>
         </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".map-modal" data-whatever="something">Test Modal </button>
     </div>
 </section>

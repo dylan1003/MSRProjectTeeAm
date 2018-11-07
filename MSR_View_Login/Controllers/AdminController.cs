@@ -27,7 +27,7 @@ namespace SimplifiedLogin.Controllers
             return View();
         }
 
-        // GET: Create Veteran
+        // Post: Create Veteran
         [HttpPost]
         public ActionResult CreateVeteran(Veteran newVeteran)
         {

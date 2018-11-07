@@ -1,0 +1,75 @@
+﻿@model Tuple<List<MSR_mvc.Models.Section>, MSR_mvc.Models.Veteran, MSR_mvc.Models.ProfilePicture>
+<!--Map Modal View-->
+<div class="modal fade map-modal" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="map-modal-label">Select a map point</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row modal-flex-wrapper">
+                    <div class="col-md leaflet-map" id="leaflet-map">
+                        <script>
+                            var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
+
+                            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                                maxZoom: 18,
+                                id: 'mapbox.streets',
+                                accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
+                            }).addTo(map);
+
+                            //mark geocode by default adds a marker on the search result
+                            L.Control.geocoder({
+                                defaultMarkGeocode: false
+                            })
+                                .on('markgeocode', function (e) {
+                                    var bbox = e.geocode.bbox;
+                                    var poly = L.polygon([
+                                        bbox.getSouthEast(),
+                                        bbox.getNorthEast(),
+                                        bbox.getNorthWest(),
+                                        bbox.getSouthWest()
+                                    ]);
+                                    map.fitBounds(poly.getBounds());
+                                })
+                                .addTo(map);
+
+                            var zoomLevel = map._zoom;
+                            var marker = L.marker();
+                            //marker.bindPopup("<b>Test popup.").openPopup();
+                            function onMapClick(e) {
+                                //alert(e.latlng);
+                                map.removeLayer(marker);
+                                marker = L.marker(e.latlng).addTo(map);
+                                console.log(marker);
+                                console.log(map);
+                            }
+
+                            // this fixes the issue with greyed out tiles displaying until resize
+                            $('.map-modal').on('shown.bs.modal', function (e) {
+                                setTimeout(function () { map.invalidateSize() }, 10);
+                            });
+
+                            map.on('click', onMapClick);
+                        </script>
+                    </div>
+                    <div class="col-md modal-form-container">
+                        <form>
+                            <p class="tooltip">Add a caption to explain succinctly what the user is looking at. Some examples are "Place of Birth", "Childhood Home", "Local RSL".</p>
+                            Caption:<br>
+                            <input type="text" name="caption">
+                            <br>
+                            <input class="modal-button-group" type="submit" value="Cancel">
+                            <input class="modal-button-group" type="submit" value="Save">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Map Modal View-->

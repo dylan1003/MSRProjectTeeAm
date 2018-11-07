@@ -19,15 +19,15 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Regiment">
-                    <label class="form-check-label text-white" for="inlineRadio1">Regiment Number</label>
+                    <label class="form-check-label text-white" for="inlineRadio2">Regiment Number</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Address">
-                    <label class="form-check-label text-white" for="inlineRadio1">Address</label>
+                    <label class="form-check-label text-white" for="inlineRadio3">Address</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Unit">
-                    <label class="form-check-label text-white" for="inlineRadio1">Unit</label>
+                    <label class="form-check-label text-white" for="inlineRadio4">Unit</label>
                 </div>
             </form>
             <!--./Search Field-->
@@ -52,26 +52,66 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @{
-                            var fullName = item.Surname + ", " + item.FirstName;
-                            <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(m => fullName)</a>
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ServiceNo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Unit)
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @{
+                                var fullName = item.Surname + ", " + item.FirstName;
+                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(m => fullName)</a>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ServiceNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Unit)
+                        </td>
+                    </tr>
                 }
             </table>
             <!--./Results Field-->
+            <!--AIF Results-->
+            <table>
+                @{
+                    <thead>
+                        <tr>
+                            <th>Service Number</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Battalion</th>
+                        </tr>
+                    </thead>
+
+                    string search = Request.Form["search"];
+                    string baseAddress = "https://www.aif.adfa.edu.au/";
+
+                    HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+                    HtmlAgilityPack.HtmlDocument doc = web.Load($"{baseAddress}search?type=search&name=&regNum=&place=melbourne");
+
+                    var listings = doc.DocumentNode.SelectNodes("//tr");
+
+                    foreach (var item in listings.Where(l => l != listings.Last()))
+                    {
+                        string num = item.ChildNodes[1].InnerHtml;
+                        string name = item.ChildNodes[2].InnerText;
+                        string href = baseAddress + item.ChildNodes[2].ChildNodes[0].Attributes[0].Value;
+                        string address = item.ChildNodes[3].InnerHtml;
+                        string battalion = item.ChildNodes[4].InnerText;
+
+                        <text>
+                            <tr>
+                                <td>@num</td>
+                                <td><a href="@href">@name</a></td>
+                                <td>@address</td>
+                                <td>@battalion</td>
+                            </tr>
+                        </text>
+                    }
+                }
+            </table>
+            <!--./AIF Results-->
         </div>
     </div>
 </section>
