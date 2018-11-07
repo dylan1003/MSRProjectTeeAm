@@ -6,25 +6,29 @@
         <h3 style="color: white">Veteran Search</h3>
         @using (Html.BeginForm("Index", "Veterans"))
         {
-            <div class="row form-group home">
+            <div class="row form-group">
                 <input type="text" class="col-10 form-control" id="SearchField" placeholder="Search For Veteran" name="SearchString" value="">
                 <button type="submit" class="col-2 btn btn-primary">Submit</button>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Name" checked>
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio1" value="Name" checked>
                 <label class="form-check-label text-black-50" for="inlineRadio1">Name</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Regiment">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio2" value="Regiment">
                 <label class="form-check-label text-black-50" for="inlineRadio2">Regiment Number</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Address">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio3" value="Address">
                 <label class="form-check-label text-black-50" for="inlineRadio3">Address</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Unit">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio4" value="Unit">
                 <label class="form-check-label text-black-50" for="inlineRadio4">Unit</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio5" value="PreWarOccupation">
+                <label class="form-check-label text-black-50" for="inlineRadio5">Pre-War Occupation</label>
             </div>
         }
     </div>
