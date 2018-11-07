@@ -182,9 +182,6 @@ html body {
     max-height: none;
 }
 
-.modal-content {
-    height: 450px;
-}
 
 .modal-map-container {
     display: flex;

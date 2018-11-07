@@ -28,7 +28,7 @@
                             <div class="carousel-inner" role="listbox">
 
                                 <!--First slide-->
-                                <div class="carousel-item active">
+                                <div class="carousel-item active" data-zoom="3" data-lng="134.88" data-lat="-26.28">
                                     <!--Header Content-->
                                     <div class="card-block px-2">
 
@@ -353,7 +353,7 @@
                                 @for (int i = 0; i < Model.Sections.Count; i++)
                                 {
                                     <!--Next slide-->
-                                    <div class="carousel-item">
+                                    <div class="carousel-item" data-zoom="@Model.Sections[i].CameraZoom" data-lng="@Model.Sections[i].CoordX" data-lat="@Model.Sections[i].CoordY">
                                         <!--Header Content-->
                                         <div class="card-block px-2">
 
@@ -389,14 +389,14 @@
                                                             <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                            <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                            @*<img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />*@
 
                                                         }
                                                         else
                                                         {
                                                             <p style="font-weight:bold;">@c.Title</p>
 
-                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
+                                                            @*@System.Text.Encoding.UTF8.GetString(c.Media) *@
 
                                                         }
                                                     }
