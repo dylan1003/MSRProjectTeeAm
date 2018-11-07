@@ -41,7 +41,7 @@ namespace MSR_Web_App.Models
         public string ShortBio { get; set; }
         public string Fate { get; set; }
         public Nullable<int> Status { get; set; }
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
         public Nullable<int> User_Id { get; set; }
         public Nullable<int> Veteran_Queue_Id { get; set; }
     
