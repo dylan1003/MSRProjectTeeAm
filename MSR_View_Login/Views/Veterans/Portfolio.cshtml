@@ -4,44 +4,367 @@
     ViewBag.Title = fullName;
 }
 
-@if (Model.Sections.Count > 0)
-{
-    @Html.Partial("_ImageModal")
 
-    <!--Jumbotron-->
-    <section class="jumbotron bg-dark">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-1"></div>
+@Html.Partial("_ImageModal")
 
-                <!--Left Control-->
-                <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
-                    <i class="fa fa-chevron-left"></i>
-                </a>
-                <!--./Left Control-->
-                <!--Card-->
-                <div class="card col-8 px-0">
-                    <div class="row no-gutters">
-                        <!--Col One-->
-                        <div class="col-6 px-0">
-                            <div class="col-auto card-block px-0" style="width:100%; height:100%;">
-                                <!--Map-->
-                                <div id='map'></div>
+<!--Jumbotron-->
+<section class="jumbotron bg-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1"></div>
 
-                                <!--./Map-->
+            <!--Left Control-->
+            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="prev">
+                <i class="fa fa-chevron-left"></i>
+            </a>
+            <!--./Left Control-->
+            <!--Card-->
+            <div class="card col-8 px-0">
+                <div class="row no-gutters">
+                    <!--Col One-->
+                    <div class="col-6 px-0">
+                        <div class="col-auto card-block px-0" style="width:100%; height:100%;">
+                            <!--Map-->
+                            <div id='map'></div>
 
-                            </div>
+                            <!--./Map-->
+
                         </div>
-                        <!--./Col One-->
-                        <!--Col Two-->
-                        <div class="col-6">
-                            <!--Carousel-->
-                            <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
-                                <!--All Slides-->
-                                <div class="carousel-inner" role="listbox">
+                    </div>
+                    <!--./Col One-->
+                    <!--Col Two-->
+                    <div class="col-6">
+                        <!--Carousel-->
+                        <div id="multi-item-example" class="col carousel slide carousel-multi-item" data-ride="carousel" data-interval="false">
+                            <!--All Slides-->
+                            <div class="carousel-inner" role="listbox">
 
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
+                                <!--First slide-->
+                                <div class="carousel-item active" data-zoom="3" data-lng="134.88" data-lat="-26.28">
+                                    <!--Header Content-->
+                                    <div class="card-block px-2">
+                                        @if (Model.Veteran.ProfilePicture != null)
+                                        {
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
+                                        }
+                                        else
+                                        {
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                                        }
+
+                                        <br>
+                                        <h4 class="card-title">
+                                            @Html.DisplayFor(m => fullName)
+                                        </h4>
+                                        <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
+                                    </div>
+                                    <!--./Header Content-->
+                                    <!--Block Content-->
+                                    <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
+                                        <hr>
+                                        <h4 class="card-title">About</h4>
+
+                                        <table class="table card-text">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        First Name
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.FirstName))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.FirstName);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Middle Name
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.MiddleName))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.MiddleName);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Surname
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Surname))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Surname);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Pre-War Occupation
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.PreWarOccupation))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.PreWarOccupation);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Date Of Birth
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.DOB))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.DOB);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Place Of Birth
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.BirthPlace))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.BirthPlace);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Death
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Death))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Death);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Marital Status
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.MaritalStatus))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.MaritalStatus);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Enlisted Date
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.EnlistedDate))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.EnlistedDate);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Embarkment Age
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.EmbarkmentAge))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.EmbarkmentAge);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Regiment Number
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.RegimentNumber))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.RegimentNumber);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Battalion
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Battalion))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Battalion);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Religion
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Religion))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Religion);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Address
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Address))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Address);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        State
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.State))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.State);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Country
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Country))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Country);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Next Of Kin
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.NextOfKin))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.NextOfKin);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Fate
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.Fate))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.Fate);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        Short Biography
+                                                    </th>
+                                                    <td>
+                                                        @if (!String.IsNullOrWhiteSpace(Model.Veteran.ShortBio))
+                                                        {
+                                                            @Html.DisplayFor(model => model.Veteran.ShortBio);
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("-");
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--./Block Content-->
+                                </div>
+                                <!--/.First slide-->
+
+
+
+
+                                @for (int i = 0; i < Model.Sections.Count; i++)
+                                {
+                                    <!--Next slide-->
+                                    <div class="carousel-item" data-zoom="@Model.Sections[i].CameraZoom" data-lng="@Model.Sections[i].CoordX" data-lat="@Model.Sections[i].CoordY">
                                         <!--Header Content-->
                                         <div class="card-block px-2">
                                             @if (Model.Veteran.ProfilePicture != null)
@@ -52,10 +375,12 @@
                                             {
                                                 <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
                                             }
-
                                             <br>
                                             <h4 class="card-title">
-                                                @Html.DisplayFor(m => fullName)
+                                                @{
+
+                                                    @Html.DisplayFor(m => fullName)
+                                                }
                                             </h4>
                                             <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
                                         </div>
@@ -63,782 +388,130 @@
                                         <!--Block Content-->
                                         <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
                                             <hr>
-                                            <h4 class="card-title">About</h4>
 
-                                            <table class="table card-text">
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            First Name
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.FirstName))
-                                                            {
-                                                                @Html.DisplayFor(model => model.Veteran.FirstName);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Middle Name
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.MiddleName))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.MiddleName);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Surname
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Surname))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Surname);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Pre-War Occupation
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.PreWarOccupation))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.PreWarOccupation);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Date Of Birth
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.DOB))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.DOB);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Place Of Birth
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.BirthPlace))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.BirthPlace);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Death
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Death))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Death);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Marital Status
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.MaritalStatus))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.MaritalStatus);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Enlisted Date
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.EnlistedDate))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.EnlistedDate);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Embarkment Age
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.EmbarkmentAge))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.EmbarkmentAge);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Regiment Number
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.RegimentNumber))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.RegimentNumber);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Battalion
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Battalion))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Battalion);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Religion
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Religion))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Religion);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Address
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Address))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Address);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            State
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.State))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.State);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Country
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Country))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Country);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Next Of Kin
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.NextOfKin))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.NextOfKin);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Fate
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.Fate))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.Fate);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            Short Biography
-                                                        </th>
-                                                        <td>
-                                                            @if (!String.IsNullOrWhiteSpace(Model.Veteran.ShortBio))
-                                                            {
-                                                                @Html.LabelFor(model => model.Veteran.ShortBio);
-                                                            }
-                                                            else
-                                                            {
-                                                                @Html.Label("-");
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--./Block Content-->
-                                    </div>
-                                    <!--/.First slide-->
-
-
-
-
-                                    @for (int i = 0; i < Model.Sections.Count; i++)
-                                    {
-                                        <!--Next slide-->
-                                        <div class="carousel-item">
-                                            <!--Header Content-->
-                                            <div class="card-block px-2">
-                                                @if (Model.Veteran.ProfilePicture != null)
+                                            @foreach (var c in Model.Sections[i].Contents)
+                                            {
+                                                if (c.Media != null)
                                                 {
-                                                    <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
-                                                }
-                                                else
-                                                {
-                                                    <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
-                                                }
-                                                <br>
-                                                <h4 class="card-title">
-                                                    @{
-
-                                                        @Html.DisplayFor(m => fullName)
-                                                    }
-                                                </h4>
-                                                <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
-                                            </div>
-                                            <!--./Header Content-->
-                                            <!--Block Content-->
-                                            <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                                <hr>
-
-                                                @foreach (var c in Model.Sections[i].Contents)
-                                                {
-                                                    if (c.Media != null)
+                                                    if (c.MediaType == "image")
                                                     {
-                                                        if (c.MediaType == "image")
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
+                                                        <p style="font-weight:bold;">@c.Title</p>
 
 
-                                                            <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
+                                                        <img class="img-click" src="data:image;base64,@System.Convert.ToBase64String(c.Media)" style="width:50%;" />
 
-                                                        }
-                                                        else
-                                                        {
-                                                            <p style="font-weight:bold;">@c.Title</p>
-
-                                                            @System.Text.Encoding.UTF8.GetString(c.Media)
-
-                                                        }
                                                     }
                                                     else
                                                     {
                                                         <p style="font-weight:bold;">@c.Title</p>
-                                                    }
 
+                                                        @System.Text.Encoding.UTF8.GetString(c.Media)
+
+                                                    }
                                                 }
-                                            </div>
-                                            <!--./Block Content-->
+                                                else
+                                                {
+                                                    <p style="font-weight:bold;">@c.Title</p>
+                                                }
+
+                                            }
                                         </div>
-                                        <!--/.Next slide-->
-                                    }
-
-
-
-                                </div>
-                                <!--./All Slides-->
-                            </div>
-                            <!--./Carousel-->
-                        </div>
-                        <!--./Col Two-->
-                    </div>
-                    <!--Card Footer & Navigation-->
-                    <div class="card-footer w-100 text-muted text-center">
-                        <div>
-                            <style>
-                                div.scrollmenu {
-                                    background-color: inherit;
-                                    overflow: auto;
-                                    white-space: nowrap;
+                                        <!--./Block Content-->
+                                    </div>
+                                    <!--/.Next slide-->
                                 }
 
-                                    div.scrollmenu a {
-                                        display: inline-block;
-                                        color: rgba(0,0,0,.03);
-                                        text-align: center;
-                                        padding: 14px;
-                                        text-decoration: none;
-                                    }
 
-                                        div.scrollmenu a:hover {
-                                            background-color: #777;
-                                        }
-                            </style>
-                            <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                @foreach (var E in Model.Sections)
-                                {
-                                    <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")" onclick="setCarouselActive(this.id)">@Html.DisplayFor(m => E.EventTitle)</a>
-                                }
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
-                                <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example" data-slide-to="0" id="carousel-slide-0" onclick="setCarouselActive('carousel-slide-0')">About</a>
+
                             </div>
+                            <!--./All Slides-->
                         </div>
-                        <!--./Card Footer & Navigation-->
+                        <!--./Carousel-->
                     </div>
-                    <!--./Cards-->
+                    <!--./Col Two-->
                 </div>
-                <!--Right Controls-->
-                <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next">
-                    <i class="fa fa-chevron-right"></i>
-                </a>
-                <!--./Right Controls-->
+                <!--Card Footer & Navigation-->
+                <div class="card-footer w-100 text-muted text-center">
+                    <div>
+                        <style>
+                            div.scrollmenu {
+                                background-color: inherit;
+                                overflow: auto;
+                                white-space: nowrap;
+                            }
 
-                <div class="col-1"></div>
+                                div.scrollmenu a {
+                                    display: inline-block;
+                                    color: rgba(0,0,0,.03);
+                                    text-align: center;
+                                    padding: 14px;
+                                    text-decoration: none;
+                                }
+
+                                    div.scrollmenu a:hover {
+                                        background-color: #777;
+                                    }
+                        </style>
+                        <div data-simplebar class="scrollmenu" id="scrollmenu-nav" onhover>
+                            <a class="btn btn-link highlightElement" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="0" id="carousel-slide-0">About</a>
+                            @foreach (var E in Model.Sections)
+                            {
+                                <a class="btn btn-link" style="color:black;margin:1px" data-target="#multi-item-example"  data-slide-to="@($"{E.Id}")" id="carousel-slide-@($"{E.Id}")">@Html.DisplayFor(m => E.EventTitle)</a>
+                            }
+                        </div>
+                    </div>
+                    <!--./Card Footer & Navigation-->
+                </div>
+                <!--./Cards-->
             </div>
+            <!--Right Controls-->
+            <a class="col-1 btn-floating align-self-center text-center" href="#multi-item-example" data-slide="next" >
+                <i class="fa fa-chevron-right"></i>
+            </a>
+            <!--./Right Controls-->
+
+            <div class="col-1"></div>
         </div>
-    </section>
-    @Html.Partial("_PortfolioMap")
+    </div>
+</section>
+@Html.Partial("_PortfolioMap")
 
-}
-
-else
+@foreach (var Event in Model.Sections)
 {
-    @Html.Partial("_ImageModal")
-
-    <!--Jumbotron-->
-    <section class="jumbotron bg-dark">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-3"></div>
-                <!--Centered Col-->
-                <div class="col-6">
-                    <!--Card-->
-                    <div class="card px-0">
-                        <div class="row no-gutters">
-                            <!--Col One-->
-                            <div class="col">
-                                <!--Header Content-->
-                                <div class="card-block text-center px-2">
-                                    @if (Model.Veteran.ProfilePicture != null)
-                                    {
-                                        <img class="img-click img-fluid" style="width:30%; height:auto; padding-top:1em;" src="data:image/jpeg;base64,@System.Convert.ToBase64String(Model.Veteran.ProfilePicture)" alt="Portfolio Picture">
-                                    }
-                                    else
-                                    {
-                                        <img class="img-click  img-fluid" style="width:30%; height:auto; padding-top:1em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
-                                    }
-
-                                    <br>
-                                    <h3 class="card-title">
-                                        @Html.DisplayFor(m => fullName)
-                                    </h3>
-                                    <p>@Html.DisplayFor(model => model.Veteran.PreWarOccupation)</p>
-                                </div>
-                                <!--./Header Content-->
-                                <!--Block Content-->
-                                <div class="card-block px-2" id="block" data-simplebar style="overflow-y:auto;">
-                                    <hr>
-                                    <h4 class="card-title text-center">About</h4>
-                                    <table class="table card-text">
-                                        <tbody class="text-center">
-                                            <tr>
-                                                <th scope="row">
-                                                    First Name
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.FirstName))
-                                                    {
-                                                        @Html.DisplayFor(model => model.Veteran.FirstName);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Middle Name
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.MiddleName))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.MiddleName);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Surname
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Surname))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Surname);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Pre-War Occupation
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.PreWarOccupation))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.PreWarOccupation);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Date Of Birth
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.DOB))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.DOB);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Place Of Birth
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.BirthPlace))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.BirthPlace);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Death
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Death))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Death);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Marital Status
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.MaritalStatus))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.MaritalStatus);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Enlisted Date
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.EnlistedDate))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.EnlistedDate);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Embarkment Age
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.EmbarkmentAge))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.EmbarkmentAge);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Regiment Number
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.RegimentNumber))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.RegimentNumber);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Battalion
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Battalion))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Battalion);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Religion
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Religion))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Religion);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Address
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Address))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Address);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    State
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.State))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.State);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Country
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Country))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Country);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Next Of Kin
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.NextOfKin))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.NextOfKin);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Fate
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.Fate))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.Fate);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Short Biography
-                                                </th>
-                                                <td>
-                                                    @if (!String.IsNullOrWhiteSpace(Model.Veteran.ShortBio))
-                                                    {
-                                                        @Html.LabelFor(model => model.Veteran.ShortBio);
-                                                    }
-                                                    else
-                                                    {
-                                                        @Html.Label("-");
-                                                    }
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!--./Block Content-->
-                            </div>
-                            <!--./Col One-->
-                        </div>
-                        <!--Card Footer & Navigation-->
-                        <div class="card-footer text-muted text-center">
-                            <div>
-                                This Veteran is yet to have a portfolio created.
-                            </div>
-                        </div>
-                        <!--./Card Footer & Navigation-->
-                    </div>
-                    <!--./Cards-->
-                </div>
-                <div class="col-3"></div>
-            </div>
-        </div>
-    </section>
+    <script>
+            var marker = new mapboxgl.Marker()
+                .setLngLat([@Event.CoordX, @Event.CoordY])
+                .addTo(map)
+    </script>
 }
 
+<script>
+    //set map default to first timeline entry location
+    //set map to the default location
+    //add click function to timeline list to set data on page dynamically
+    window.onload = function () {
+        var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
+        map.flyTo({ center: mapCords, speed: 4 })
+    };
+
+    $('#multi-item-example').on('slid.bs.carousel', function () {
+        var navList = $("a.btn");
+        for (var i = 0; i < navList.length; i++) {
+            if (navList[i].attributes["data-slide-to"].value == $(".active").index())
+            {
+                navList[i].classList.add("highlightElement");
+            }  
+            else if (navList[i].attributes["data-slide-to"].value != $(".active").index())
+            {
+                navList[i].classList.remove("highlightElement");
+            }
+        }
+        
+        //set map co ordinates of timeline entry
+        var mapCords = [$("div.active")[0].dataset.lng, $("div.active")[0].dataset.lat];
+        var mapZoom = parseInt($("div.active")[0].dataset.zoom);
+        //update map
+        map.flyTo({ center: mapCords, speed: 4, zoom: mapZoom})
+    });
+</script>
 
