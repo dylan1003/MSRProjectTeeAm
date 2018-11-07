@@ -13,161 +13,163 @@
     <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
 </head>
 
-<div id="page-layout">
-    <div class="row">
-        <div class="col-sm-3">
-            <img src="https://via.placeholder.com/150x150" type="text/javascript" />
+<body onload="onLoad();">
+    <div id="page-layout">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="https://via.placeholder.com/150x150" type="text/javascript" />
+            </div>
+
+            <div class="col-sm-9">
+                <!-- BASIC INFORMATION FORM -->
+                <h3>Basic Information</h3>
+                <form>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Veteran.FirstName, "First Name", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control" })
+                    </div>
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.MiddleName, "Middle Name", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control" })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.Surname, "Surname", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control" })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.RegimentNumber, "Regiment Number", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control" })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.Battalion, "Battalion", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control" })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.DOB, "Date of Birth", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control" })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.PreWarOccupation, "Pre-War Occupation", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control" })
+                </form>
+            </div>
         </div>
-
-        <div class="col-sm-9">
-            <!-- BASIC INFORMATION FORM -->
-            <h3>Basic Information</h3>
-            <form>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Veteran.FirstName, "First Name", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control" })
-                </div>
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.MiddleName, "Middle Name", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control" })
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.Surname, "Surname", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control" })
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.RegimentNumber, "Regiment Number", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control" })
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.Battalion, "Battalion", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control" })
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.DOB, "Date of Birth", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control" })
-            </form>
-            <form class="form-group">
-                @Html.LabelFor(m => m.Veteran.PreWarOccupation, "Pre-War Occupation", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control" })
-            </form>
+        @* Display of dynamic section & content forms*@
+        <div class="row">
+            <h3>Section Creator</h3>
         </div>
-    </div>
-    @* Display of dynamic section & content forms*@
-    <div class="row">
-        <h3>Section Creator</h3>
-    </div>
-    <div class="row">
-        <section class="jumbotron bg-dark">
+        <div class="row">
+            <section class="jumbotron bg-dark">
 
-            @*Loop through Sections in Model and display*@
-            @for (int s = 0; s < Model.Sections.Count; s++)
-            {
-            <section id="section-@Model.Sections.ElementAt(s).Id" class="section">
-                <p>@Model.Sections.ElementAt(s).EventTitle</p>
-
-                @*Loop through Contents in Sections and display*@
-                @for (int c = 0; c < @Model.Sections.ElementAt(s).Contents.Count; c++)
+                @*Loop through Sections in Model and display*@
+                @for (int s = 0; s < Model.Sections.Count; s++)
                 {
-                    IEnumerable<string> mediaTypes = new List<string>() { "Text", "Image" };
-                <section id="content-@Model.Sections.ElementAt(s).Contents.ElementAt(c).Id" class="content">
-                    @using (Html.BeginForm("EditContent", "UserVeteran"))
-                    {
+                    <section id="section-@Model.Sections.ElementAt(s).Id" class="section">
+                        <p>@Model.Sections.ElementAt(s).EventTitle</p>
 
-                        <div class="form-group">
-                            @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Id)
-                            @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Section_Id)
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title, new { @class = "form-label" })
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title, "", new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp, new { @class = "form-label" })
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp, "", new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, "Media Type", new { @class = "form-label" })
-                            @Html.DropDownListFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, new SelectList(mediaTypes, Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType), new { @class = "form-control", @id = "dropdown" })
-                        </div>
-
-                        if (Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType == "Text")
+                        @*Loop through Contents in Sections and display*@
+                        @for (int c = 0; c < @Model.Sections.ElementAt(s).Contents.Count; c++)
                         {
-                            <div class="form-group">
-                                @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-label" })
-                                @Html.TextAreaFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-control" })
-                            </div>
+                            IEnumerable<string> mediaTypes = new List<string>() { "Text", "Image" };
+                            <section id="content-@Model.Sections.ElementAt(s).Contents.ElementAt(c).Id" class="content">
+                                @using (Html.BeginForm("EditContent", "UserVeteran"))
+                                {
+
+                                    <div class="form-group">
+                                        @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Id)
+                                        @Html.HiddenFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Section_Id)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title, new { @class = "form-label" })
+                                        @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Title, "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp, new { @class = "form-label" })
+                                        @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Timestamp, "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, "Media Type", new { @class = "form-label" })
+                                        @Html.DropDownListFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, new SelectList(mediaTypes, Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType), new { @class = "form-control", @id = "dropdown-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    </div>
+
+                                    //if (Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType == "Text")
+                                    //{
+                                    <div class="form-group" id="mediaFormGroup">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-label", @id = "mediaLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                        @Html.TextAreaFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-control", @id = "mediaTextArea-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    </div>
+                                    @*}
+                                        else if (Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType == "Image")
+                                        {*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, new { @class = "form-label", @id = "sourceLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                        @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "", new { @class = "form-control", @id = "sourceTextbox-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    </div>
+
+                                    @*
+                                        <div class="form-group">
+                                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-label" })
+                                            <span class="input-group">
+                                                @using (Html.BeginForm("UploadImage", "UserVeteran", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, "", new { @class = "form-control", @readonly = "readonly", @id = "file" })
+                                                    <button type="submit" class="btn btn-primary" value="upload">Upload</button>
+                                                }
+                                            </span>
+                                        </div>
+                                    *@
+                                    @*}*@
+                                    <div class="form-group">
+                                        @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).DisplayPosition, "Display Position", new { @class = "form-label" })
+                                        @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).DisplayPosition, "", new { @class = "form-control" })
+                                    </div>
+                                    <button type="submit" value="Save" name="editContent" class="btn btn-primary">Save Content</button>
+                                    <button type="submit" value="Delete" name="editContent" class="btn btn-danger">Delete Content</button>
+                                }
+                            </section>
                         }
-                        else if (Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType == "Image")
+
+                        @* Form for adding content to a section *@
+                        @using (Html.BeginForm("EditSection", "UserVeteran"))
                         {
-                            <div class="form-group">
-                                @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-label" })
-                                <span class="input-group">
-                                    @using (Html.BeginForm("FileUpload", "UserVeteran", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {
-                                        @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, "", new { @class = "form-control", @readonly = "readonly", @id = "file" })
-                                        <button type="submit" class="btn btn-primary" value="upload">Upload</button>
-                                    }
+                            @Html.HiddenFor(m => m.section.Id, new { Value = Model.Sections.ElementAt(s).Id })
+                            @Html.HiddenFor(m => m.section.Veteran_Id, new { Value = Model.Sections.ElementAt(s).Veteran_Id })
+                            @Html.HiddenFor(m => m.content.Section_Id, new { Value = Model.Sections.ElementAt(s).Id })
+                            @Html.HiddenFor(m => m.content.Veteran_Id, new { Value = Model.Sections.ElementAt(s).Veteran_Id })
+                            @Html.HiddenFor(m => m.content.Title, new { Value = "New Content" })
+                            @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
 
-                                </span>
-                            </div>
+                            <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
+                            <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Section</button>
                         }
+                    </section>
 
-                        <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, new { @class = "form-label" })
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "", new { @class = "form-control" })
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).DisplayPosition, "Display Position", new { @class = "form-label" })
-                            @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).DisplayPosition, "", new { @class = "form-control" })
-                        </div>
-                        <button type="submit" value="Save" name="editContent" class="btn btn-primary">Save Content</button>
-                        <button type="submit" value="Delete" name="editContent" class="btn btn-danger">Delete Content</button>
-                    }
-                </section>
-                }
-
-                @* Form for adding content to a section *@
-                @using (Html.BeginForm("EditSection", "UserVeteran"))
-                {
-                    @Html.HiddenFor(m => m.section.Id, new { Value = Model.Sections.ElementAt(s).Id })
-                    @Html.HiddenFor(m => m.section.Veteran_Id, new { Value = Model.Sections.ElementAt(s).Veteran_Id })
-                    @Html.HiddenFor(m => m.content.Section_Id, new { Value = Model.Sections.ElementAt(s).Id })
-                    @Html.HiddenFor(m => m.content.Veteran_Id, new { Value = Model.Sections.ElementAt(s).Veteran_Id })
-                    @Html.HiddenFor(m => m.content.Title, new { Value = "New Content" })
-                    @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
-
-                    <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
-                    <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Section</button>
                 }
             </section>
+        </div>
+        <div class="row">
+            @* auto generate ID code here *@
+            @using (Html.BeginForm("AddSection", "UserVeteran"))
+            {
+                <form>
+                    <div class="form-group">
+                        @Html.HiddenFor(s => s.section.Id)
+                        @Html.HiddenFor(s => s.section.Veteran_Id, new { Value = User.Identity.GetUserName() })
 
+                        @Html.LabelFor(s => s.section.EventTitle, "Event Title", new { @class = "form-label" })
+                        @Html.TextBoxFor(s => s.section.EventTitle, "", new { @class = "form-control" })
+
+                        @Html.LabelFor(s => s.section.Approved, "Approved", new { @class = "form-label" })
+                        @Html.TextBoxFor(s => s.section.Approved, "", new { @class = "form-control" })
+
+                        @Html.LabelFor(s => s.section.DisplayPosition, "Display Position", new { @class = "form-label" })
+                        @Html.TextBoxFor(s => s.section.DisplayPosition, "", new { @class = "form-control" })
+
+                        <button type="submit" class="btn btn-primary">Add Section</button>
+                    </div>
+                </form>
             }
-        </section>
+        </div>
     </div>
-    <div class="row">
-        @* auto generate ID code here *@
-        @using (Html.BeginForm("AddSection", "UserVeteran"))
-        {
-            <form>
-                <div class="form-group">
-                    @Html.HiddenFor(s => s.section.Id)
-                    @Html.HiddenFor(s => s.section.Veteran_Id, new { Value = User.Identity.GetUserName() })
-
-                    @Html.LabelFor(s => s.section.EventTitle, "Event Title", new { @class = "form-label" })
-                    @Html.TextBoxFor(s => s.section.EventTitle, "", new { @class = "form-control" })
-
-                    @Html.LabelFor(s => s.section.Approved, "Approved", new { @class = "form-label" })
-                    @Html.TextBoxFor(s => s.section.Approved, "", new { @class = "form-control" })
-
-                    @Html.LabelFor(s => s.section.DisplayPosition, "Display Position", new { @class = "form-label" })
-                    @Html.TextBoxFor(s => s.section.DisplayPosition, "", new { @class = "form-control" })
-
-                    <button type="submit" class="btn btn-primary">Add Section</button>
-                </div>
-            </form>
-        }
-    </div>
-</div>
+</body>
