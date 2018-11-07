@@ -43,7 +43,7 @@ namespace MSR_Web_App.Controllers
                 viewModel.Sections = db.Sections.ToList();
                 int vetId = Int32.Parse(User.Identity.GetUserName());
                 Veteran veteran = db.Veterans.SingleOrDefault(v => v.Id == vetId);
-                Section currentSection = db.Sections.SingleOrDefault(s => s.Id == content.Section_Id);
+                Section currentSection = db.Sections.FirstOrDefault(s => s.Id == content.Section_Id);
                 //content.FK_Section_Id = currentSection.Id;
                 content.Section = currentSection;
 
@@ -193,6 +193,7 @@ namespace MSR_Web_App.Controllers
                 contentToSave.Title = content.Title;
                 contentToSave.Timestamp = content.Timestamp;
                 contentToSave.MediaType = content.MediaType;
+                contentToSave.Media = content.Media;
                 contentToSave.Source = content.Source;
                 contentToSave.DisplayPosition = content.DisplayPosition;
             }
@@ -227,7 +228,7 @@ namespace MSR_Web_App.Controllers
             return RedirectToAction("PortfolioCreation", viewModel);
         }
 
-        public ActionResult FileUpload(HttpPostedFileBase file)
+        public ActionResult UploadImage(HttpPostedFileBase file)
         {
             if (file != null)
             {
