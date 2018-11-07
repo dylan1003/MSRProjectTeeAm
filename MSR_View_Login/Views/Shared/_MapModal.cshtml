@@ -40,9 +40,8 @@
 
                             var zoomLevel = map._zoom;
                             var marker = L.marker();
-                            //marker.bindPopup("<b>Test popup.").openPopup();
+
                             function onMapClick(e) {
-                                //alert(e.latlng);
                                 map.removeLayer(marker);
                                 marker = L.marker(e.latlng).addTo(map);
                                 console.log(marker);
@@ -55,17 +54,27 @@
                             });
 
                             map.on('click', onMapClick);
+
                         </script>
                     </div>
                     <div class="col-md modal-form-container">
                         <form>
-                            <p class="tooltip">Add a caption to explain succinctly what the user is looking at. Some examples are "Place of Birth", "Childhood Home", "Local RSL".</p>
-                            Caption:<br>
+                            Caption:  <a href="#" data-toggle="caption-tooltip" title="Add a caption to explain succinctly what the map point represents. Eg.Place of Birth, Childhood Home, Local RSL">?</a><br>
                             <input type="text" name="caption">
-                            <br>
-                            <input class="modal-button-group" type="submit" value="Cancel">
-                            <input class="modal-button-group" type="submit" value="Save">
                         </form>
+                        <form class="map-zoom-radio-group">
+                            Zoom Level:  <a href="#" data-toggle="zoom-tooltip" title="This is how zoomed in the map will be when the user views the veteran profile">?</a><br>
+                            <input type="radio" name="street">Street<br>
+                            <input type="radio" name="suburb">Suburb<br>
+                            <input type="radio" name="city">City<br>
+                            <input type="radio" name="state">State<br>
+                            <input type="radio" name="country">Country<br>
+                            <input type="radio" name="custom">Custom <a href="#" data-toggle="zoom-tooltip" title="This will take your current zoom level at the time of saving this dialog">?</a><br>
+                        </form>
+                        <div class="map-modal-button-group">
+                            <input class="map-modal-button-group" type="submit" value="Cancel">
+                            <input class="map-modal-button" type="submit" value="Save">
+                        </div>
                     </div>
                 </div>
             </div>
