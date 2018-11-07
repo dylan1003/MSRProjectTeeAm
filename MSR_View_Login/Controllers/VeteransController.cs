@@ -4,113 +4,84 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using MSR_mvc.Models;
+using MSR_Web_App.Classes;
+using MSR_Web_App.Models;
 
-namespace MSR_mvc.Controllers
+namespace MSR_Web_App.Controllers
 {
     public class VeteransController : Controller
     {
-        private MSRContext db = new MSRContext();
+        //Database connection
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+        //View models
+        PortfolioViewModel PortfolioModel = new PortfolioViewModel();
+        VeteranSearchModel SearchModel = new VeteranSearchModel();
 
-        public List<AifResult> AifSearch(string search, string searchType)
+        //Returns a list of veterans, allows for search of msr & aif databases
+        public ActionResult Index(string searchString, string searchType)
         {
-            List<AifResult> resultsList = new List<AifResult>();
-            string baseAddress = "https://www.aif.adfa.edu.au/";
-            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
-            HtmlAgilityPack.HtmlDocument doc = web.Load($"{baseAddress}");
-
-            if (searchType == "Name")
-            {
-                doc = web.Load($"{baseAddress}search?type=search&name={search}");
-            }
-            else if (searchType == "Regiment")
-            {
-                doc = web.Load($"{baseAddress}search?type=search&regNum={search}");
-            }
-            else if (searchType == "Address")
-            {
-                doc = web.Load($"{baseAddress}search?type=search&place={search}");
-            }
-
-            var listings = doc.DocumentNode.SelectNodes("//tr");
-
-            foreach (var item in listings.Where(l => l != listings.Last()))
-            {
-                AifResult results = new AifResult();
-
-                results.RegimentNumber = item.ChildNodes[1].InnerHtml;
-                results.Name = item.ChildNodes[2].InnerText;
-                results.ProfileLink = baseAddress + item.ChildNodes[2].ChildNodes[0].Attributes[0].Value;
-                results.Address = item.ChildNodes[3].InnerHtml;
-                results.Battalion = item.ChildNodes[4].InnerText;
-
-                resultsList.Add(results);
-            }
-            return resultsList;
-        }
-
-
-        //Just to test spike test of search layout/UI, Later to be used under index e.g Veterans/searchString?=James
-        //Add Try catch to search items
-        public ActionResult Index(string searchString, string inlineRadioOptions)
-        {
-            List<AifResult> searchResults = new List<AifResult>();
+            //List of veterans to search through 
             List<Veteran> veterans = db.Veterans.ToList();
+            
+            //Searches both MSR & AIF based on searchString and searchType
             if (!String.IsNullOrEmpty(searchString))
             {
                 //Convert search string to lower case as .contains is case sensitive e.g James != james
                 searchString = searchString.ToLower();
 
-                if (inlineRadioOptions == "Name")
+                if (searchType == "Name")
                 {
-                    veterans = veterans.Where(n => n.FirstName.ToLower().ToLower().Contains(searchString) ||
-                                               n.MiddleName.ToLower().Contains(searchString) ||
-                                               n.Surname.ToLower().Contains(searchString)).ToList();
+                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.FirstName) ? n.FirstName.ToLower().Contains(searchString) : false) ||
+                                            (!String.IsNullOrEmpty(n.MiddleName) ? n.MiddleName.ToLower().Contains(searchString) : false) ||
+                                            (!String.IsNullOrEmpty(n.Surname) ? n.Surname.ToLower().Contains(searchString) : false)).ToList();
+                    SearchModel.AifResults = AifResult.AifSearch(searchString, searchType);
+                }
+                else if (searchType == "Regiment")
+                {
+                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.RegimentNumber) ? n.RegimentNumber.ToLower().Contains(searchString) : false)).ToList();
+                    SearchModel.AifResults = AifResult.AifSearch(searchString, searchType);
+                }
+                else if (searchType == "Address")
+                {
+                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.Address) ? n.Address.ToLower().Contains(searchString) : false) ||
+                                                   (!String.IsNullOrEmpty(n.Country) ? n.Country.ToLower().Contains(searchString) : false) ||
+                                                   (!String.IsNullOrEmpty(n.State) ? n.State.ToLower().Contains(searchString) : false)).ToList();
 
-                     searchResults = AifSearch(searchString, inlineRadioOptions);
+                    SearchModel.AifResults = AifResult.AifSearch(searchString, searchType);
                 }
-                else if (inlineRadioOptions == "Regiment")
+                else if (searchType == "Unit")
                 {
-                    veterans = veterans.Where(n => n.ServiceNo.ToLower().Contains(searchString)).ToList();
-                    searchResults = AifSearch(searchString, inlineRadioOptions);
+                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.Battalion) ? n.Battalion.ToLower().Contains(searchString) : false)).ToList();
                 }
-                else if (inlineRadioOptions == "Address")
+                else if (searchType == "PreWarOccupation")
                 {
-                    /* Currently country and town are null for veterans in db. Enable when data exists in db
-                     *veterans = veterans.Where(n => n.Address.Contains(searchString) ||
-                                                   n.Country.Contains(searchString) ||
-                                                   n.Town.Contains(searchString)).ToList();
-                    */
-                    veterans = veterans.Where(n => n.Address.ToLower().Contains(searchString)).ToList();
-                    searchResults = AifSearch(searchString, inlineRadioOptions);
-                }
-                else if (inlineRadioOptions == "Unit")
-                {
-                    veterans = veterans.Where(n => n.Unit.ToLower().Contains(searchString)).ToList();
+                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.PreWarOccupation) ? n.PreWarOccupation.ToLower().Contains(searchString) : false)).ToList();
                 }
             }
-            return View(Tuple.Create(veterans, searchResults));
+            else {
+                SearchModel.Veteran = veterans;
+            }
+            return View(SearchModel);
         }
 
-        // Get By Id
-        public ActionResult Portfolio(int? id)
-        {
-            Veteran veteran = db.Veterans.Find(id);
-            ProfilePicture picture = db.ProfilePictures.Find(veteran.Fk_Profile_Picture_Id);
-            Console.WriteLine(picture);
-            Portfolio portfolio = db.Portfolios.Find(veteran.Fk_Portfolio_Id);
-            List<Section> DisplaySections = new List<Section>();
-            List<Content> Content = new List<Content>();
 
-            foreach (var item in db.Sections.ToList())
+
+        // Displays veteran portfolio based on id
+       public ActionResult Portfolio(int? id)
+       {
+            PortfolioModel.Veteran = db.Veterans.Find(id);
+            PortfolioModel.Sections = db.Sections.Where(s => s.Veteran_Id == id).ToList();
+            PortfolioModel.Contents = db.Contents.Where(c => c.Veteran_Id == id).ToList();
+
+            if (PortfolioModel.Sections.Count > 0)
             {
-                if (item.Fk_Portfolio_Id == portfolio.Id)
-                {
-                    DisplaySections.Add(item);
-                }
+                return View(PortfolioModel);
             }
-
-            return View(Tuple.Create(DisplaySections, veteran, picture));
+            else
+            {
+                return View("EmptyPortfolio", PortfolioModel);
+            }
+            
         }
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using SimplifiedLogin.Models;
+using MSR_Web_App.Models;
 
-namespace SimplifiedLogin
+namespace MSR_Web_App
 {
     public partial class Startup
     {

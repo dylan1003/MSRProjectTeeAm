@@ -68,6 +68,7 @@
     <Build Include="Tables\Veterans.sql" />
     <Build Include="Tables\VeteranQueues.sql" />
     <Build Include="Tables\Users.sql" />
+    <None Include="Scripts\random.sql" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="insertdata">

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Veterans]
 (
-	[Id] int IDENTITY(1,1) PRIMARY KEY,
+	[Id] int,
 	[FirstName] nvarchar(50),
 	[MiddleName] nvarchar(50),	
 	[Surname] nvarchar(50),
@@ -11,16 +11,20 @@
 	[EnlistedDate] nvarchar(20),
 	[EmbarkmentAge] nvarchar(20),
 	[RegimentNumber] nvarchar(10),
-	[Battalion] nvarchar(50),
+	[Battalion] nvarchar(100),
 	[Religion] nvarchar(50),
 	[Address] nvarchar(150),
 	[State] nvarchar(50),
 	[Country] nvarchar(50),
+	[PreWarOccupation] nvarchar(50),
+	[NextOfKin] nvarchar(50),
 	[ShortBio] nvarchar(1000),
 	[Fate] nvarchar(50),
 	[Status] int null,
 	[ProfilePicture] varbinary(MAX),
-
-	Fk_User_Id INT UNIQUE FOREIGN KEY REFERENCES Users(Id),
-	Fk_Veteran_Queue_Id INT FOREIGN KEY REFERENCES VeteranQueues(Id) 
+	[User_Id] int,
+	[Veteran_Queue_Id] int,
+	CONSTRAINT PK_Veteran PRIMARY KEY (Id),
+	CONSTRAINT FK_User FOREIGN KEY (User_Id) REFERENCES Users(Id),
+	CONSTRAINT FK_Veteran_Queue FOREIGN KEY (Veteran_Queue_Id) REFERENCES VeteranQueues(Id)
 )

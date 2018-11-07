@@ -1,6 +1,4 @@
-﻿
-
-body {
+﻿body {
     margin: 0;
     padding: 0;
 }
@@ -41,4 +39,29 @@ body {
     padding-left: 15vw;
     padding-right: 15vw;
     min-height: 94.5vh;
+}
+
+.section {
+    margin: 10px 0;
+    padding: 10px;
+    color: white;
+    background-color:gray;
+}
+
+.content {
+    background-color: darkgray;
+    margin: 10px;
+    padding: 10px;
+}
+
+.img-click {
+    cursor: zoom-in;
+}
+
+i {
+    color:white;
+}
+
+i:hover {
+    color:gray;
 }

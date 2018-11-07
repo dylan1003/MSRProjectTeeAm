@@ -64,3 +64,9 @@ $(function () {
         alert("Unfortunaly AIF search results currently does not support unit/battalion search");
     });
 });
+
+$(function () {
+    $('#inlineRadio5').on('click', function () {
+        alert("Unfortunaly AIF search results currently does not support pre-war occupation search");
+    });
+});
