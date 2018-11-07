@@ -25,9 +25,9 @@ body {
 }
 
 #home-hero {
-    background-image: url(https://www.awm.gov.au/sites/default/files/styles/background_large/public/images/feature/fcfn.JPG?itok=7cFEx-PK);
+    background: url("home-hero-blur.jpg");
     background-size: cover;
-    height: 60vh;
+    height: 97vh;
 }
 
 #page-layout {
