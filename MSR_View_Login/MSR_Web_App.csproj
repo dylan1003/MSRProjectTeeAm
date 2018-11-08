@@ -318,6 +318,8 @@
     </Content>
     <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -388,7 +390,6 @@
     <Content Include="Views\Shared\_PortfolioMap.cshtml" />
     <Content Include="Views\Veterans\EmptyPortfolio.cshtml" />
     <Content Include="Views\UserVeteran\Index.cshtml" />
-    <Content Include="Views\UserVeteran\MapModal.cshtml" />
     <Content Include="Views\Shared\_MapModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
