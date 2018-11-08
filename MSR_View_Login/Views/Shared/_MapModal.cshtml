@@ -1,115 +1,90 @@
 ﻿@model MSR_Web_App.Models.Section
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModal-label">Bootstrap Dialog</h4>
-                </div>
-                <div class="modal-body">
-                    <p>@Model.EventTitle</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="btnOk" onclick="">OK</button>
-                    <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
-                </div>
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModal-label">Edit Event Map</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-9 leaflet-map" id="leaflet-map">
+                <script>
+                    var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
+
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
+                    }).addTo(map);
+
+                    //mark geocode by default adds a marker on the search result
+                    L.Control.geocoder({
+                        defaultMarkGeocode: false
+                    })
+                        .on('markgeocode', function (e) {
+                            var bbox = e.geocode.bbox;
+                            var poly = L.polygon([
+                                bbox.getSouthEast(),
+                                bbox.getNorthEast(),
+                                bbox.getNorthWest(),
+                                bbox.getSouthWest()
+                            ]);
+                            map.fitBounds(poly.getBounds());
+                        })
+                        .addTo(map);
+
+                    var zoomLevel = map._zoom;
+                    var marker = L.marker();
+
+                    function onMapClick(e) {
+                        map.removeLayer(marker);
+                        marker = L.marker(e.latlng).addTo(map);
+                        console.log(marker);
+                        console.log(map);
+                    }
+
+                    // this fixes the issue with greyed out tiles displaying until resize
+                    $('.map-modal').on('shown.bs.modal', function (e) {
+                        setTimeout(function () { map.invalidateSize() }, 10);
+                    });
+
+                    map.on('click', onMapClick);
+
+                </script>
             </div>
+            <div class="col-sm-3">
+                @using (Html.BeginForm("EditSectionMap", "UserVeteran", FormMethod.Post, new { id = "mapForm" }))
+                {
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Veteran_Id)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CoordX)
+                        @Html.TextBoxFor(model => model.CoordX, new { Id = "txtCoordX"})
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CoordY)
+                        @Html.TextBoxFor(model => model.CoordY, new { Id = "txtCoordY" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CameraZoom)
+                        @Html.TextBoxFor(model => model.CameraZoom, new { Id = "txtCameraZoom" })
+                    </div>
+
+                        @*<label>@Html.RadioButton("rdbStreet", "Street") Street</label>
+                <label>@Html.RadioButton("rdbSuburb", "Suburb") Suburb</label>
+                <label>@Html.RadioButton("rdbCity", "City") City</label>
+                <label>@Html.RadioButton("rdbState", "State") State</label>
+                <label>@Html.RadioButton("rdbCountry", "Country") Country</label>
+                <label>@Html.RadioButton("rdbCustom", "Custom") Custom</label>*@
+                        }
+                    </div>
+                </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" id="btnSave" type="button" onclick="$('#mapForm').submit();">Save</button>
+            <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
         </div>
     </div>
 </div>
-
-<!--Map Modal View-->
-@*<div class="modal fade map-modal" id="mapModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="map-modal-label">Select a map point</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row modal-flex-wrapper">
-                    <div class="col-md leaflet-map" id="leaflet-map">
-                        <script>
-                            var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
-
-                            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                                maxZoom: 18,
-                                id: 'mapbox.streets',
-                                accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
-                            }).addTo(map);
-
-                            //mark geocode by default adds a marker on the search result
-                            L.Control.geocoder({
-                                defaultMarkGeocode: false
-                            })
-                                .on('markgeocode', function (e) {
-                                    var bbox = e.geocode.bbox;
-                                    var poly = L.polygon([
-                                        bbox.getSouthEast(),
-                                        bbox.getNorthEast(),
-                                        bbox.getNorthWest(),
-                                        bbox.getSouthWest()
-                                    ]);
-                                    map.fitBounds(poly.getBounds());
-                                })
-                                .addTo(map);
-
-                            var zoomLevel = map._zoom;
-                            var marker = L.marker();
-
-                            function onMapClick(e) {
-                                map.removeLayer(marker);
-                                marker = L.marker(e.latlng).addTo(map);
-                                console.log(marker);
-                                console.log(map);
-                            }
-
-                            // this fixes the issue with greyed out tiles displaying until resize
-                            $('.map-modal').on('shown.bs.modal', function (e) {
-                                setTimeout(function () { map.invalidateSize() }, 10);
-                            });
-
-                            map.on('click', onMapClick);
-
-                        </script>
-                    </div>
-                    <div class="col-md modal-form-container">
-                        <form>
-                            Caption:  <a href="#" data-toggle="caption-tooltip" title="Add a caption to explain succinctly what the map point represents. Eg.Place of Birth, Childhood Home, Local RSL">?</a><br>
-                            <input type="text" name="caption">
-                        </form>
-                        <form class="map-zoom-radio-group" id="mapForm">
-                            Zoom Level:  <a href="#" data-toggle="zoom-tooltip" title="This is how zoomed in the map will be when the user views the veteran profile">?</a><br>
-
-                            <div class="zoom-level-radio-group">
-                                @Html.HiddenFor(model => model.Id)
-                                @Html.HiddenFor(model => model.Veteran_Id)
-                                @Html.HiddenFor(model => model.CoordX, new { Value = 22.22 })
-                                @Html.HiddenFor(model => model.CoordY, new { Value = 33.33 })
-                                @Html.HiddenFor(model => model.CameraZoom, new { Value = 10 })
-                                @*<label><input type="radio" name="street">Street</label><br>
-            <label><input type="radio" name="suburb">Suburb</label><br>
-            <label><input type="radio" name="city">City</label><br>
-            <label><input type="radio" name="state">State</label><br>
-            <label><input type="radio" name="country">Country</label><br>
-            <label><input type="radio" name="custom">Custom <a href="#" data-toggle="zoom-tooltip" title="This will take your current zoom level at the time of saving this dialog">?</a></label><br>*@
-                            @*</div>
-                            <div class="map-modal-button-group">
-                                <input class="map-modal-button-group" type="submit" value="Cancel">
-                                <input class="btn-primary" type="button" value="Save" id="btnSubmit">
-                            </div>
-                        </form>
-                            
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-<!--Map Modal View-->

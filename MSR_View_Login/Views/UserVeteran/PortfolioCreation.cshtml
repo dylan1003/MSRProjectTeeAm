@@ -149,7 +149,10 @@
 
                         <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
                         <button type="button" id="btnModal" class="btn-block" style="width:225px">Modal</button>
-                        <div class="modal fade" id="mapModal" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran")'></div>
+                        <div class="modal fade" id="mapModal" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran", new {
+                                                                                     Id = Model.Sections.ElementAt(s).Id,
+                                                                                     Veteran_Id = Model.Sections.ElementAt(s).Veteran_Id
+                                                                                 })'></div>
                         <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Event</button>
 
                         <script>

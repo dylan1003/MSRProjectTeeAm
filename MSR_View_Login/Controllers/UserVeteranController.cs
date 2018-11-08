@@ -25,18 +25,43 @@ namespace MSR_Web_App.Controllers
 
             return View("PortfolioCreation", viewModel);
         }
-                
+        
+        [HttpPost]
         public ActionResult EditSectionMap(Section section)
         {
-            Section sectionToUpdate = new Section();
+            Section sectionToUpdate = db.Sections.SingleOrDefault(s => s.Id == section.Id && s.Veteran_Id == section.Veteran_Id);
 
-            return View("PortfolioCreation", viewModel);
+            sectionToUpdate.CoordX = section.CoordX;
+            sectionToUpdate.CoordY = section.CoordY;
+            sectionToUpdate.CameraZoom = section.CameraZoom;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+
+            return RedirectToAction("PortfolioCreation", viewModel);
         }
 
-        public ActionResult _MapModal()
+        public ActionResult _MapModal(Section section)
         {
-            Section section = new Section();
-            section.EventTitle = "fuk";
             return PartialView(section);
         }
 
