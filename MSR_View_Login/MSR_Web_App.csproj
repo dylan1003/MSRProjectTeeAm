@@ -387,6 +387,7 @@
     <Content Include="Views\Veterans\EmptyPortfolio.cshtml" />
     <Content Include="Views\UserVeteran\Index.cshtml" />
     <Content Include="Views\UserVeteran\MapModal.cshtml" />
+    <Content Include="Views\Shared\_MapModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

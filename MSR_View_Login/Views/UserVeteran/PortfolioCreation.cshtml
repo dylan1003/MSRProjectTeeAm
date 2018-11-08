@@ -3,78 +3,81 @@
 @section Scripts
 {
     <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
+    <script src="@Url.Content("~/Scripts/script.js")"></script>
 }
 @{
     ViewBag.Title = "Portfolio Creation";
 }
+@Html.Partial("_MapModal")
 
 <head>
     <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
+    <script src="@Url.Content("~/Scripts/script.js")"></script>
 </head>
 
 <body onload="onLoad();">
     <div id="page-layout">
 
-            <div class="row">
-                <div class="col-sm-3">
-                    @using (Html.BeginForm("EditProfilePicture", "UserVeteran"))
-                    {
-                        <div class="row">
+        <div class="row">
+            <div class="col-sm-3">
+                @using (Html.BeginForm("EditProfilePicture", "UserVeteran"))
+                {
+                    <div class="row">
 
-                            @if (Model.Veteran.ProfilePicture != null)
-                            {
-                                <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="@Model.Veteran.ProfilePicture" alt="Portfolio Picture">
-                            }
-                            else
-                            {
-                                <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
-                            }
-                        </div>
-                        <div class="row">
-                            @Html.HiddenFor(m => m.Veteran.Id)
-                            @Html.HiddenFor(m => m.Veteran.User_Id)
-                            @Html.LabelFor(m => m.Veteran.ProfilePicture, "Profile Picture URL", new { @class = "d-block" })
-                            @Html.TextBoxFor(m => m.Veteran.ProfilePicture, "", new { @class = "d-inline form-control" })
-                            <button type="submit" class="btn btn-primary d-inline">Apply</button>
-                        </div>
-                    }
-                </div>
-                <div class="col-sm-9">
-                    <!-- BASIC INFORMATION FORM -->
-                    <h3>Basic Information</h3>
-                    <form>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Veteran.FirstName, "First Name", new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control", @readonly = true })
-                        </div>
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.MiddleName, "Middle Name", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.Surname, "Surname", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.RegimentNumber, "Regiment Number", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.Battalion, "Battalion", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.DOB, "Date of Birth", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                    <form class="form-group">
-                        @Html.LabelFor(m => m.Veteran.PreWarOccupation, "Pre-War Occupation", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control", @readonly = true })
-                    </form>
-                </div>
+                        @if (Model.Veteran.ProfilePicture != null)
+                        {
+                            <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="@Model.Veteran.ProfilePicture" alt="Portfolio Picture">
+                        }
+                        else
+                        {
+                            <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                        }
+                    </div>
+                    <div class="row">
+                        @Html.HiddenFor(m => m.Veteran.Id)
+                        @Html.HiddenFor(m => m.Veteran.User_Id)
+                        @Html.LabelFor(m => m.Veteran.ProfilePicture, "Profile Picture URL", new { @class = "d-block" })
+                        @Html.TextBoxFor(m => m.Veteran.ProfilePicture, "", new { @class = "d-inline form-control" })
+                        <button type="submit" class="btn btn-primary d-inline">Apply</button>
+                    </div>
+                }
             </div>
+            <div class="col-sm-9">
+                <!-- BASIC INFORMATION FORM -->
+                <h3>Basic Information</h3>
+                <form>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Veteran.FirstName, "First Name", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Veteran.FirstName, "", new { @class = "form-control", @readonly = true })
+                    </div>
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.MiddleName, "Middle Name", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.MiddleName, "", new { @class = "form-control", @readonly = true })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.Surname, "Surname", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.Surname, "", new { @class = "form-control", @readonly = true })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.RegimentNumber, "Regiment Number", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.RegimentNumber, "", new { @class = "form-control", @readonly = true })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.Battalion, "Battalion", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.Battalion, "", new { @class = "form-control", @readonly = true })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.DOB, "Date of Birth", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.DOB, "", new { @class = "form-control", @readonly = true })
+                </form>
+                <form class="form-group">
+                    @Html.LabelFor(m => m.Veteran.PreWarOccupation, "Pre-War Occupation", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Veteran.PreWarOccupation, "", new { @class = "form-control", @readonly = true })
+                </form>
+            </div>
+        </div>
         @* Display of dynamic section & content forms*@
         <div class="row">
             <h3>Event Creator</h3>
@@ -144,7 +147,7 @@
                             @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
 
                             <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
-                            <button name="editSection" type="button" class="btn btn-info" value="Edit">Edit Event</button>
+                            <button type="button" class="btn btn-info map-modal-button" data-toggle="modal" data-target=".map-modal">Section Map</button>
                             <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Event</button>
 
                         }
