@@ -7,7 +7,7 @@
             <h4 class="modal-title" id="myModal-label">Edit Event Map</h4>
         </div>
         <div class="modal-body">
-            <div class="col-sm-6 leaflet-map" id="leaflet-map">
+            <div class="col-sm-9 leaflet-map" id="leaflet-map">
                 <script>
                     var map = L.map('leaflet-map').setView([51.505, -0.09], 13);
 
@@ -53,7 +53,7 @@
 
                 </script>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 @using (Html.BeginForm("EditSectionMap", "UserVeteran", FormMethod.Post, new { id = "mapForm" }))
                 {
                     <div class="form-group">
@@ -62,15 +62,15 @@
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.CoordX)
-                        @Html.TextBoxFor(model => model.CoordX)
+                        @Html.TextBoxFor(model => model.CoordX, new { Id = "txtCoordX"})
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.CoordY)
-                        @Html.TextBoxFor(model => model.CoordY)
+                        @Html.TextBoxFor(model => model.CoordY, new { Id = "txtCoordY" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.CameraZoom)
-                        @Html.TextBoxFor(model => model.CameraZoom)
+                        @Html.TextBoxFor(model => model.CameraZoom, new { Id = "txtCameraZoom" })
                     </div>
 
                         @*<label>@Html.RadioButton("rdbStreet", "Street") Street</label>
