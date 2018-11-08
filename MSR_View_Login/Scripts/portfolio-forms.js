@@ -24,17 +24,17 @@ onLoad = function () {
     });
 }
 
-$(document).ready(function () {
-    $('#btnModal').click(function () {
-        var url = $('#mapModal').data('url');
-        jQuery.noConflict();
-        $.get(url, function (data) {
-            $('#mapModal').html(data);
-            $('#mapModal').modal('show');
+//$(document).ready(function () {
+//    $('#btnModal').click(function () {
+//        var url = $('#mapModal').data('url');
+//        jQuery.noConflict();
+//        $.get(url, function (data) {
+//            $('#mapModal').html(data);
+//            $('#mapModal').modal('show');
 
-        });
-    });
-});
+//        });
+//    });
+//});
 
 
 

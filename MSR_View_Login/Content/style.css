@@ -48,6 +48,10 @@
     background-color:gray;
 }
 
+.section .modal {
+    color:black;
+}
+
 .content {
     background-color: darkgray;
     margin: 10px;
