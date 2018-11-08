@@ -20,6 +20,19 @@ $(function() {
     });
 });
 
+$('#btnSubmit').click(function () {
+    var formData = $(mapForm).serialize();
+    
+    $.ajax({
+        type: "POST",
+        url: "/UserVeteran/EditSectionMap",
+        data: formData,
+        success: function () {
+            $('#mapModal').modal('hide');
+        }
+    })
+})
+
 
 /*
 $(function () {

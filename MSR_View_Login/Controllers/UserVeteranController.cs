@@ -25,6 +25,13 @@ namespace MSR_Web_App.Controllers
 
             return View("PortfolioCreation", viewModel);
         }
+                
+        public ActionResult EditSectionMap(Section section)
+        {
+            Section sectionToUpdate = new Section();
+
+            return View("PortfolioCreation", viewModel);
+        }
 
         public ActionResult EditProfilePicture(Veteran veteran)
         {
