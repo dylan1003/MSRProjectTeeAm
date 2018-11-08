@@ -380,16 +380,13 @@
                                         <div data-simplebar id="block">
                                             <div class="card-block px-2" id="block">
                                                 <hr>
+                                                <h4>@Model.Sections[i].EventTitle</h4>
                                                 @foreach (var c in Model.Sections[i].Contents)
                                                 {
                                                    
                                                     if (c.MediaType == "Image")
                                                     {
-                                                        <p style="font-weight:bold;">@c.Title</p>
-
-
                                                         <img class="img-click" src="@c.Source" style="width:50%;" />
-
                                                     }
                                                     else
                                                     {
