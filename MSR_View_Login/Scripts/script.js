@@ -1,6 +1,7 @@
 ﻿
 $(function () {
     $(".img-click").on('click', function () {
+        jQuery.noConflict();
         $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
         $('#enlargeImageModal').modal('show');
     });

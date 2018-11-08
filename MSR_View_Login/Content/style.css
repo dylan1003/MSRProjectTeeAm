@@ -62,3 +62,14 @@
     cursor: zoom-in;
 }
 
+#btnAddEvent {
+    margin:10px 0;
+}
+
+#frmAddEvent {
+    margin: 10px 0;
+}
+
+#frmProfilePicture {
+    margin: 10px 0;
+}

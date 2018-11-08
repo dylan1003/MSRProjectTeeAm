@@ -10,12 +10,15 @@
     ViewBag.Title = "Portfolio Creation";
 }
 
+
     <head>
         <script src="@Url.Content("~/Scripts/jquery-3.3.1.js")"></script>
         <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
         <script src="@Url.Content("~/Scripts/script.js")"></script>
         <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
     </head>
+
+@Html.Partial("_ImageModal");
 
 <body onload="onLoad();">
     <div id="page-layout">
@@ -24,7 +27,7 @@
             <div class="col-sm-3">
                 @using (Html.BeginForm("EditProfilePicture", "UserVeteran"))
                 {
-                    <div class="row">
+                    <div class="row justify-content-sm-center">
 
                         @if (Model.Veteran.ProfilePicture != null)
                         {
@@ -35,12 +38,14 @@
                             <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
                         }
                     </div>
-                    <div class="row">
+                    <div class="row" id="frmProfilePicture">
                         @Html.HiddenFor(m => m.Veteran.Id)
                         @Html.HiddenFor(m => m.Veteran.User_Id)
                         @Html.LabelFor(m => m.Veteran.ProfilePicture, "Profile Picture URL", new { @class = "d-block" })
-                        @Html.TextBoxFor(m => m.Veteran.ProfilePicture, "", new { @class = "d-inline form-control" })
-                        <button type="submit" class="btn btn-primary d-inline">Apply</button>
+                        <div class="d-inline">
+                            @Html.TextBoxFor(m => m.Veteran.ProfilePicture, "", new { @class = "d-inline form-control" })
+                            <button type="submit" class="btn btn-primary d-inline">Apply</button>
+                        </div>
                     </div>
                 }
             </div>
@@ -115,16 +120,16 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, "Media Type", new { @class = "form-label" })
-                                    @Html.DropDownListFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, new SelectList(mediaTypes, Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType), new { @class = "form-control", @id = "dropdown-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.DropDownListFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).MediaType, new SelectList(mediaTypes, Model.Sections.ElementAt(s).Contents.ElementAt(c).MediaType), new { @class = "form-control", @id = "dropdown-" + @Model.Sections.ElementAt(s).Id + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                 </div>
                                 @* portfolio-forms.js controls which of the media/source fields display depending on how mediatype is populated *@
                                 <div class="form-group">
-                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, "Text Data", new { @class = "form-label", @id = "mediaLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
-                                    @Html.TextAreaFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-control", @id = "mediaTextArea-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, "Text Data", new { @class = "form-label", @id = "mediaLabel-" + @Model.Sections.ElementAt(s).Id + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.TextAreaFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Media, new { @class = "form-control", @id = "mediaTextArea-" + @Model.Sections.ElementAt(s).Id + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "Image URL", new { @class = "form-label", @id = "sourceLabel-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
-                                    @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "", new { @class = "form-control", @id = "sourceTextbox-" + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.LabelFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "Image URL", new { @class = "form-label", @id = "sourceLabel-" + @Model.Sections.ElementAt(s).Id + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
+                                    @Html.TextBoxFor(section => section.Sections.ElementAt(s).Contents.ElementAt(c).Source, "", new { @class = "form-control", @id = "sourceTextbox-" + @Model.Sections.ElementAt(s).Id + @Model.Sections.ElementAt(s).Contents.ElementAt(c).Id })
                                 </div>
 
                                 <div class="form-group">
@@ -148,7 +153,7 @@
                         @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
 
                         <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
-                        <button type="button" id="btnModal" class="btn-block" style="width:225px">Modal</button>
+                        <button type="button" id="btnModal" class="btn btn-info">Edit Event Map</button>
                         <div class="modal fade" id="mapModal" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran", new {
                                                                                      Id = Model.Sections.ElementAt(s).Id,
                                                                                      Veteran_Id = Model.Sections.ElementAt(s).Veteran_Id
@@ -181,7 +186,7 @@
             @using (Html.BeginForm("AddSection", "UserVeteran"))
             {
                 <form>
-                    <div class="form-group">
+                    <div class="form-group" id="frmAddEvent">
                         @Html.HiddenFor(s => s.section.Id)
                         @Html.HiddenFor(s => s.section.Veteran_Id, new { Value = User.Identity.GetUserName() })
 
@@ -194,7 +199,7 @@
                         @Html.LabelFor(s => s.section.DisplayPosition, "Display Position", new { @class = "form-label" })
                         @Html.TextBoxFor(s => s.section.DisplayPosition, "", new { @class = "form-control" })
 
-                        <button type="submit" class="btn btn-primary">Add Section</button>
+                        <button type="submit" class="btn btn-primary" id="btnAddEvent">Add Event</button>
                     </div>
                 </form>
             }
