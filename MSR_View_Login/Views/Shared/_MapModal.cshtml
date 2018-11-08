@@ -43,13 +43,12 @@
                         console.log(marker);
                         console.log(map);
                     }
-
-                    // this fixes the issue with greyed out tiles displaying until resize
-                    $('#mapModal').on('shown.bs.modal', function (e) {
-                        setTimeout(function () { map.invalidateSize() }, 10);
-                    });
+                    function updateZoom(e) {
+                        alert(map._zoom);  
+                    }
 
                     map.on('click', onMapClick);
+                    map.on('zoomend', updateZoom);
 
                 </script>
             </div>
