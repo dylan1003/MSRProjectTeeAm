@@ -266,6 +266,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\Default_Profile_Pictures.jpg" />
+    <Content Include="Content\home-hero-blur.jpg" />
+    <Content Include="Content\home-hero-dark.jpg" />
+    <Content Include="Content\homeHero-sepia.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -312,6 +315,7 @@
     <Content Include="Models\MSRContext.edmx.diagram">
       <DependentUpon>MSRContext.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -383,6 +387,7 @@
     <Content Include="Views\Veterans\EmptyPortfolio.cshtml" />
     <Content Include="Views\UserVeteran\Index.cshtml" />
     <Content Include="Views\UserVeteran\MapModal.cshtml" />
+    <Content Include="Views\Shared\_MapModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

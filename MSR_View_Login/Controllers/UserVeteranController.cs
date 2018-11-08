@@ -26,9 +26,35 @@ namespace MSR_Web_App.Controllers
             return View("PortfolioCreation", viewModel);
         }
 
-        public ActionResult Manage()
+        public ActionResult EditProfilePicture(Veteran veteran)
         {
-            return View();
+            Veteran veteranToUpdate = db.Veterans.Single(v => v.Id == veteran.Id);
+
+            veteranToUpdate.ProfilePicture = veteran.ProfilePicture;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+
+            return RedirectToAction("PortfolioCreation", viewModel);
         }
 
         public ActionResult EditSection(Content content, Section section, string editSection)
