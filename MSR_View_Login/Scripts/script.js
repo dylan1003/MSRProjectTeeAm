@@ -20,6 +20,21 @@ $(function() {
     });
 });
 
+$(function (e) {
+    $("#mapModalSaveButton").click(function () {
+        bounds = map.getBounds();
+        alert("zoom level: " + map._zoom);
+        console.log(bounds._northEast);
+        console.log(bounds._southWest);
+    });
+});
+
+$(function (e) {
+    $("#map-zoom").on('click', function () {
+        map._zoom = e.value;        
+    });
+});
+
 
 /*
 $(function () {
