@@ -1,6 +1,28 @@
-﻿@model MSR_Web_App.Models.PortfolioCreateViewModel
+﻿@model MSR_Web_App.Models.Section
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModal-label">Bootstrap Dialog</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@Model.EventTitle</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btnOk" onclick="">OK</button>
+                    <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Map Modal View-->
-<div class="modal fade map-modal" id="mapModal" role="dialog" aria-hidden="true">
+@*<div class="modal fade map-modal" id="mapModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -66,18 +88,18 @@
                             Zoom Level:  <a href="#" data-toggle="zoom-tooltip" title="This is how zoomed in the map will be when the user views the veteran profile">?</a><br>
 
                             <div class="zoom-level-radio-group">
-                                @Html.HiddenFor(model => model.section.Id, new { Value = 1 })
-                                @Html.HiddenFor(model => model.section.Veteran_Id, new { Value = 22772})
-                                @Html.HiddenFor(model => model.section.CoordX, new { Value = 22.22 })
-                                @Html.HiddenFor(model => model.section.CoordY, new { Value = 33.33 })
-                                @Html.HiddenFor(model => model.section.CameraZoom, new { Value = 10 })
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.Veteran_Id)
+                                @Html.HiddenFor(model => model.CoordX, new { Value = 22.22 })
+                                @Html.HiddenFor(model => model.CoordY, new { Value = 33.33 })
+                                @Html.HiddenFor(model => model.CameraZoom, new { Value = 10 })
                                 @*<label><input type="radio" name="street">Street</label><br>
             <label><input type="radio" name="suburb">Suburb</label><br>
             <label><input type="radio" name="city">City</label><br>
             <label><input type="radio" name="state">State</label><br>
             <label><input type="radio" name="country">Country</label><br>
             <label><input type="radio" name="custom">Custom <a href="#" data-toggle="zoom-tooltip" title="This will take your current zoom level at the time of saving this dialog">?</a></label><br>*@
-                            </div>
+                            @*</div>
                             <div class="map-modal-button-group">
                                 <input class="map-modal-button-group" type="submit" value="Cancel">
                                 <input class="btn-primary" type="button" value="Save" id="btnSubmit">
@@ -89,5 +111,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!--Map Modal View-->

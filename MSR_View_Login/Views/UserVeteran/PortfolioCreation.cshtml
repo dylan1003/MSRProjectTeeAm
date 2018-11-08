@@ -2,19 +2,20 @@
 @model MSR_Web_App.Models.PortfolioCreateViewModel
 @section Scripts
 {
+    <script src="@Url.Content("~/Scripts/jquery-3.3.1.js")"></script>
     <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
     <script src="@Url.Content("~/Scripts/script.js")"></script>
 }
 @{
     ViewBag.Title = "Portfolio Creation";
 }
-@Html.Partial("_MapModal")
 
-<head>
-    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
-    <script src="@Url.Content("~/Scripts/script.js")"></script>
-</head>
+    <head>
+        <script src="@Url.Content("~/Scripts/jquery-3.3.1.js")"></script>
+        <script src="@Url.Content("~/Scripts/portfolio-forms.js")"></script>
+        <script src="@Url.Content("~/Scripts/script.js")"></script>
+        <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+    </head>
 
 <body onload="onLoad();">
     <div id="page-layout">
@@ -147,8 +148,24 @@
                         @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
 
                         <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
-                        <button type="button" class="btn btn-info map-modal-button" data-toggle="modal" data-target=".map-modal">Edit Event Map</button>
+                        <button type="button" id="btnModal" class="btn-block" style="width:225px">Modal</button>
+                        <div class="modal fade" id="mapModal" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran")'></div>
                         <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Event</button>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#btnModal').click(function () {
+                                    var url = $('#mapModal').data('url');
+                                    jQuery.noConflict();
+                                    $.get(url, function (data) {
+                                        $('#mapModal').html(data);
+                                        $('#mapModal').modal('show');
+
+                                    });
+                                });
+                            });
+
+                        </script>
 
                     }
                 </section>

@@ -33,6 +33,13 @@ namespace MSR_Web_App.Controllers
             return View("PortfolioCreation", viewModel);
         }
 
+        public ActionResult _MapModal()
+        {
+            Section section = new Section();
+            section.EventTitle = "fuk";
+            return PartialView(section);
+        }
+
         public ActionResult EditProfilePicture(Veteran veteran)
         {
             Veteran veteranToUpdate = db.Veterans.Single(v => v.Id == veteran.Id);
