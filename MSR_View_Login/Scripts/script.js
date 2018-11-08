@@ -21,10 +21,6 @@ $(function() {
     });
 });
 
-// this fixes the issue with greyed out tiles displaying until resize
-$('.map-modal').on('shown.bs.modal', function (e) {
-    setTimeout(function () { map.invalidateSize() }, 10);
-});
 
 //$('#btnSubmit').click(function () {
 //    var formData = $(mapForm).serialize();
