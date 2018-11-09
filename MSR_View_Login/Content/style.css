@@ -73,3 +73,17 @@
 #frmProfilePicture {
     margin: 10px 0;
 }
+
+.map-modal-input-group {
+    display: flex;
+    flex: 1;
+}
+
+.leaflet-map {
+    display: flex;
+    flex: 1;
+}
+
+.modal-body {
+    display: inline-flex;
+}
