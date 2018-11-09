@@ -104,6 +104,10 @@ html body {
         2.5px -1.5px 0 #000, 
         -2.5px -1.5px 0 #000;
 }
+.hero-bg {
+    padding: 50px;
+    background-color: rgba(0,0,0,0.4);
+}
 /*Jumbotron*/
 .jumbotron{
     margin-bottom: 0px;
