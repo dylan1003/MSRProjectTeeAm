@@ -60,12 +60,16 @@
                             <img class="img-click float-left img-fluid" style="width:auto; height:250px; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
                         }
                     </div>
-                    <div class="row" id="frmProfilePicture">
-                        @Html.HiddenFor(m => m.Veteran.Id)
-                        @Html.HiddenFor(m => m.Veteran.User_Id)
-                        @Html.LabelFor(m => m.Veteran.ProfilePicture, "Profile Picture URL", new { @class = "d-block" })
-                        <div class="d-inline">
+                    <div class="row">
+                        <div class="col-12" id="frmProfilePicture">
+                            @Html.HiddenFor(m => m.Veteran.Id)
+                            @Html.HiddenFor(m => m.Veteran.User_Id)
+                            @Html.LabelFor(m => m.Veteran.ProfilePicture, "Profile Picture URL", new { @class = "d-block" })
+                        </div>
+                        <div class="col-9" style="padding-right: 0px;">
                             @Html.TextBoxFor(m => m.Veteran.ProfilePicture, "", new { @class = "d-inline form-control" })
+                        </div>
+                        <div class="col-3" style="padding-left: 0px;">
                             <button type="submit" class="btn btn-primary d-inline">Apply</button>
                         </div>
                     </div>
