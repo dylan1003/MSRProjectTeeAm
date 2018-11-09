@@ -1,6 +1,7 @@
 ﻿
 $(function () {
     $(".img-click").on('click', function () {
+        jQuery.noConflict();
         $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
         $('#enlargeImageModal').modal('show');
     });
@@ -19,6 +20,7 @@ $(function() {
         $('#mapModal').modal('show');
     });
 });
+
 
 //$('#btnSubmit').click(function () {
 //    var formData = $(mapForm).serialize();
