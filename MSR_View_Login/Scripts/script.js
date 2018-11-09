@@ -1,11 +1,5 @@
 ﻿
-$(function () {
-    $(".img-click").on('click', function () {
-        jQuery.noConflict();
-        $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
-        $('#enlargeImageModal').modal('show');
-    });
-});
+
 
 function setCarouselActive(currentId) {
     var navList = document.getElementById(currentId).parentElement.children;

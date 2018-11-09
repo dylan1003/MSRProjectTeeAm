@@ -4,8 +4,8 @@
     ViewBag.Title = fullName;
 }
 
+@Html.Partial("_ImageModal");
 
-@Html.Partial("_ImageModal")
 <!--Jumbotron-->
 <section class="overwrite-bg-jumbo">
     <div class="container-fluid">
@@ -383,7 +383,7 @@
                                                 <h4>@Model.Sections[i].EventTitle</h4>
                                                 @foreach (var c in Model.Sections[i].Contents)
                                                 {
-                                                   
+
                                                     if (c.MediaType == "Image")
                                                     {
                                                         <img class="img-click" src="@c.Source" style="width:50%;" />
@@ -395,8 +395,8 @@
                                                         <p>@c.Media</p>
 
                                                     }
-                                                    
-                                                    
+
+
 
                                                 }
                                             </div>
@@ -505,3 +505,4 @@
         map.flyTo({ center: mapCords, speed: 4, zoom: mapZoom })
     });
 </script>
+
