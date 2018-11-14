@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using MSR_Web_App.Classes;
+@{ VeteranName fullname = new VeteranName(); }
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -26,7 +28,7 @@
             <ul class="navbar-nav ml-auto ">
                 <li class="navbar-item">
                     <div class="btn-group nav-link" style="padding:0;">
-                        <button type="button" class="btn dropdown-toggle bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
+                        <button type="button" class="btn dropdown-toggle bg-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Html.ActionLink( fullname.GetFullName(User.Identity.GetUserName()) + "!", "", "", routeValues: null, htmlAttributes: new { title = "Manage" })</button>
                         <div class="dropdown-menu dropdown-menu-right bg-dark">
                             <a class="dropdown-item" href="/UserVeteran/PortfolioCreation">Manage Portfolio</a>
                             <a class="dropdown-item" href="/Veterans/Portfolio/@User.Identity.GetUserName()">View Portfolio</a>
