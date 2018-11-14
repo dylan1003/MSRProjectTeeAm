@@ -28,12 +28,16 @@ namespace MSR_Web_App.Controllers
             {
                 //Convert search string to lower case as .contains is case sensitive e.g James != james
                 searchString = searchString.ToLower();
+                List<String> searchArray = searchString.Split().ToList();
 
                 if (searchType == "Name")
                 {
-                    SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.FirstName) ? n.FirstName.ToLower().Contains(searchString) : false) ||
-                                            (!String.IsNullOrEmpty(n.MiddleName) ? n.MiddleName.ToLower().Contains(searchString) : false) ||
-                                            (!String.IsNullOrEmpty(n.Surname) ? n.Surname.ToLower().Contains(searchString) : false)).ToList();
+                    foreach (string term in searchArray)
+                    {
+                        SearchModel.Veteran = veterans.Where(n => (!String.IsNullOrEmpty(n.FirstName) ? n.FirstName.ToLower().Contains(term) : false) ||
+                                                (!String.IsNullOrEmpty(n.MiddleName) ? n.MiddleName.ToLower().Contains(term) : false) ||
+                                                (!String.IsNullOrEmpty(n.Surname) ? n.Surname.ToLower().Contains(term) : false)).ToList();
+                    }
                     SearchModel.AifResults = AifResult.AifSearch(searchString, searchType);
                 }
                 else if (searchType == "Regiment")
