@@ -1,4 +1,5 @@
-﻿IF '$(loaddata)' = 'false'
+﻿/*
+IF '$(loaddata)' = 'false'
 begin
 delete from Veterans;
 delete from Contents;
@@ -30,7 +31,7 @@ INSERT INTO  VeteranQueues(Fk_Teacher_Id) VALUES
 
 INSERT INTO  ProfilePictures(Picture) 
 SELECT BulkColumn
-From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSR_Project\Images\THE-POPPY.jpg', Single_Blob) as img;
+From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSRProjectTeeAm2\Images\THE-POPPY.jpg', Single_Blob) as img;
 
 
 
@@ -56,7 +57,7 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 
 INSERT INTO  MultiMedias(Media)
 SELECT BulkColumn
-From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSR_Project\Images\ShowImage.jpg', Single_Blob) as Media;
+From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSRProjectTeeAm2\Images\ShowImage.jpg', Single_Blob) as Media;
 
 
 INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_MultiMedia_Id, Fk_Section_Id, FK_Portfolio_Id) VALUES
@@ -76,7 +77,7 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 
 INSERT INTO  MultiMedias(Media)
 SELECT BulkColumn
-From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSR_Project\Images\Existence_01.jpg', Single_Blob) as Media;
+From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSRProjectTeeAm2\Images\Existence_01.jpg', Single_Blob) as Media;
 
 INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_MultiMedia_Id, Fk_Section_Id, FK_Portfolio_Id) VALUES
 (2, 'Proof of Existence', CURRENT_TIMESTAMP, 'image', 'https://recordsearch.naa.gov.au/SearchNRetrieve/NAAMedia/ShowImage.aspx?B=1498211&T=P&S=7', 2, 4, 2, 1);
@@ -104,7 +105,7 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 
 INSERT INTO  MultiMedias(Media)
 SELECT BulkColumn
-From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSR_Project\Images\charlielilley.jpg', Single_Blob) as Media;
+From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSRProjectTeeAm2\Images\charlielilley.jpg', Single_Blob) as Media;
 
 
 INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_MultiMedia_Id, Fk_Section_Id, FK_Portfolio_Id) VALUES
@@ -124,7 +125,7 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 
 INSERT INTO  MultiMedias(Media) 
 SELECT BulkColumn
-From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSR_Project\Images\4007aAIFmatch.jpg', Single_Blob) as Media;
+From openrowset ( Bulk 'C:\Users\STUDENT\source\repos\MSRProjectTeeAm2\Images\4007aAIFmatch.jpg', Single_Blob) as Media;
 
 
 INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_MultiMedia_Id, Fk_Section_Id, FK_Portfolio_Id) VALUES
@@ -133,3 +134,4 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 END
 
 
+*/

@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Welcome To MSR!";
+}
+<div class="jumbotron-fluid" id="home-hero">
+    <div class="hero-content">
+        <h3 style="color: white">Veteran Search</h3>
+        @using (Html.BeginForm("Index", "Veterans"))
+        {
+            <div class="row form-group" style="height: 5vh">
+                <input type="text" class="col-10 form-control" id="SearchField" placeholder="Search For Veteran" name="SearchString" value="">
+                <button type="submit" class="col-2 btn btn-primary">Submit</button>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio1" value="Name" checked>
+                <label class="form-check-label text-black-50" for="inlineRadio1">Name</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio2" value="Regiment">
+                <label class="form-check-label text-black-50" for="inlineRadio2">Regiment Number</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio3" value="Address">
+                <label class="form-check-label text-black-50" for="inlineRadio3">Address</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio4" value="Unit">
+                <label class="form-check-label text-black-50" for="inlineRadio4">Unit</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="inlineRadio5" value="PreWarOccupation">
+                <label class="form-check-label text-black-50" for="inlineRadio5">Pre-War Occupation</label>
+            </div>
+        }
+    </div>
+    <div class="hero-bg">
+        <h1 class="title">MY SCHOOL REMEMBERS</h1>
+        <p class="home-intro">
+            <br>
+            A collection of information of the veterans who served in World War I. <br>
+            With information gathered from various sources such as official websites, archived documents, veteran relatives & community stories - we remember these veterans as individuals. <br>
+            We focus on the life of the veteran outside the war - displaying how these individuals lived, how these individuals were affected & what they accomplished.
+        </p>
+        <p class="home-intro">
+            All veteran content is created & maintained by the Year 9 students & teaching staff of participating Australian High Schools. <br>
+            Through education & community connection we keep the promise to not forget the sacrifices made.<br>
+            <i style="font-size:18px">~Lest We Forget</i>
+        </p>
+    </div>
+</div>
+<section @*id="page-layout"*@@*class="home-container"*@ @*class="custom-jumbotron overwrite-bg-jumbo"*@>
+    <div class="overwrite-topcontainer center">
+        @*<div class="row">
+            <img alt="MSR Logo" data-type="image" src="https://image.ibb.co/cU4Ki0/MSR-Star-Logo.png" style="width: 196px; height: 173px;">
+            <br>
+        </div>*@
+        
+        @*<div class="col-sm">
+            <p class="home-intro">
+                <br>
+                A collection of information of the veterans who served in World War I. <br>
+                With information gathered from various sources such as official websites, archived documents, veteran relatives & community stories - we remember these veterans as individuals. <br>
+                We focus on the life of the veteran outside the war - displaying how these individuals lived, how these individuals were affected & what they accomplished.
+            </p>
+            <p class="home-intro">
+                All veteran content is created & maintained by the Year 9 students & teaching staff of participating Australian High Schools. <br>
+                Through education & community connection we keep the promise to not forget the sacrifices made.<br>
+                <i style="font-size:18px">~Lest We Forget</i>
+            </p>
+        </div>*@
+    </div>
+    <hr>
+    <div class="overwrite-botcontainer">
+        <div class="col-sm">
+            <h5>
+                Check out the below websites, which help make this application possible:
+            </h5>
+        </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://www.aif.adfa.edu.au/index.html" target="_blank">
+                            <img class="card-img-top" src="https://image.ibb.co/dNLwWV/AIF-Logo.png" alt="AIF Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>The AIF Project</h6>
+                            <p>A directory of veterans enlisted with the Australia Imperial Force.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://www.awm.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://dartconnections.org.au/images/provider-logos/AUSTRALIAN-WAR-MEMORIAL.jpg?Action=thumbnail&Width=300&Height=300&algorithm=proportional" alt="AWM Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>The Australian War Memorial</h6>
+                            <p>An extensive archive of war material ranging from veterans, events, places, units.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="http://www.naa.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://i.vimeocdn.com/portrait/30475_300x300" alt="NAA Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>National Archives of Australia</h6>
+                            <p>A collection of Government records that have affected Australia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="custom-card">
+                        <a href="https://trove.nla.gov.au/" target="_blank">
+                            <img class="card-img-top" src="https://trove.nla.gov.au/static/54ecdc2/img/trove-logo-social-share.jpg" alt="Trove Logo">
+                        </a>
+                        <div class="card-body">
+                            <h6>Trove</h6>
+                            <p>A vast collection of resources relating to Australia - ranging from books, diaries, people, music, newspapers and much more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

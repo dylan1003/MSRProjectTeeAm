@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Msr_Database_Release_TwoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contents">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Section_Id" />
+            <PropertyRef Name="Veteran_Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="MediaType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Source" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayPosition" Type="int" />
+          <Property Name="Media" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Section_Id" Type="int" Nullable="false" />
+          <Property Name="Veteran_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Veteran_Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EventTitle" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="DisplayPosition" Type="int" Nullable="false" />
+          <Property Name="CoordY" Type="nvarchar" MaxLength="50" />
+          <Property Name="CoordX" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" MaxLength="60" />
+          <Property Name="CameraZoom" Type="nvarchar" MaxLength="10" />
+          <Property Name="Veteran_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Permissions" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="VeteranQueues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Teacher_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Veterans">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="20" />
+          <Property Name="BirthPlace" Type="nvarchar" MaxLength="50" />
+          <Property Name="Death" Type="nvarchar" MaxLength="20" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="EnlistedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmbarkmentAge" Type="nvarchar" MaxLength="20" />
+          <Property Name="RegimentNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="Battalion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreWarOccupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="NextOfKin" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortBio" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Fate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="500" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="Veteran_Queue_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_Section">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Veteran_Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="Section_Id" />
+              <PropertyRef Name="Veteran_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="VeteranQueues" Type="Self.VeteranQueues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VeteranQueues">
+              <PropertyRef Name="Teacher_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veterans">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran">
+          <End Role="Veterans" Type="Self.Veterans" Multiplicity="1" />
+          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="Veteran_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran_Queue">
+          <End Role="VeteranQueues" Type="Self.VeteranQueues" Multiplicity="0..1" />
+          <End Role="Veterans" Type="Self.Veterans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeteranQueues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veterans">
+              <PropertyRef Name="Veteran_Queue_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Msr_Database_Release_TwoModelStoreContainer">
+          <EntitySet Name="Contents" EntityType="Self.Contents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeteranQueues" EntityType="Self.VeteranQueues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veterans" EntityType="Self.Veterans" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Section" Association="Self.FK_Section">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher" Association="Self.FK_Teacher">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VeteranQueues" EntitySet="VeteranQueues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Veterans" EntitySet="Veterans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran" Association="Self.FK_Veteran">
+            <End Role="Veterans" EntitySet="Veterans" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran_Queue" Association="Self.FK_Veteran_Queue">
+            <End Role="VeteranQueues" EntitySet="VeteranQueues" />
+            <End Role="Veterans" EntitySet="Veterans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Msr_Database_Release_TwoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Section_Id" />
+            <PropertyRef Name="Veteran_Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="MediaType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayPosition" Type="Int32" />
+          <Property Name="Media" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Section_Id" Type="Int32" Nullable="false" />
+          <Property Name="Veteran_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Section" FromRole="Contents" ToRole="Sections" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Veteran_Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="EventTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayPosition" Type="Int32" Nullable="false" />
+          <Property Name="CoordY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CoordX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="CameraZoom" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Veteran_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_Section" FromRole="Sections" ToRole="Contents" />
+          <NavigationProperty Name="Veteran" Relationship="Self.FK_Veteran" FromRole="Sections" ToRole="Veterans" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Permissions" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VeteranQueues" Relationship="Self.FK_Teacher" FromRole="Users" ToRole="VeteranQueues" />
+          <NavigationProperty Name="Veterans" Relationship="Self.FK_User" FromRole="Users" ToRole="Veterans" />
+        </EntityType>
+        <EntityType Name="VeteranQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Teacher_Id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Teacher" FromRole="VeteranQueues" ToRole="Users" />
+          <NavigationProperty Name="Veterans" Relationship="Self.FK_Veteran_Queue" FromRole="VeteranQueues" ToRole="Veterans" />
+        </EntityType>
+        <EntityType Name="Veteran">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Death" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EnlistedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmbarkmentAge" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RegimentNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Battalion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PreWarOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NextOfKin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortBio" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Fate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="Veteran_Queue_Id" Type="Int32" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_Veteran" FromRole="Veterans" ToRole="Sections" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User" FromRole="Veterans" ToRole="Users" />
+          <NavigationProperty Name="VeteranQueue" Relationship="Self.FK_Veteran_Queue" FromRole="Veterans" ToRole="VeteranQueues" />
+        </EntityType>
+        <Association Name="FK_Section">
+          <End Role="Sections" Type="Self.Section" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Veteran_Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="Section_Id" />
+              <PropertyRef Name="Veteran_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran">
+          <End Role="Veterans" Type="Self.Veteran" Multiplicity="1" />
+          <End Role="Sections" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="Veteran_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="VeteranQueues" Type="Self.VeteranQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VeteranQueues">
+              <PropertyRef Name="Teacher_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Veterans" Type="Self.Veteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veterans">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Veteran_Queue">
+          <End Role="VeteranQueues" Type="Self.VeteranQueue" Multiplicity="0..1" />
+          <End Role="Veterans" Type="Self.Veteran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeteranQueues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veterans">
+              <PropertyRef Name="Veteran_Queue_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Msr_Database_Release_TwoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contents" EntityType="Self.Content" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="VeteranQueues" EntityType="Self.VeteranQueue" />
+          <EntitySet Name="Veterans" EntityType="Self.Veteran" />
+          <AssociationSet Name="FK_Section" Association="Self.FK_Section">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran" Association="Self.FK_Veteran">
+            <End Role="Veterans" EntitySet="Veterans" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher" Association="Self.FK_Teacher">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VeteranQueues" EntitySet="VeteranQueues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Veterans" EntitySet="Veterans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Veteran_Queue" Association="Self.FK_Veteran_Queue">
+            <End Role="VeteranQueues" EntitySet="VeteranQueues" />
+            <End Role="Veterans" EntitySet="Veterans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Msr_Database_Release_TwoModelStoreContainer" CdmEntityContainer="Msr_Database_Release_TwoEntities">
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.Content">
+              <MappingFragment StoreEntitySet="Contents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="DisplayPosition" ColumnName="DisplayPosition" />
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="Section_Id" ColumnName="Section_Id" />
+                <ScalarProperty Name="Veteran_Id" ColumnName="Veteran_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.Section">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="DisplayPosition" ColumnName="DisplayPosition" />
+                <ScalarProperty Name="CoordY" ColumnName="CoordY" />
+                <ScalarProperty Name="CoordX" ColumnName="CoordX" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CameraZoom" ColumnName="CameraZoom" />
+                <ScalarProperty Name="Veteran_Id" ColumnName="Veteran_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Permissions" ColumnName="Permissions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeteranQueues">
+            <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.VeteranQueue">
+              <MappingFragment StoreEntitySet="VeteranQueues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Teacher_Id" ColumnName="Teacher_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veterans">
+            <EntityTypeMapping TypeName="Msr_Database_Release_TwoModel.Veteran">
+              <MappingFragment StoreEntitySet="Veterans">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="Death" ColumnName="Death" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="EnlistedDate" ColumnName="EnlistedDate" />
+                <ScalarProperty Name="EmbarkmentAge" ColumnName="EmbarkmentAge" />
+                <ScalarProperty Name="RegimentNumber" ColumnName="RegimentNumber" />
+                <ScalarProperty Name="Battalion" ColumnName="Battalion" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PreWarOccupation" ColumnName="PreWarOccupation" />
+                <ScalarProperty Name="NextOfKin" ColumnName="NextOfKin" />
+                <ScalarProperty Name="ShortBio" ColumnName="ShortBio" />
+                <ScalarProperty Name="Fate" ColumnName="Fate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Veteran_Queue_Id" ColumnName="Veteran_Queue_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

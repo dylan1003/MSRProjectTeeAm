@@ -1,0 +1,92 @@
+﻿@model MSR_Web_App.Models.Section
+
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModal-label">Edit Event Map</h4>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-9 leaflet-map" id="leaflet-map">
+                <script>
+                    var map = L.map('leaflet-map').setView([-26.588527, 134.291215], 3);
+
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
+                    }).addTo(map);
+
+                    //mark geocode by default adds a marker on the search result
+                    L.Control.geocoder({
+                        defaultMarkGeocode: false
+                    })
+                        .on('markgeocode', function (e) {
+                            var bbox = e.geocode.bbox;
+                            var poly = L.polygon([
+                                bbox.getSouthEast(),
+                                bbox.getNorthEast(),
+                                bbox.getNorthWest(),
+                                bbox.getSouthWest()
+                            ]);
+                            map.fitBounds(poly.getBounds());
+                        })
+                        .addTo(map);
+
+                    var zoomLevel = map._zoom;
+                    var marker = L.marker();
+
+                    function onMapClick(e) {
+                        map.removeLayer(marker);
+                        marker = L.marker(e.latlng).addTo(map);
+                        $('#txtCoordX').val(e.latlng.lat);
+                        $('#txtCoordY').val(e.latlng.lng);
+                    }
+                    function updateZoom(e) {
+                        $('#txtCameraZoom').val(map._zoom);
+                    }
+
+                    // this fixes the issue with greyed out tiles displaying until resize
+                    $('#mapModal').on('shown.bs.modal', function (e) {
+                        jQuery.noConflict();
+                        setTimeout(function () { map.invalidateSize(); }, 10);
+                    });
+
+                </script>
+            </div>
+            <div class="col-sm-3 map-modal-input-group">
+                @using (Html.BeginForm("EditSectionMap", "UserVeteran", FormMethod.Post, new { id = "mapForm" }))
+                {
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Veteran_Id)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CoordX)
+                        @Html.TextBoxFor(model => model.CoordX, new { Id = "txtCoordX"})
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CoordY)
+                        @Html.TextBoxFor(model => model.CoordY, new { Id = "txtCoordY" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CameraZoom)
+                        @Html.TextBoxFor(model => model.CameraZoom, new { Id = "txtCameraZoom" })
+                    </div>
+
+                        @*<label>@Html.RadioButton("rdbStreet", "Street") Street</label>
+               	 <label>@Html.RadioButton("rdbSuburb", "Suburb") Suburb</label>
+               	 <label>@Html.RadioButton("rdbCity", "City") City</label>
+               	 <label>@Html.RadioButton("rdbState", "State") State</label>
+               	 <label>@Html.RadioButton("rdbCountry", "Country") Country</label>
+               	 <label>@Html.RadioButton("rdbCustom", "Custom") Custom</label>*@
+             }
+                    </div>
+               	 </div>
+	 <div class="modal-footer">
+        	 <button class="btn btn-primary" id="btnSave" type="button" onclick="$('#mapForm').submit();">Save</button>
+            <button class="btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+        </div>
+    </div>
+</div>

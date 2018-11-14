@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dbo].[Contents]
 (
-	[Id] int ,
+	[Id] int,
 	[Title] nvarchar(50) NOT NULL,
-	[Timestamp] datetime NOT NULL,
-	[type] nvarchar(10) NOT NULL,
-	[source] text,
-	[DisplayPosition] int NOT NULL,
-	[FK_Section_Id] int NOT NULL,
-	[FK_Portfolio_Id] int NOT NULL,
-	PRIMARY KEY (Id, Fk_Section_Id, Fk_Portfolio_Id),
-	Foreign key (FK_Section_Id, FK_Portfolio_Id) references Sections,
-	Fk_MultiMedia_Id INT FOREIGN KEY REFERENCES MultiMedias(Id) NOT NULL
+	[Timestamp] datetime NULL,
+	[MediaType] nvarchar(10) NULL,
+	[Source] nvarchar(500),
+	[DisplayPosition] int NULL,
+	[Media] nvarchar(1000) NULL,
+	[Section_Id] int NOT NULL,
+	[Veteran_Id] int NOT NULL,
+	CONSTRAINT PK_Content PRIMARY KEY (Id, Section_Id, Veteran_Id),
+	CONSTRAINT FK_Section FOREIGN KEY (Section_Id, Veteran_Id) REFERENCES Sections(Id, Veteran_Id)
 )
