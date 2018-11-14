@@ -90,14 +90,44 @@ function horizontalScrollWindow() {
 } 
 */
 
+
+//Adds placehorder text to search bar for format of search 
 $(function () {
-    $('#inlineRadio4').on('click', function () {
-        alert("Unfortunately AIF search results currently does not support unit/battalion search");
+    $('.form-check').on('click', function () {
+        if (this.childNodes[1].value === "Name") {
+            $('#SearchField').attr("placeholder", "E.g John Monash");
+        }
+        else if (this.childNodes[1].value === "Regiment") {
+            $('#SearchField').attr("placeholder", "E.g 1400");
+        }
+        else if (this.childNodes[1].value === "Address") {
+            $('#SearchField').attr("placeholder", "E.g Birdwood Ave, Melbourne");
+        }
+        else if (this.childNodes[1].value === "Unit") {
+            $('#SearchField').attr("placeholder", "E.g 13th Battalion, A Company");
+        }
+        else if (this.childNodes[1].value === "PreWarOccupation") {
+            $('#SearchField').attr("placeholder", "E.g Clerk");
+        }
     });
 });
 
+
+//Warning text for aif search
 $(function () {
-    $('#inlineRadio5').on('click', function () {
-        alert("Unfortunately AIF search results currently does not support pre-war occupation search");
+    $('.form-check').on('click', function () {
+        if (this.childNodes[1].value === "Unit")
+        {
+            $('#info-warning').html("Unfortunately AIF search results currently does not support unit/battalion search");
+        }
+        else if(this.childNodes[1].value === "PreWarOccupation") {
+            $('#info-warning').html("Unfortunately AIF search results currently does not support pre-war occupation search");
+        }
+        else
+        {
+            $('#info-warning').html("");
+        }
     });
 });
+
+
