@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimplifiedLogin.Models
+namespace MSR_Web_App.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

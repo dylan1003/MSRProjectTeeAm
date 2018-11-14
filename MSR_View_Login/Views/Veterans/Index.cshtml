@@ -1,11 +1,11 @@
-﻿@model Tuple<List<MSR_mvc.Models.Veteran>, List<MSR_mvc.Models.AifResult>>
+﻿@model MSR_Web_App.Models.VeteranSearchModel
 
 @{
-    ViewBag.Title = "Veteran";
+    ViewBag.Title = "Veterans";
 }
 
 <section id="page-layout2">
-    <div @*class="jumbotron bg-dark"*@>
+    <div>
         <div class="row">
             <!--Search Field-->
             <form class="col align-self-center">
@@ -14,20 +14,24 @@
                     <button type="submit" class="col-2 btn btn-primary">Submit</button>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Name" checked>
+                    <input class="form-check-input" type="radio" name="searchType" id="inlineRadio1" value="Name" checked>
                     <label class="form-check-label text-black-50" for="inlineRadio1">Name</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Regiment">
+                    <input class="form-check-input" type="radio" name="searchType" id="inlineRadio2" value="Regiment">
                     <label class="form-check-label text-black-50" for="inlineRadio2">Regiment Number</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Address">
+                    <input class="form-check-input" type="radio" name="searchType" id="inlineRadio3" value="Address">
                     <label class="form-check-label text-black-50" for="inlineRadio3">Address</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Unit">
+                    <input class="form-check-input" type="radio" name="searchType" id="inlineRadio4" value="Unit">
                     <label class="form-check-label text-black-50" for="inlineRadio4">Unit</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="searchType" id="inlineRadio5" value="PreWarOccupation">
+                    <label class="form-check-label text-black-50" for="inlineRadio5">Pre-War Occupation</label>
                 </div>
             </form>
             <!--./Search Field-->
@@ -35,8 +39,8 @@
         <br>
         <div class="row">
             <!--Results Field-->
-            <h3 class="text-black-50">This is a list of search results from the MSR Database</h3>
-            <table class="table table-light rounded-bottom">
+            <h3 class="col text-black-50 text-center">Results from the MSR Database</h3>
+            <table class="table table-light text-center rounded-bottom">
                 <tr>
                     <th>
                         Name
@@ -50,29 +54,35 @@
                     <th>
                         Unit
                     </th>
+                    <th>
+                        Pre-War Occupation
+                    </th>
                 </tr>
-                @for (int i = 0; i < Model.Item1.Count; i++)
+                @for (int i = 0; i < Model.Veteran.Count; i++)
                 {
                     <tr>
                         <td>
                             @{
-                                var fullName = Model.Item1[i].Surname + ", " + Model.Item1[i].FirstName;
-                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => Model.Item1[i].Id)">@Html.DisplayFor(m => fullName)</a>
+                                var fullName = Model.Veteran[i].Surname + ", " + Model.Veteran[i].FirstName;
+                                <a href="/veterans/portfolio/@Html.DisplayFor(modelItem => Model.Veteran[i].Id)">@Html.DisplayFor(m => fullName)</a>
                             }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].ServiceNo)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].RegimentNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].Address)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].Address)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => Model.Item1[i].Unit)
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].Battalion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Veteran[i].PreWarOccupation)
                         </td>
                     </tr>
                 }
             </table>
-            @if (Model.Item1.Count() == 0)
+            @if (Model.Veteran.Count() == 0)
             {
                 <div class="row col-sm-12" style="padding-bottom: 2vh">
                     <p>No results found in MSR Database.</p>
@@ -80,10 +90,10 @@
             }
             <!--./Results Field-->
             <!--AIF Results-->
-            @if (Model.Item2.Count > 0)
+            @if (Model.AifResults != null && Model.AifResults.Count > 0)
             {
-                <h3 class="text-black-50">This is a partial list of search results from the AIF Database</h3>
-                <table class="table table-light rounded-bottom">
+                <h3 class="col text-black-50 text-center">Partial results from the AIF Database</h3>
+                <table class="table table-light text-center rounded-bottom">
                     @{
                         <tr>
                             <th>Regiment Number</th>
@@ -92,13 +102,13 @@
                             <th>Battalion</th>
                         </tr>
                         <tbody>
-                            @for (int i = 0; i < Model.Item2.Count; i++)
+                            @for (int i = 0; i < Model.AifResults.Count; i++)
                             {
                                 <tr>
-                                    <td>@Model.Item2[i].RegimentNumber</td>
-                                    <td><a href="@Model.Item2[i].ProfileLink" target="_blank">@Model.Item2[i].Name</a></td>
-                                    <td>@Model.Item2[i].Address</td>
-                                    <td>@Model.Item2[i].Battalion</td>
+                                    <td>@Model.AifResults[i].RegimentNumber</td>
+                                    <td><a href="@Model.AifResults[i].ProfileLink" target="_blank">@Model.AifResults[i].Name</a></td>
+                                    <td>@Model.AifResults[i].Address</td>
+                                    <td>@Model.AifResults[i].Battalion</td>
                                 </tr>
                             }
                         </tbody>

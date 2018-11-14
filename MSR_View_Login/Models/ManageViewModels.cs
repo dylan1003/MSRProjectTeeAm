@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace SimplifiedLogin.Models
+namespace MSR_Web_App.Models
 {
     public class IndexViewModel
     {

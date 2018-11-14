@@ -1,6 +1,4 @@
-﻿
-
-body {
+﻿body {
     margin: 0;
     padding: 0;
 }
@@ -24,6 +22,12 @@ body {
     margin-top: 4%;
 }
 
+#home-hero {
+    background: url("home-hero-blur.jpg");
+    background-size: cover;
+    height: 97vh;
+}
+
 #page-layout {
     padding-top: 7vh;
     padding-left: 5vw;
@@ -35,4 +39,51 @@ body {
     padding-left: 15vw;
     padding-right: 15vw;
     min-height: 94.5vh;
+}
+
+.section {
+    margin: 10px 0;
+    padding: 10px;
+    color: white;
+    background-color:gray;
+}
+
+.section .modal {
+    color:black;
+}
+
+.content {
+    background-color: darkgray;
+    margin: 10px;
+    padding: 10px;
+}
+
+.img-click {
+    cursor: zoom-in;
+}
+
+#btnAddEvent {
+    margin:10px 0;
+}
+
+#frmAddEvent {
+    margin: 10px 0;
+}
+
+#frmProfilePicture {
+    margin: 10px 0;
+}
+
+.map-modal-input-group {
+    display: flex;
+    flex: 1;
+}
+
+.leaflet-map {
+    display: flex;
+    flex: 1;
+}
+
+.modal-body {
+    display: inline-flex;
 }

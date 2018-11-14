@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SimplifiedLogin.Models;
+using MSR_Web_App.Models;
 
-namespace SimplifiedLogin.Controllers
+namespace MSR_Web_App.Controllers
 {
     [Authorize]
     public class ManageController : Controller

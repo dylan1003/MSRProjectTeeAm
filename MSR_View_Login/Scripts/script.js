@@ -1,10 +1,5 @@
 ﻿
-$(function () {
-    $(".img-click").on('click', function () {
-        $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
-        $('#enlargeImageModal').modal('show');
-    });
-});
+
 
 function setCarouselActive(currentId) {
     var navList = document.getElementById(currentId).parentElement.children;
@@ -34,6 +29,20 @@ $(function (e) {
         map._zoom = e.value;        
     });
 });
+
+
+//$('#btnSubmit').click(function () {
+//    var formData = $(mapForm).serialize();
+    
+//    $.ajax({
+//        type: "POST",
+//        url: "/UserVeteran/EditSectionMap",
+//        data: formData,
+//        success: function () {
+//            $('#mapModal').modal('hide');
+//        }
+//    })
+//})
 
 
 /*
@@ -84,5 +93,11 @@ function horizontalScrollWindow() {
 $(function () {
     $('#inlineRadio4').on('click', function () {
         alert("Unfortunaly AIF search results currently does not support unit/battalion search");
+    });
+});
+
+$(function () {
+    $('#inlineRadio5').on('click', function () {
+        alert("Unfortunaly AIF search results currently does not support pre-war occupation search");
     });
 });

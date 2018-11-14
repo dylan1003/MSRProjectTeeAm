@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SimplifiedLogin.Controllers
+namespace MSR_Web_App.Controllers
 {
     public class HomeController : Controller
     {

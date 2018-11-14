@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace SimplifiedLogin
+namespace MSR_Web_App
 {
     public class BundleConfig
     {

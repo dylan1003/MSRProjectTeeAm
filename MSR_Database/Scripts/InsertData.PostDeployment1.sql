@@ -1,4 +1,5 @@
-﻿IF '$(loaddata)' = 'false'
+﻿/*
+IF '$(loaddata)' = 'false'
 begin
 delete from Veterans;
 delete from Contents;
@@ -133,3 +134,4 @@ INSERT INTO  Contents(Id, Title, Timestamp, type, source, DisplayPosition, Fk_Mu
 END
 
 
+*/

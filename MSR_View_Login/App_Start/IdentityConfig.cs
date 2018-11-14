@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SimplifiedLogin.Models;
+using MSR_Web_App.Models;
 
-namespace SimplifiedLogin
+namespace MSR_Web_App
 {
     public class EmailService : IIdentityMessageService
     {

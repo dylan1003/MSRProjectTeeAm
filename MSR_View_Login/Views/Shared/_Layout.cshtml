@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/ico" href="https://image.ibb.co/cU4Ki0/MSR-Star-Logo.png">
     <title>@ViewBag.Title</title>
 
     <!--Styles-->
@@ -38,10 +39,10 @@
 </head>
 <body>
     <header>
-    <!--Navbar-->
+        <!--Navbar-->
         <nav class="navbar overwrite-navbar-text overwrite-bg-navbar navbar-expand-lg fixed-top">
             <img src="https://image.ibb.co/cU4Ki0/MSR-Star-Logo.png" class="navbar-brand" id="msrlogo" alt="MSR Logo" height="45" width="45">
-            <a href="/" class="navbar-brand align-self-center" ><strong>My School Remembers</strong></a>
+            <a href="/" class="navbar-brand align-self-center"><strong>My School Remembers</strong></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="custom-navbar-toggler-icon"></span>
             </button>
@@ -54,7 +55,7 @@
                         <a href="/veterans" class="nav-link">Veterans</a>
                     </li>
                     <li class="navbar-item">
-                        <a href="https://au.linkedin.com/in/brenton-pettit-32a3aa8" class="nav-link">Contact</a>
+                        <a href="https://www.myschoolremembers.org/email-enquiry" class="nav-link">Contact</a>
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -62,22 +63,10 @@
         </nav>
     </header>
     <!--./NavBar-->
-
-
     <div>
+        <!--Content-->
         @RenderBody()
-        <!--Map Script-->
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiMTAxNjE0ODU1IiwiYSI6ImNqbWZ2Zzh4cjBjZGszdnF5dzdwdnRmMDUifQ.1Y24aVGqUdqGM2i7_6wHvw';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/light-v9',
-                center: [-96, 37.8],
-                zoom: 3
-            });
-
-        </script>
-        <!--Map Script-->
+        <!--./Content-->
         <!--Footer/Copyright-->
         <footer class="custom-footer">
             <div class="footer-row">
@@ -86,15 +75,9 @@
         </footer>
         <!--./Footer/Copyright-->
     </div>
-
-
     @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
 
-    
-        
-    
 </body>
-
 </html>

@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MSR_mvc.Models;
 using Microsoft.AspNet.Identity;
+using MSR_Web_App.Models;
 
-namespace SimplifiedLogin.Controllers
+namespace MSR_Web_App.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
+        //Database connection
+        private Msr_Database_Release_TwoEntities db = new Msr_Database_Release_TwoEntities();
+
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Create Veteran
@@ -29,9 +32,16 @@ namespace SimplifiedLogin.Controllers
 
         // Post: Create Veteran
         [HttpPost]
-        public ActionResult CreateVeteran(Veteran newVeteran)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateVeteran([Bind(Include = "Id,FirstName,MiddleName,Surname,DOB,BirthPlace,Death,MaritalStatus,EnlistedDate,EmbarkmentAge,RegimentNumber,Battalion,Religion,Address,State,Country,ShortBio,Fate,Status,ProfilePicture,Fk_User_Id,Fk_Veteran_Queue_Id,PreWarOccupation,NextOfKin")] Veteran veteran)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Veterans.Add(veteran);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(veteran);
         }
     }
 }
