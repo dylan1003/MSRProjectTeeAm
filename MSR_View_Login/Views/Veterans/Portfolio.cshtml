@@ -34,11 +34,11 @@
 
                                         @if (Model.Veteran.ProfilePicture != null)
                                         {
-                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="@Model.Veteran.ProfilePicture" alt="Portfolio Picture">
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="@Model.Veteran.ProfilePicture" alt="Portfolio Picture" title="@fullName">
                                         }
                                         else
                                         {
-                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture">
+                                            <img class="img-click float-left img-fluid" style="width:30%; height:auto; padding-top:0.5em; padding-right:0.5em;" src="~/Content/Default_Profile_Pictures.jpg" alt="Portfolio Picture" title="DefaultPortfolioImage">
                                         }
 
                                         <br>
@@ -386,7 +386,7 @@
 
                                                     if (c.MediaType == "Image")
                                                     {
-                                                        <img class="img-click" src="@c.Source" style="width:50%;" />
+                                                        <img class="img-click" src="@c.Source" style="width:50%;" title="@c.Title"/>
                                                     }
                                                     else
                                                     {
