@@ -322,6 +322,7 @@
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy10.pubxml" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy11.pubxml" />
+    <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy12.pubxml" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy2.pubxml" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy3.pubxml" />
     <None Include="Properties\PublishProfiles\msrreleasetwo - Web Deploy4.pubxml" />
