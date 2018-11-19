@@ -1,0 +1,48 @@
+﻿<div>
+    <script>
+        var map = L.map('leaflet-map').setView([-26.588527, 134.291215], 3);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWljaDkzIiwiYSI6ImNqZXMyMHMzeDAya3QzM3BlcWZoN3kyOHIifQ.o-Pj-zET7xQeBp7mOEt7Og'
+        }).addTo(map);
+
+        //mark geocode by default adds a marker on the search result
+        L.Control.geocoder({
+            defaultMarkGeocode: false
+        })
+            .on('markgeocode', function (e) {
+                var bbox = e.geocode.bbox;
+                var poly = L.polygon([
+                    bbox.getSouthEast(),
+                    bbox.getNorthEast(),
+                    bbox.getNorthWest(),
+                    bbox.getSouthWest()
+                ]);
+                map.fitBounds(poly.getBounds());
+            })
+            .addTo(map);
+
+        var zoomLevel = map._zoom;
+        var marker = L.marker();
+
+        function onMapClick(e) {
+            map.removeLayer(marker);
+            marker = L.marker(e.latlng).addTo(map);
+            $('#txtCoordX').val(e.latlng.lat);
+            $('#txtCoordY').val(e.latlng.lng);
+        }
+        function updateZoom(e) {
+            $('#txtCameraZoom').val(map._zoom);
+        }
+
+        // this fixes the issue with greyed out tiles displaying until resize
+        $('#mapModal').on('shown.bs.modal', function (e) {
+            jQuery.noConflict();
+            setTimeout(function () { map.invalidateSize(); }, 10);
+        });
+
+    </script>
+</div>

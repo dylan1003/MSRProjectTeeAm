@@ -115,7 +115,7 @@
             <h3>Event Creator</h3>
         </div>
         <div class="row">
-            <section class="jumbotron bg-dark w-100">
+            <section id="eventCreator" class="jumbotron bg-dark w-100">
 
                 @*Loop through Sections in Model and display*@
                 @for (int s = 0; s < Model.Sections.Count; s++)
@@ -179,56 +179,60 @@
                             @Html.HiddenFor(m => m.content.MediaType, new { Value = "Text" })
 
                             <button name="editSection" type="submit" class="btn btn-primary" value="AddContent">Add Content</button>
-                            <button type="button" id="btnModal" class="btn btn-info">Edit Event Map</button>
-                            <div class="modal fade" id="mapModal" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran", new {
-                                                                                     Id = Model.Sections.ElementAt(s).Id,
-                                                                                     Veteran_Id = Model.Sections.ElementAt(s).Veteran_Id
-                                                                                 })'></div>
+                            <button type="button" id="btnModal-@Model.Sections.ElementAt(s).Id" class="btn btn-info">Edit Event Map</button>
+                            <div class="modal fade" id="mapModal-@Model.Sections.ElementAt(s).Id" role="dialog" data-url='@Url.Action("_MapModal","UserVeteran", Model.Sections.ElementAt(s))'></div>
                             <button name="editSection" type="submit" class="btn btn-danger" value="Delete">Delete Event</button>
 
                             <script>
                                 $(document).ready(function () {
-                                    $('#btnModal').click(function () {
-                                        var url = $('#mapModal').data('url');
-                                        jQuery.noConflict();
-                                        $.get(url, function (data) {
-                                            $('#mapModal').html(data);
-                                            $('#mapModal').modal('show');
+                                    $('[id*="btnModal-"]').each(function () {
+                                        $(this).click(function () {
 
+                                            var buttonId = $(this).attr("id");
+                                            var myId = buttonId.match(/\d+/g).map(Number);
+
+                                            //alert(myId);
+
+                                            var url = $('#mapModal-' + myId).data('url');
+                                            jQuery.noConflict();
+                                            $.get(url, function (data) {
+                                                $('#mapModal-' + myId).html(data);
+                                                $('#mapModal-' + myId).modal('show');
+                                            });
                                         });
                                     });
                                 });
-
                             </script>
 
                         }
-                    </section>
 
+                    </section>
                 }
-            </section>
-        </div>
-        <div class="row">
-            @* auto generate ID code here *@
-            @using (Html.BeginForm("AddSection", "UserVeteran"))
-            {
+                @* auto generate ID code here *@
+                @using (Html.BeginForm("AddSection", "UserVeteran"))
+                {
                 <form>
                     <div class="form-group" id="frmAddEvent">
-                        @Html.HiddenFor(s => s.section.Id)
-                        @Html.HiddenFor(s => s.section.Veteran_Id, new { Value = User.Identity.GetUserName() })
+                        @Html.HiddenFor(model => model.section.Id)
+                        @Html.HiddenFor(model => model.section.Veteran_Id, new { Value = User.Identity.GetUserName() })
 
-                        @Html.LabelFor(s => s.section.EventTitle, "Event Title", new { @class = "form-label" })
-                        @Html.TextBoxFor(s => s.section.EventTitle, "", new { @class = "form-control" })
+                        @Html.LabelFor(model => model.section.EventTitle, "Event Title", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.section.EventTitle, "", new { @class = "form-control" })
 
-                        @Html.LabelFor(s => s.section.Approved, "Approved", new { @class = "form-label" })
-                        @Html.TextBoxFor(s => s.section.Approved, "", new { @class = "form-control" })
+                        @*@Html.LabelFor(s => s.section.Approved, "Approved", new { @class = "form-label" })
+                @Html.TextBoxFor(s => s.section.Approved, "", new { @class = "form-control" })
 
-                        @Html.LabelFor(s => s.section.DisplayPosition, "Display Position", new { @class = "form-label" })
-                        @Html.TextBoxFor(s => s.section.DisplayPosition, "", new { @class = "form-control" })
+                @Html.LabelFor(s => s.section.DisplayPosition, "Display Position", new { @class = "form-label" })
+                @Html.TextBoxFor(s => s.section.DisplayPosition, "", new { @class = "form-control" })*@
 
                         <button type="submit" class="btn btn-primary" id="btnAddEvent">Add Event</button>
                     </div>
                 </form>
-            }
+                }
+            </section>
+        </div>
+        <div class="row">
+           
         </div>
     </div>
 </body>

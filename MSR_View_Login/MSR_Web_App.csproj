@@ -403,6 +403,7 @@
     <Content Include="Views\Veterans\EmptyPortfolio.cshtml" />
     <Content Include="Views\UserVeteran\Index.cshtml" />
     <Content Include="Views\Shared\_MapModal.cshtml" />
+    <Content Include="Views\Shared\_Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

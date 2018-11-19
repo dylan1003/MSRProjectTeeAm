@@ -87,3 +87,7 @@
 .modal-body {
     display: inline-flex;
 }
+
+#eventCreator {
+    color:white;
+}
